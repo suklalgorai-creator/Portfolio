@@ -292,6 +292,12 @@ document.addEventListener('DOMContentLoaded', () => {
     {
       id: "attendance-tracker",
       name: "College Attendance Tracker",
+      screenshots: [
+        { title: "Live Dashboard (100% Attendance & Streak)", url: "assets/images/attendance-dashboard.jpg" },
+        { title: "Daily Attendance Register & Actions", url: "assets/images/attendance-register.jpg" },
+        { title: "User Profile & Settings (Suklal Gorai)", url: "assets/images/attendance-profile.jpg" },
+        { title: "Sticky Notes Module (localhost:3000/notes)", url: "assets/images/attendance-notes.jpg" }
+      ],
       category: "app",
       version: "2.1.1",
       description: "A full-stack progressive web app for college students to track and manage their subject-wise attendance. Features real-time sync with Firebase, safe-bunk calculator, analytics dashboard, and offline-first PWA capabilities deployed on Vercel.",
@@ -313,7 +319,12 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "focus-guard",
-      name: "Focus Guard",
+      name: "Focus Guard & StudyFlow Companion",
+      screenshots: [
+        { title: "StudyFlow Focus Timer & Pomodoro (25:00)", url: "assets/images/studyflow-dashboard.jpg" },
+        { title: "Physics Syllabus Progress Tracker", url: "assets/images/studyflow-syllabus.jpg" },
+        { title: "Daily Goals Checklist & AI Mentor", url: "assets/images/studyflow-tasks.jpg" }
+      ],
       category: "app",
       version: "1.0.0",
       description: "A native Android digital wellbeing app that blocks distracting apps and keeps students locked in during deep study sessions. Built with Kotlin and Android Accessibility/UsageStats APIs for zero-lag native enforcement.",
@@ -409,7 +420,13 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     {
       id: "resort-website",
-      name: "Luxury Resort & Hospitality",
+      name: "Aranyak Resort & Nature Retreat",
+      screenshots: [
+        { title: "Aranyak Resort — Hero & Booking", url: "assets/images/resort-hero.jpg" },
+        { title: "Deluxe Rooms & Luxury Suites Showcase", url: "assets/images/resort-rooms.jpg" },
+        { title: "Resort Villas & Landscape Grounds", url: "assets/images/resort-amenities.jpg" },
+        { title: "Explore Neighbourhood & Sightseeing", url: "assets/images/resort-neighbourhood.jpg" }
+      ],
       category: "client",
       version: null,
       description: "An elegant hospitality website featuring luxury room showcases, tariff comparisons, interactive photo gallery, and direct WhatsApp/phone reservation inquiries.",
@@ -722,6 +739,25 @@ document.addEventListener('DOMContentLoaded', () => {
       <p class="modal-description">${project.description}</p>
     `;
 
+    if (project.screenshots && project.screenshots.length > 0) {
+      html += `
+        <div class="modal-gallery-section">
+          <div class="modal-gallery-header">
+            <span class="modal-gallery-title">📸 Verified App Screenshots (${project.screenshots.length})</span>
+            <span class="modal-gallery-hint">Tap any thumbnail to preview full screen</span>
+          </div>
+          <div class="modal-gallery-grid">
+            ${project.screenshots.map((s, idx) => `
+              <div class="gallery-thumb-item ${idx === 0 ? 'active' : ''}" data-full-url="${s.url}" data-title="${s.title}">
+                <img src="${s.url}" alt="${s.title}" loading="lazy">
+                <span class="gallery-thumb-caption">${s.title}</span>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
     if (project.highlights && project.highlights.length > 0) {
       html += `
         <div class="modal-highlights-box">
@@ -789,6 +825,25 @@ document.addEventListener('DOMContentLoaded', () => {
     modalBody.innerHTML = html;
     modalOverlay.classList.add('active');
     document.body.style.overflow = 'hidden';
+
+    // Thumbnail switcher for modal gallery
+    const thumbItems = modalBody.querySelectorAll('.gallery-thumb-item');
+    thumbItems.forEach(item => {
+      item.addEventListener('click', () => {
+        thumbItems.forEach(t => t.classList.remove('active'));
+        item.classList.add('active');
+        const newUrl = item.getAttribute('data-full-url');
+        const newTitle = item.getAttribute('data-title');
+        if (modalBannerImg && newUrl) {
+          modalBannerImg.style.opacity = '0.4';
+          setTimeout(() => {
+            modalBannerImg.src = newUrl;
+            modalBannerImg.alt = newTitle || project.name;
+            modalBannerImg.style.opacity = '1';
+          }, 150);
+        }
+      });
+    });
 
     const apkBtn = modalBody.querySelector('.modal-apk-trigger');
     if (apkBtn) {
