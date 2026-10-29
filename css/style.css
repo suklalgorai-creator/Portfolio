@@ -2234,48 +2234,720 @@ body::after {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* ---------- RESPONSIVE ---------- */
+/* ---------- ADVANCED RESPONSIVE & MOBILE SCROLL OPTIMIZATION ---------- */
+
+/* Global Mobile Scroll Protection */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch device adjustments */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-spotlight {
+    display: none !important;
+  }
+}
+
+/* Floating WhatsApp Quick Connect Button */
+.floating-whatsapp-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 22px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: #25D366;
+  color: #FFFFFF !important;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.4);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.floating-whatsapp-btn:hover {
+  background: #20BA5A;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 34px rgba(37, 211, 102, 0.55);
+  color: #FFFFFF !important;
+}
+
+.floating-whatsapp-btn svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* ---------- TABLET (max-width: 992px) ---------- */
 @media (max-width: 992px) {
+  .container {
+    width: 92%;
+  }
+
   .hero-grid,
   .about-grid,
   .agency-banner,
   .contact-grid {
     grid-template-columns: 1fr;
+    gap: 36px;
   }
+
   .hero {
-    padding-top: 96px;
+    padding-top: 100px;
+    padding-bottom: 60px;
+    min-height: auto;
+  }
+
+  .hero-workbench {
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
   }
 }
 
+/* ---------- MOBILE (max-width: 768px) ---------- */
 @media (max-width: 768px) {
-  section { padding: 72px 0; }
-  .hamburger { display: flex; }
-  .cmd-kbd { display: none; }
+  section {
+    padding: 64px 0;
+  }
+
+  /* Navigation Drawer */
+  .hamburger {
+    display: flex;
+  }
+
+  .cmd-kbd {
+    display: none !important;
+  }
+
+  .navbar {
+    padding: 12px 0;
+  }
+
+  .navbar.scrolled {
+    padding: 8px 0;
+  }
 
   .nav-menu {
     position: fixed;
     top: 0;
     right: -100%;
-    width: 270px;
+    width: 82%;
+    max-width: 320px;
     height: 100vh;
+    height: 100dvh;
     background: var(--surface-solid);
     border-left: 1px solid var(--glass-border-strong);
     flex-direction: column;
-    justify-content: center;
-    gap: 22px;
-    padding: 36px;
-    transition: right 0.35s ease;
+    justify-content: flex-start;
+    padding: 84px 28px 40px;
+    gap: 20px;
+    transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
     z-index: 1001;
+    overflow-y: auto;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7);
   }
 
-  .nav-menu.active { right: 0; }
-  .projects-grid { grid-template-columns: 1fr; }
-  .about-pillars { grid-template-columns: 1fr; }
-  .modal-body { padding: 24px; }
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-link {
+    font-size: 1.15rem;
+    padding: 10px 0;
+    width: 100%;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Hero Section Typography */
+  .hero-name {
+    font-size: 2.7rem;
+    letter-spacing: -1px;
+  }
+
+  .hero-title {
+    font-size: 1.25rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.95rem;
+  }
+
+  .hero-cta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+
+  .hero-meta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  /* Horizontal Scrolling for Workbench Tabs */
+  .workbench-topbar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+  }
+  .workbench-topbar::-webkit-scrollbar { display: none; }
+
+  .workbench-tabs {
+    flex-shrink: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .workbench-tabs::-webkit-scrollbar { display: none; }
+
+  /* Projects Toolbar: Horizontal Scroll Rail for Filter Tabs */
+  .projects-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .filter-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 8px;
+    padding: 4px 2px 10px;
+    margin-bottom: 0;
+    scrollbar-width: none;
+  }
+  .filter-tabs::-webkit-scrollbar { display: none; }
+
+  .filter-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    scroll-snap-align: start;
+    padding: 10px 18px;
+    font-size: 0.82rem;
+  }
+
+  .project-search-wrap {
+    width: 100%;
+  }
+
+  /* Single Column Card Grid for Clean Mobile Flow */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    padding: 20px;
+  }
+
+  .project-thumb-frame {
+    height: 190px;
+  }
+
+  /* CodeCraft Agency Banner: Swipeable Horizontal Rail */
+  .agency-banner {
+    padding: 28px 20px;
+  }
+
+  .agency-services {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    padding-bottom: 10px;
+    margin-top: 22px;
+    scrollbar-width: none;
+  }
+  .agency-services::-webkit-scrollbar { display: none; }
+
+  .agency-service-item {
+    flex: 0 0 84%;
+    min-width: 260px;
+    scroll-snap-align: center;
+    padding: 18px;
+  }
+
+  /* Interactive Terminal Modal: Mobile Native Bottom-Sheet */
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 24px 24px 0 0;
+    max-height: 88vh;
+    border-bottom: none;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.7);
+  }
+
+  .modal-hero-banner {
+    height: 180px;
+  }
+
+  .modal-body {
+    padding: 24px 20px 40px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .terminal-modal {
+    max-height: 85vh;
+  }
+
+  /* Terminal Chips: Horizontal Swipe Rail */
+  .terminal-chips {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    padding: 10px 14px;
+    gap: 6px;
+  }
+  .terminal-chips::-webkit-scrollbar { display: none; }
+
+  .term-chip {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Timeline */
+  .timeline {
+    padding-left: 30px;
+  }
+
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline-dot {
+    left: -26px;
+  }
+
+  /* Floating WhatsApp Label hide on small screens */
+  .floating-whatsapp-btn {
+    bottom: 20px;
+    right: 18px;
+    padding: 12px 14px;
+  }
+  .floating-whatsapp-btn .whatsapp-label {
+    display: none;
+  }
 }
 
+/* ---------- SMALL SCREENS (max-width: 480px) ---------- */
 @media (max-width: 480px) {
-  .hero-cta { flex-direction: column; }
-  .hero-cta .btn { width: 100%; }
-  .about-stats { grid-template-columns: 1fr; }
+  .container {
+    width: 94%;
+  }
+
+  .hero-name {
+    font-size: 2.3rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.9rem;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .stat-card {
+    padding: 20px 18px;
+  }
+
+  .tech-category {
+    padding: 22px 16px;
+  }
+
+  .contact-channels {
+    gap: 10px;
+  }
+
+  .contact-channel {
+    padding: 12px 14px;
+  }
+}
+
+/* ============================================================
+   INSTAGRAM STORY CIRCULAR RING COMPONENT & STORY VIEWER
+   ============================================================ */
+
+/* Mini Story Ring in Navbar */
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.nav-story-ring {
+  width: 36px;
+  height: 36px;
+  padding: 2.2px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  animation: storyRingPulse 3s infinite alternate;
+}
+
+.nav-story-ring:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 16px rgba(220, 39, 67, 0.45);
+}
+
+.nav-story-ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1.5px solid var(--bg-primary);
+  display: block;
+}
+
+/* Hero Section Instagram Story Ring Header */
+.hero-story-banner {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding: 6px 14px 6px 6px;
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  border-radius: 999px;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  cursor: pointer;
+  transition: all 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  max-width: fit-content;
+}
+
+.hero-story-banner:hover {
+  background: var(--surface-hover);
+  border-color: rgba(220, 39, 67, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(220, 39, 67, 0.2);
+}
+
+.hero-story-ring {
+  width: 48px;
+  height: 48px;
+  padding: 2.5px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.hero-story-ring::after {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #f09433, #dc2743, #bc1888);
+  opacity: 0.35;
+  filter: blur(4px);
+  z-index: -1;
+  animation: storyRingGlow 2.5s infinite alternate;
+}
+
+.hero-story-ring img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid var(--bg-primary);
+}
+
+.hero-story-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.hero-story-user {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--paper);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.hero-story-user svg {
+  color: #3897f0;
+  flex-shrink: 0;
+}
+
+.hero-story-status {
+  font-size: 0.72rem;
+  color: var(--ink-green);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.hero-story-status .story-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink-green);
+  box-shadow: 0 0 8px var(--ink-green);
+  animation: pulse 1.8s infinite;
+}
+
+@keyframes storyRingPulse {
+  0% { transform: scale(1); filter: brightness(1); }
+  100% { transform: scale(1.04); filter: brightness(1.15); }
+}
+
+@keyframes storyRingGlow {
+  0% { opacity: 0.25; transform: scale(0.96); }
+  100% { opacity: 0.55; transform: scale(1.06); }
+}
+
+/* ---------- INSTAGRAM STORY VIEWER MODAL ---------- */
+.story-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  padding: 16px;
+}
+
+.story-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.story-card-container {
+  width: 100%;
+  max-width: 380px;
+  height: 640px;
+  max-height: 90vh;
+  background: #090d14;
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.8), 0 0 30px rgba(220, 39, 67, 0.2);
+  display: flex;
+  flex-direction: column;
+  transform: scale(0.92);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.story-modal-overlay.active .story-card-container {
+  transform: scale(1);
+}
+
+/* Progress bar header */
+.story-progress-bar {
+  display: flex;
+  gap: 4px;
+  padding: 12px 14px 6px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 20;
+}
+
+.story-progress-segment {
+  height: 3px;
+  flex: 1;
+  background: rgba(255, 255, 255, 0.28);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.story-progress-fill {
+  height: 100%;
+  width: 0%;
+  background: #FFFFFF;
+  border-radius: 3px;
+  transition: width 0.05s linear;
+}
+
+.story-header {
+  position: absolute;
+  top: 24px;
+  left: 14px;
+  right: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 20;
+}
+
+.story-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.story-header-avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid #FFFFFF;
+  object-fit: cover;
+}
+
+.story-header-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.story-header-name {
+  color: #FFFFFF;
+  font-weight: 700;
+  font-size: 0.88rem;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.story-header-time {
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.72rem;
+}
+
+.story-close-btn {
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 1.1rem;
+  transition: all 0.2s;
+}
+
+.story-close-btn:hover {
+  background: rgba(244, 63, 94, 0.6);
+  transform: scale(1.1);
+}
+
+/* Story Slide Content */
+.story-slide-body {
+  flex: 1;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 24px 20px 24px;
+  background-size: cover;
+  background-position: center;
+}
+
+.story-slide-body::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(5, 7, 9, 0.4) 0%, rgba(5, 7, 9, 0.2) 40%, rgba(5, 7, 9, 0.95) 85%);
+  z-index: 1;
+}
+
+.story-content-box {
+  position: relative;
+  z-index: 2;
+  color: #FFFFFF;
+}
+
+.story-slide-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: linear-gradient(45deg, #f09433, #dc2743);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+}
+
+.story-slide-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+
+.story-slide-desc {
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.88);
+  margin-bottom: 18px;
+}
+
+.story-actions-row {
+  display: flex;
+  gap: 10px;
+}
+
+.story-actions-row .btn {
+  flex: 1;
+  justify-content: center;
+  font-size: 0.84rem;
+  padding: 10px 14px;
 }

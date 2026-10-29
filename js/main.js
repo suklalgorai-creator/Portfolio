@@ -302,7 +302,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Dark & Daylight glassmorphic UI with custom mesh theme"
       ],
       techStack: ["React", "Firebase", "Vite", "PWA", "Vercel"],
-      githubUrl: "https://github.com/suklalgorai/college-attendance-tracker",
+      githubUrl: "https://github.com/suklalgorai-creator/college-attendance-tracker",
       downloadUrl: null,
       apkSize: null,
       changelog: [
@@ -324,7 +324,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Lightweight 8.2 MB APK with zero ad bloat"
       ],
       techStack: ["Kotlin", "Android SDK", "Material You", "Gradle"],
-      githubUrl: "https://github.com/suklalgorai/focus-guard",
+      githubUrl: "https://github.com/suklalgorai-creator/focus-guard",
       downloadUrl: "assets/apk/focus-guard.apk",
       apkSize: "8.2 MB",
       changelog: [
@@ -344,7 +344,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Privacy-first local storage—data never leaves your phone"
       ],
       techStack: ["Kotlin", "Android SDK", "Local DB", "Gradle"],
-      githubUrl: "https://github.com/suklalgorai/reelcount",
+      githubUrl: "https://github.com/suklalgorai-creator/reelcount",
       downloadUrl: "assets/apk/reelcount.apk",
       apkSize: "6.5 MB",
       changelog: [
@@ -364,7 +364,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Structured PRD architecture & clean state separation"
       ],
       techStack: ["Flutter", "Dart", "Material 3"],
-      githubUrl: "https://github.com/suklalgorai/scientific-calculator",
+      githubUrl: "https://github.com/suklalgorai-creator/scientific-calculator",
       downloadUrl: "assets/apk/scientific-calculator.apk",
       apkSize: "12.0 MB",
       changelog: [
@@ -384,7 +384,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Mobile-first performance tuned for regional networks"
       ],
       techStack: ["HTML5", "CSS3", "JavaScript", "SEO"],
-      githubUrl: "https://github.com/suklalgorai",
+      githubUrl: "https://github.com/suklalgorai-creator",
       downloadUrl: null,
       apkSize: null,
       changelog: null
@@ -894,7 +894,7 @@ document.addEventListener('DOMContentLoaded', () => {
     } else if (cmd === 'agency') {
       responseHtml = `🏢 <strong>CodeCraft Digital:</strong> Web & App Studio for businesses in Jharkhand. Fast mobile-first websites, SEO, and WhatsApp lead generation.`;
     } else if (cmd === 'socials') {
-      responseHtml = `🔗 GitHub: <a href="https://github.com/suklalgorai" target="_blank">github.com/suklalgorai</a> | LinkedIn: <a href="https://www.linkedin.com/in/suklal-gorai-7ab4533b0" target="_blank">suklal-gorai</a> | Email: suklalgorai@gmail.com`;
+      responseHtml = `🔗 GitHub: <a href="https://github.com/suklalgorai-creator" target="_blank">github.com/suklalgorai-creator</a> | LinkedIn: <a href="https://www.linkedin.com/in/suklal-gorai-7ab4533b0" target="_blank">suklal-gorai</a> | Email: suklalgorai@gmail.com`;
     } else if (cmd === 'theme') {
       if (themeToggle) themeToggle.click();
       responseHtml = `🎨 Toggled portfolio color theme!`;
@@ -979,5 +979,149 @@ document.addEventListener('DOMContentLoaded', () => {
       contactForm.reset();
     });
   }
+
+
+  // ─── INSTAGRAM STORY VIEWER INTERACTIVITY ────────────────
+  const storyOverlay = document.getElementById('storyModalOverlay');
+  const heroStoryTrigger = document.getElementById('heroStoryTrigger');
+  const navStoryTrigger = document.getElementById('navStoryTrigger');
+  const storyCloseBtn = document.getElementById('storyCloseBtn');
+  const storySlideBody = document.getElementById('storySlideBody');
+  const storySlideBadge = document.getElementById('storySlideBadge');
+  const storySlideTitle = document.getElementById('storySlideTitle');
+  const storySlideDesc = document.getElementById('storySlideDesc');
+  const storyHeaderTime = document.getElementById('storyHeaderTime');
+  const storyContactBtn = document.getElementById('storyContactBtn');
+
+  const storySlides = [
+    {
+      badge: "Founder & Developer",
+      title: "Building Real Tech in Jamshedpur",
+      desc: "1st Year B.Tech CSE student at Netaji Subhas University. Specialized in Flutter, Android Kotlin, and full-stack web applications.",
+      time: "2h ago",
+      bg: "assets/images/avatar.jpg"
+    },
+    {
+      badge: "Agency • CodeCraft Digital",
+      title: "8+ Client Websites Shipped",
+      desc: "Founded CodeCraft Digital — crafting fast, responsive websites for local businesses, resorts, salons, clinics, and NGOs across Jharkhand.",
+      time: "1h ago",
+      bg: "assets/images/project-codecraft-digital.jpg"
+    },
+    {
+      badge: "Flagship Products",
+      title: "12+ Live Apps & Utilities",
+      desc: "Created College Attendance Tracker (v2.1.1), Focus Guard, ReelCount, and Scientific Calculator. Solving real student problems with clean code.",
+      time: "Just now",
+      bg: "assets/images/project-attendance-tracker.jpg"
+    }
+  ];
+
+  let currentStoryIdx = 0;
+  let storyInterval = null;
+  let storyProgress = 0;
+  const slideDuration = 4500; // 4.5 seconds per slide
+  const progressStepTime = 50;
+
+  function updateStorySlide(idx) {
+    if (!storySlides[idx]) return;
+    const slide = storySlides[idx];
+    currentStoryIdx = idx;
+    storyProgress = 0;
+
+    storySlideBadge.textContent = slide.badge;
+    storySlideTitle.textContent = slide.title;
+    storySlideDesc.textContent = slide.desc;
+    storyHeaderTime.textContent = slide.time;
+    storySlideBody.style.backgroundImage = `url('${slide.bg}')`;
+
+    // Reset fills
+    for (let i = 0; i < 3; i++) {
+      const fill = document.getElementById(`storyFill${i}`);
+      if (fill) {
+        if (i < idx) fill.style.width = '100%';
+        else if (i === idx) fill.style.width = '0%';
+        else fill.style.width = '0%';
+      }
+    }
+  }
+
+  function startStoryTimer() {
+    clearInterval(storyInterval);
+    storyInterval = setInterval(() => {
+      storyProgress += (progressStepTime / slideDuration) * 100;
+      const currentFill = document.getElementById(`storyFill${currentStoryIdx}`);
+      if (currentFill) {
+        currentFill.style.width = `${Math.min(100, storyProgress)}%`;
+      }
+
+      if (storyProgress >= 100) {
+        if (currentStoryIdx < storySlides.length - 1) {
+          updateStorySlide(currentStoryIdx + 1);
+        } else {
+          closeStory();
+        }
+      }
+    }, progressStepTime);
+  }
+
+  function openStory() {
+    if (!storyOverlay) return;
+    currentStoryIdx = 0;
+    updateStorySlide(0);
+    storyOverlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    startStoryTimer();
+  }
+
+  function closeStory() {
+    if (!storyOverlay) return;
+    clearInterval(storyInterval);
+    storyOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  if (heroStoryTrigger) heroStoryTrigger.addEventListener('click', openStory);
+  if (navStoryTrigger) navStoryTrigger.addEventListener('click', (e) => {
+    e.preventDefault();
+    openStory();
+  });
+
+  if (storyCloseBtn) storyCloseBtn.addEventListener('click', closeStory);
+
+  if (storyOverlay) {
+    storyOverlay.addEventListener('click', (e) => {
+      if (e.target === storyOverlay) {
+        closeStory();
+      } else if (e.target.closest('.story-slide-body')) {
+        // Tap right to advance, tap left to go back
+        const rect = e.currentTarget.getBoundingClientRect();
+        const clickX = e.clientX;
+        if (clickX > window.innerWidth / 2) {
+          if (currentStoryIdx < storySlides.length - 1) {
+            updateStorySlide(currentStoryIdx + 1);
+          } else {
+            closeStory();
+          }
+        } else {
+          if (currentStoryIdx > 0) {
+            updateStorySlide(currentStoryIdx - 1);
+          }
+        }
+      }
+    });
+  }
+
+  if (storyContactBtn) {
+    storyContactBtn.addEventListener('click', () => {
+      closeStory();
+    });
+  }
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && storyOverlay && storyOverlay.classList.contains('active')) {
+      closeStory();
+    }
+  });
 
 });
