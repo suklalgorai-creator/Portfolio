@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Suklal Gorai — Developer, App Builder & Founder of CodeCraft Digital</title>
+  <meta name="description" content="Portfolio of Suklal Gorai — B.Tech CSE student at NSU Jamshedpur, Flutter & Kotlin Android developer, and founder of CodeCraft Digital.">
+  <meta name="author" content="Suklal Gorai">
+  <meta name="theme-color" content="#050709">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Interactive Background Constellation + Mouse Spotlight + Grid -->
+  <canvas id="bgConstellation"></canvas>
+  <div class="cursor-spotlight" id="cursorSpotlight"></div>
+  <div class="bg-grid-overlay"></div>
+  <div class="mesh-orb-3"></div>
+
+  <!-- ═══════════════════════════════════════════
+       NAVIGATION
+       ═══════════════════════════════════════════ -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="#hero" class="nav-logo">&lt;<span>SG</span>/&gt;</a>
+      <ul class="nav-menu">
+        <li><a href="#about" class="nav-link">About</a></li>
+        <li><a href="#skills" class="nav-link">Tech Stack</a></li>
+        <li><a href="#projects" class="nav-link">Projects</a></li>
+        <li><a href="#agency" class="nav-link">CodeCraft</a></li>
+        <li><a href="#journey" class="nav-link">Journey</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+      <div class="nav-actions">
+        <button type="button" class="cmd-btn" id="cmdTerminalBtn" title="Open Interactive Developer Terminal">
+          <span>&gt;_ Terminal</span>
+          <span class="cmd-kbd">Ctrl+K</span>
+        </button>
+        <a href="https://github.com/suklalgorai" target="_blank" rel="noopener" class="btn btn-sm btn-secondary">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+          GitHub
+        </a>
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle theme">🌙</button>
+        <button type="button" class="hamburger" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ═══════════════════════════════════════════
+       HERO SECTION (With Persona Switcher & 3D Hologram)
+       ═══════════════════════════════════════════ -->
+  <section class="hero" id="hero">
+    <div class="container">
+      <div class="hero-grid">
+
+        <!-- Left Column: Persona Switcher, Intro & CTAs -->
+        <div class="hero-left">
+          <div class="persona-switcher-wrap">
+            <div class="persona-switcher" role="group" aria-label="Switch Portfolio Persona">
+              <button type="button" class="persona-btn active" data-persona="dev">👨‍💻 Developer Mode</button>
+              <button type="button" class="persona-btn" data-persona="founder">🚀 Founder Mode (CodeCraft)</button>
+            </div>
+            <div class="status-pill">
+              <span class="pulse-dot"></span>
+              <span>B.Tech CSE @ NSU Jamshedpur</span>
+            </div>
+          </div>
+
+          <p class="hero-greeting">// Hello World, I am</p>
+          <h1 class="hero-name">Suklal <span class="gradient-span">Gorai</span></h1>
+          <p class="hero-title">
+            <span class="typing-text"></span><span class="cursor"></span>
+          </p>
+          <p class="hero-tagline" id="heroTaglineText">
+            I build <strong>real software products that solve everyday problems</strong> — from offline-first college PWAs and native Kotlin wellbeing apps to high-converting websites for businesses through <strong>CodeCraft Digital</strong>.
+          </p>
+          <div class="hero-cta">
+            <a href="#projects" class="btn btn-primary" id="heroPrimaryCta">
+              ⚡ Explore 12+ Shipped Projects
+            </a>
+            <a href="#contact" class="btn btn-secondary">
+              ✉️ Work With Me
+            </a>
+          </div>
+
+          <div class="hero-meta-strip">
+            <div class="hero-social">
+              <a href="https://github.com/suklalgorai" target="_blank" rel="noopener" aria-label="GitHub" title="GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+              <a href="https://www.linkedin.com/in/suklal-gorai-7ab4533b0" target="_blank" rel="noopener" aria-label="LinkedIn" title="LinkedIn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+              </a>
+              <a href="https://instagram.com/suklal_gorai" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+              </a>
+              <a href="mailto:suklalgorai@gmail.com" aria-label="Email" title="Email">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+              </a>
+            </div>
+            <div class="hero-quick-badges">
+              <span class="quick-pill">💙 Flutter & Dart</span>
+              <span class="quick-pill">🔷 Kotlin Android</span>
+              <span class="quick-pill">⚛️ React & Next.js</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: 3-Tab Hologram + Live App Demo + Code Workbench -->
+        <div class="hero-workbench">
+          <div class="workbench-topbar">
+            <div class="window-dots">
+              <span></span><span></span><span></span>
+            </div>
+            <div class="workbench-tabs">
+              <button type="button" class="workbench-tab active" data-pane="paneHoloAvatar">🎨 3D Builder Hub</button>
+              <button type="button" class="workbench-tab" data-pane="paneAttendanceSim">📱 Live App Demo</button>
+              <button type="button" class="workbench-tab" data-pane="paneDevConfig">⚡ suklal.config.ts</button>
+            </div>
+          </div>
+
+          <div class="workbench-body">
+            <!-- Pane 0: 3D Developer Hologram Visual -->
+            <div class="workbench-pane active" id="paneHoloAvatar">
+              <div class="holo-showcase">
+                <div class="holo-img-wrap">
+                  <img src="assets/images/avatar.jpg" alt="Suklal Gorai 3D Developer Workspace">
+                  <span class="holo-floating-badge holo-badge-tl">⚡ 12+ Products Shipped</span>
+                  <span class="holo-floating-badge holo-badge-tr">💙 Flutter • Kotlin • React</span>
+                  <span class="holo-floating-badge holo-badge-bl">🏢 Founder @ CodeCraft Digital</span>
+                </div>
+                <div class="holo-caption-bar">
+                  <span><strong>Interactive Builder Hub</strong> • Jamshedpur, IN</span>
+                  <span style="color:var(--ink-green);font-family:var(--font-mono);font-size:0.75rem;">Switch tabs above ↑</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pane 1: Interactive Mini Attendance Tracker -->
+            <div class="workbench-pane" id="paneAttendanceSim">
+              <div class="sim-header">
+                <div class="sim-title-group">
+                  <h4>College Attendance Tracker <span style="color:var(--ink-green);font-family:var(--font-mono);font-size:0.75rem;">v2.1.1</span></h4>
+                  <p>Try clicking + Present or - Absent below</p>
+                </div>
+                <div class="sim-overall-badge" id="simOverallBadge">86% Overall</div>
+              </div>
+              <div class="sim-subject-list" id="simSubjectList">
+                <!-- Populated by JS -->
+              </div>
+              <div class="sim-footer">
+                <span>🔥 Synced with Firebase PWA</span>
+                <a href="https://github.com/suklalgorai/college-attendance-tracker" target="_blank" rel="noopener">View Repo →</a>
+              </div>
+            </div>
+
+            <!-- Pane 2: Developer Profile Code Card -->
+            <div class="workbench-pane" id="paneDevConfig">
+              <pre class="code-block"><code><span class="code-comment">// Suklal Gorai — Builder Profile</span>
+<span class="code-kw">export const</span> <span class="code-prop">developer</span> = {
+  <span class="code-prop">name</span>: <span class="code-str">"Suklal Gorai"</span>,
+  <span class="code-prop">education</span>: <span class="code-str">"B.Tech CSE @ NSU Jamshedpur"</span>,
+  <span class="code-prop">agency</span>: <span class="code-str">"CodeCraft Digital (Founder)"</span>,
+  <span class="code-prop">coreStack</span>: [
+    <span class="code-str">"Flutter"</span>, <span class="code-str">"Kotlin"</span>, <span class="code-str">"React"</span>,
+    <span class="code-str">"Next.js"</span>, <span class="code-str">"Firebase"</span>, <span class="code-str">"C / Python"</span>
+  ],
+  <span class="code-prop">shipped</span>: {
+    <span class="code-prop">mobileAndWebApps</span>: <span class="code-num">4</span>,
+    <span class="code-prop">clientWebsites</span>: <span class="code-num">8</span>
+  },
+  <span class="code-prop">motto</span>: <span class="code-str">"Build real things, ship fast."</span>
+};</code></pre>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       ABOUT SECTION (With Interactive Shipping Heatmap)
+       ═══════════════════════════════════════════ -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">01 • My Story</span>
+        <h2 class="section-title">From NEET Aspirant to Shipping Software</h2>
+        <p class="section-subtitle">Discipline forged in competitive exam prep, channeled into building products people actually use</p>
+      </div>
+
+      <div class="about-grid">
+        <div class="about-card reveal">
+          <div>
+            <p>
+              I'm <span class="highlight">Suklal Gorai</span>, a first-year B.Tech Computer Science & Engineering student at
+              <span class="highlight">Netaji Subhas University, Jamshedpur</span>. My path into software started unconventionally — after dedicating years to NEET preparation, I discovered that my deepest energy comes from creating tools and solving problems with code.
+            </p>
+            <p>
+              Instead of waiting four years for a degree to start building, I jumped straight into shipping: native Android digital-wellbeing utilities in <span class="highlight">Kotlin</span>, cross-platform apps in <span class="highlight">Flutter</span>, and offline-first web apps with <span class="highlight">React & Firebase</span>.
+            </p>
+            <p>
+              Alongside my studies, I founded <span class="highlight">CodeCraft Digital</span>, helping local businesses, NGOs, resorts, and clinics across Jharkhand launch modern websites that bring them real customers.
+            </p>
+          </div>
+
+          <div class="about-pillars">
+            <div class="pillar-item">
+              <div class="pillar-icon">📱</div>
+              <div>
+                <h4>Mobile-First Engineering</h4>
+                <p>Native Kotlin & Flutter apps with clean architecture</p>
+              </div>
+            </div>
+            <div class="pillar-item">
+              <div class="pillar-icon">🚀</div>
+              <div>
+                <h4>Founder Mindset</h4>
+                <p>8+ client sites delivered via CodeCraft Digital</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-stats reveal">
+          <div class="stat-card">
+            <div class="stat-number" data-target="12" data-plus="true">0</div>
+            <div class="stat-label">Projects Shipped</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="8" data-plus="true">0</div>
+            <div class="stat-label">Client Websites</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="4">0</div>
+            <div class="stat-label">Flagship Apps</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number" data-target="6" data-plus="true">0</div>
+            <div class="stat-label">Core Languages</div>
+          </div>
+          <div class="currently-building">
+            <div class="pulse-dot"></div>
+            <div class="currently-building-text">
+              <strong>Currently Focused On:</strong> Scaling <strong>College Attendance Tracker v2</strong>, shipping new Android utilities, and mastering Data Structures & Algorithms in C and Dart.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Interactive 2026 Shipping & Commit Heatmap -->
+      <div class="heatmap-card reveal" id="shippingHeatmap">
+        <div class="heatmap-header">
+          <div class="heatmap-title-group">
+            <h3>🔥 2026 Builder Consistency & Shipping Streak</h3>
+            <p><strong id="commitCountSpan" style="color:var(--ink-green)">842</strong> code contributions & product updates shipped in 2026 (Click any square or push commit!)</p>
+          </div>
+          <button type="button" class="btn btn-sm btn-secondary" id="simulateCommitBtn">
+            ⚡ Push +5 Commits
+          </button>
+        </div>
+        <div class="heatmap-grid" id="shippingHeatmapGrid">
+          <!-- Populated by JS -->
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       TECH STACK SECTION
+       ═══════════════════════════════════════════ -->
+  <section id="skills">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">02 • Toolkit</span>
+        <h2 class="section-title">Tech Stack & Capabilities</h2>
+        <p class="section-subtitle">Languages, frameworks, and cloud infrastructure I use to take ideas from zero to production</p>
+      </div>
+
+      <div class="tech-categories">
+        <div class="tech-category reveal">
+          <div class="tech-category-header">
+            <span class="tech-category-title">Languages</span>
+            <span class="tech-count">6 Core</span>
+          </div>
+          <div class="tech-grid">
+            <span class="tech-badge">🎯 Dart</span>
+            <span class="tech-badge">🔷 Kotlin</span>
+            <span class="tech-badge">⚡ JavaScript (ES6+)</span>
+            <span class="tech-badge">🐍 Python</span>
+            <span class="tech-badge">⚙️ C Programming</span>
+            <span class="tech-badge">🌐 HTML5 / CSS3</span>
+          </div>
+        </div>
+
+        <div class="tech-category reveal">
+          <div class="tech-category-header">
+            <span class="tech-category-title">Mobile & Web Frameworks</span>
+            <span class="tech-count">5 Frameworks</span>
+          </div>
+          <div class="tech-grid">
+            <span class="tech-badge">💙 Flutter SDK</span>
+            <span class="tech-badge">🏗️ Android SDK</span>
+            <span class="tech-badge">⚛️ React.js</span>
+            <span class="tech-badge">▲ Next.js</span>
+            <span class="tech-badge">⚡ Vite & PWA</span>
+          </div>
+        </div>
+
+        <div class="tech-category reveal">
+          <div class="tech-category-header">
+            <span class="tech-category-title">Backend & Persistence</span>
+            <span class="tech-count">4 Tools</span>
+          </div>
+          <div class="tech-grid">
+            <span class="tech-badge">🔥 Firebase Auth & Firestore</span>
+            <span class="tech-badge">⚡ Supabase</span>
+            <span class="tech-badge">📦 Node.js</span>
+            <span class="tech-badge">💾 Hive / Local Storage</span>
+          </div>
+        </div>
+
+        <div class="tech-category reveal">
+          <div class="tech-category-header">
+            <span class="tech-category-title">DevOps & Workflow</span>
+            <span class="tech-count">6 Platforms</span>
+          </div>
+          <div class="tech-grid">
+            <span class="tech-badge">🐙 Git & GitHub</span>
+            <span class="tech-badge">▲ Vercel Cloud</span>
+            <span class="tech-badge">🐳 Docker</span>
+            <span class="tech-badge">📱 Android Studio</span>
+            <span class="tech-badge">💻 VS Code</span>
+            <span class="tech-badge">🤖 AI-Augmented Dev</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       PROJECTS SECTION (With Browser/Device Image Previews)
+       ═══════════════════════════════════════════ -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">03 • Visual Proof of Work</span>
+        <h2 class="section-title">Featured Apps & Client Websites</h2>
+        <p class="section-subtitle">Click any project card to view its full visual preview, architecture highlights, release changelog, or APK download</p>
+      </div>
+
+      <!-- Filter Tabs + Live Search -->
+      <div class="projects-toolbar reveal">
+        <div class="filter-tabs">
+          <button type="button" class="filter-btn active" data-filter="all">All Projects (12)</button>
+          <button type="button" class="filter-btn" data-filter="app">📱 Flagship Apps (4)</button>
+          <button type="button" class="filter-btn" data-filter="client">🏢 Client Websites (7)</button>
+          <button type="button" class="filter-btn" data-filter="fun">⚡ Creative Side (1)</button>
+        </div>
+
+        <div class="project-search-wrap">
+          <svg class="project-search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="text" id="projectSearchInput" class="project-search-input" placeholder="Search by tech (Kotlin, Flutter, Next.js...)">
+        </div>
+      </div>
+
+      <!-- Projects Visual Bento Grid -->
+      <div class="projects-grid">
+
+        <!-- 1. College Attendance Tracker -->
+        <div class="project-card featured-app reveal" data-category="app" data-project-id="attendance-tracker">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">attendance-tracker.vercel.app</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-attendance-tracker.jpg" alt="College Attendance Tracker Preview">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">🌐 Full-Stack PWA</span>
+              <span class="project-category-badge badge-app">v2.1.1</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">College Attendance Tracker</h3>
+              <a href="https://github.com/suklalgorai/college-attendance-tracker" target="_blank" rel="noopener" title="View Source on GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+            </div>
+            <p class="project-card-desc">Full-stack progressive web app for college students with real-time Firebase sync, 75% safe-bunk calculator, and offline support.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">React</span>
+                <span class="project-tag">Firebase</span>
+                <span class="project-tag">PWA</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--ink-green);font-weight:700;">Inspect →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Focus Guard -->
+        <div class="project-card featured-app reveal" data-category="app" data-project-id="focus-guard">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">com.suklal.focusguard.apk</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-focus-guard.jpg" alt="Focus Guard Android App Preview">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">🤖 Native Kotlin APK</span>
+              <span class="project-category-badge badge-app">8.2 MB</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">Focus Guard</h3>
+              <a href="https://github.com/suklalgorai/focus-guard" target="_blank" rel="noopener" title="View Source on GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+            </div>
+            <p class="project-card-desc">Native Android digital wellbeing app that blocks distracting apps during study sessions with Material You analytics.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">Kotlin</span>
+                <span class="project-tag">Android SDK</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--ink-green);font-weight:700;">Download APK →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. ReelCount -->
+        <div class="project-card featured-app reveal" data-category="app" data-project-id="reelcount">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">com.suklal.reelcount.apk</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-reelcount.jpg" alt="ReelCount Android App Preview">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">📊 Scroll Analytics</span>
+              <span class="project-category-badge badge-app">6.5 MB</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">ReelCount</h3>
+              <a href="https://github.com/suklalgorai/reelcount" target="_blank" rel="noopener" title="View Source on GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+            </div>
+            <p class="project-card-desc">Track your daily Instagram Reels consumption with automatic counters, weekly graphs, and mindfulness reminders.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">Kotlin</span>
+                <span class="project-tag">Android SDK</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--ink-green);font-weight:700;">Download APK →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Scientific Calculator -->
+        <div class="project-card featured-app reveal" data-category="app" data-project-id="scientific-calculator">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">flutter-scientific-calc.apk</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-scientific-calculator.jpg" alt="Scientific Calculator Flutter Preview">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">💙 Flutter App</span>
+              <span class="project-category-badge badge-app">12.0 MB</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">Scientific Calculator</h3>
+              <a href="https://github.com/suklalgorai/scientific-calculator" target="_blank" rel="noopener" title="View Source on GitHub">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              </a>
+            </div>
+            <p class="project-card-desc">Feature-rich scientific calculator built with Flutter featuring full trigonometric functions, expression history, and adaptive themes.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">Flutter</span>
+                <span class="project-tag">Dart</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--ink-green);font-weight:700;">Download APK →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 5. CodeCraft Digital -->
+        <div class="project-card reveal" data-category="client" data-project-id="codecraft-digital">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">codecraftdigital.in</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-codecraft-digital.jpg" alt="CodeCraft Digital Agency Website">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">🏢 Web Design Studio</span>
+              <span class="project-category-badge badge-client">Founder</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">CodeCraft Digital</h3>
+            </div>
+            <p class="project-card-desc">Official website for my web design agency serving local businesses across Jharkhand — portfolio, pricing tiers, and lead capture.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JavaScript</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--purple);font-weight:700;">Case Study →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 6. Sahyog Jharkhand -->
+        <div class="project-card reveal" data-category="client" data-project-id="sahyog-jharkhand">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">sahyogjharkhand.org</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-sahyog-jharkhand.jpg" alt="Sahyog Jharkhand NGO Website">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">▲ Next.js Platform</span>
+              <span class="project-category-badge badge-client">NGO Client</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">Sahyog Jharkhand</h3>
+            </div>
+            <p class="project-card-desc">SEO-optimized Next.js website for a Jharkhand social organization featuring community initiatives and volunteer onboarding.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">Next.js</span>
+                <span class="project-tag">React</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--purple);font-weight:700;">Case Study →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 7. Resort Website -->
+        <div class="project-card reveal" data-category="client" data-project-id="resort-website">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">hillviewresort-jharkhand.in</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-resort.jpg" alt="Luxury Resort & Hospitality Website">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">🏨 Hospitality Web</span>
+              <span class="project-category-badge badge-client">Client</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">Resort & Hospitality Website</h3>
+            </div>
+            <p class="project-card-desc">Elegant resort website with suite showcases, tariff comparisons, interactive photo gallery, and direct booking inquiries.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JS</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--purple);font-weight:700;">Case Study →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 8. Tour & Travels -->
+        <div class="project-card reveal" data-category="client" data-project-id="tour-travels">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">explore-travels.in</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-tour-travels.jpg" alt="Tour & Travels Agency Website">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">🌍 Travel Portal</span>
+              <span class="project-category-badge badge-client">Client</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">Tour & Travels Agency</h3>
+            </div>
+            <p class="project-card-desc">Travel agency platform with destination itineraries, cab fleet rates, customer reviews, and instant booking forms.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JS</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--purple);font-weight:700;">Case Study →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 9. Wedding & Photography -->
+        <div class="project-card reveal" data-category="client" data-project-id="wedding-photography">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">royalframes-studio.in</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-wedding.jpg" alt="Wedding & Photography Studio Website">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">📸 Studio Portfolio</span>
+              <span class="project-category-badge badge-client">Client</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">Wedding & Photography</h3>
+            </div>
+            <p class="project-card-desc">Visual-first wedding photography website featuring story galleries, cinematic packages, and date availability booking.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JS</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--purple);font-weight:700;">Case Study →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 10. Food Ordering -->
+        <div class="project-card reveal" data-category="client" data-project-id="food-ordering">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">cravekitchen-order.in</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-food-ordering.jpg" alt="Food Ordering & Restaurant Website">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">🍔 Restaurant Web App</span>
+              <span class="project-category-badge badge-client">Client</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">Food Ordering & Restaurant</h3>
+            </div>
+            <p class="project-card-desc">Mobile-first restaurant website with category filtering, interactive cart summary, and commission-free direct order flow.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JS</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--purple);font-weight:700;">Case Study →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 11. Parlour & Saloon -->
+        <div class="project-card reveal" data-category="client" data-project-id="parlour-saloon">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">glowstudio-salon.in</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-parlour-saloon.jpg" alt="Parlour & Salon Studio Website">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">✨ Salon & Wellness</span>
+              <span class="project-category-badge badge-client">Client</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">Parlour & Salon Studio</h3>
+            </div>
+            <p class="project-card-desc">Professional beauty parlour and salon website with transparent service pricing, bridal packages, and appointment booking.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JS</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--purple);font-weight:700;">Case Study →</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- 12. Friend Teasing -->
+        <div class="project-card reveal" data-category="fun" data-project-id="friend-teasing">
+          <div class="project-thumb-frame">
+            <div class="thumb-browser-bar">
+              <div class="thumb-dots"><span></span><span></span><span></span></div>
+              <span class="thumb-url">roast-my-friend.vercel.app</span>
+            </div>
+            <img class="project-thumb-img" src="assets/images/project-friend-teasing.jpg" alt="Friend Teasing Interactive Micro-Site">
+            <div class="thumb-overlay-badge">
+              <span class="preview-device-pill">😄 Interactive Micro-App</span>
+              <span class="project-category-badge badge-app">Fun</span>
+            </div>
+          </div>
+          <div class="project-card-body">
+            <div class="project-card-header">
+              <h3 class="project-card-name">Friend Teasing Micro-Site</h3>
+            </div>
+            <p class="project-card-desc">Fun interactive micro-site built to tease friends with dodging cursor physics, personalized messages, and playful animations.</p>
+            <div class="project-card-footer">
+              <div class="project-tags">
+                <span class="project-tag">HTML5</span>
+                <span class="project-tag">CSS3</span>
+                <span class="project-tag">JS</span>
+              </div>
+              <span style="font-size:0.76rem;color:var(--ink-green);font-weight:700;">Inspect →</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="empty-filter-state" id="emptyFilterState">
+          <h3 style="color:var(--paper);margin-bottom:6px;">No matching projects found</h3>
+          <p style="font-size:0.9rem;">Try clearing your search query or switching filter tabs above.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CODECRAFT DIGITAL AGENCY SPOTLIGHT
+       ═══════════════════════════════════════════ -->
+  <section id="agency" style="padding-top: 20px;">
+    <div class="container">
+      <div class="agency-banner reveal">
+        <div>
+          <span class="agency-badge">🚀 Founder @ CodeCraft Digital</span>
+          <h3>Need a High-Converting Website or App for Your Business?</h3>
+          <p>
+            Through <strong>CodeCraft Digital</strong>, I help local businesses, clinics, resorts, restaurants, and NGOs get online with fast, mobile-first websites and custom apps — without bloated agency fees.
+          </p>
+          <button type="button" class="btn btn-primary" id="agencyInquireBtn">
+            ⚡ Start a Project Inquiry
+          </button>
+        </div>
+        <div class="agency-services">
+          <div class="agency-service-item">
+            <span>🌐 Business & Hospitality Websites</span>
+            <span>Fast Delivery</span>
+          </div>
+          <div class="agency-service-item">
+            <span>📱 Custom Flutter & Android Apps</span>
+            <span>iOS / Android</span>
+          </div>
+          <div class="agency-service-item">
+            <span>📈 SEO, Hosting & WhatsApp Lead Flows</span>
+            <span>End-to-End</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       JOURNEY / TIMELINE
+       ═══════════════════════════════════════════ -->
+  <section id="journey">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">04 • Milestones</span>
+        <h2 class="section-title">My Builder Journey</h2>
+        <p class="section-subtitle">Every pivot and project that shaped how I engineer software today</p>
+      </div>
+
+      <div class="timeline">
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Oct 2026 — Present</div>
+          <div class="timeline-title">Shipping Apps & Scaling CodeCraft Digital</div>
+          <div class="timeline-desc">Shipped College Attendance Tracker v2.1.1, Focus Guard, ReelCount, and Scientific Calculator while serving regional business clients and mastering C & DSA fundamentals.</div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Jul 2026</div>
+          <div class="timeline-title">Started B.Tech CSE @ Netaji Subhas University</div>
+          <div class="timeline-desc">Enrolled in Computer Science & Engineering in Jamshedpur — committing 100% to software engineering, mobile architecture, and product development.</div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Mid 2026</div>
+          <div class="timeline-title">Founded CodeCraft Digital</div>
+          <div class="timeline-desc">Launched my own web design studio for local businesses and organizations, delivering 8+ tailored websites across hospitality, travel, food, and social impact sectors.</div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">Early 2026</div>
+          <div class="timeline-title">Built First Flutter & AI-Augmented Projects</div>
+          <div class="timeline-desc">Discovered modern AI-assisted workflows and cross-platform development, turning ideas into working apps on my own phone within days.</div>
+        </div>
+
+        <div class="timeline-item reveal">
+          <div class="timeline-dot"></div>
+          <div class="timeline-date">2024 — 2025</div>
+          <div class="timeline-title">NEET Preparation & Grit Foundation</div>
+          <div class="timeline-desc">Years of intense competitive exam preparation taught me deep focus, resilience under pressure, and systematic problem-solving.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       CONTACT SECTION
+       ═══════════════════════════════════════════ -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-eyebrow">05 • Get In Touch</span>
+        <h2 class="section-title">Let's Build Something Together</h2>
+        <p class="section-subtitle">Have a business website in mind, want to collaborate on an app, or looking for a developer intern?</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-card reveal">
+          <h3 class="contact-heading">Direct Channels</h3>
+          <p class="contact-text">
+            Reach out directly via email or social platforms. I typically respond within 24 hours.
+          </p>
+
+          <div class="contact-channel-list">
+            <a href="mailto:suklalgorai@gmail.com" class="contact-channel">
+              <span class="contact-channel-left">
+                <span>✉️</span>
+                <span>suklalgorai@gmail.com</span>
+              </span>
+              <span style="color:var(--ink-green);font-size:0.8rem;">Send Mail →</span>
+            </a>
+
+            <button type="button" class="contact-channel" id="copyEmailBtn" style="width:100%;cursor:pointer;text-align:left;">
+              <span class="contact-channel-left">
+                <span>📋</span>
+                <span>Copy Email Address</span>
+              </span>
+              <span style="color:var(--amber);font-size:0.8rem;">1-Click Copy</span>
+            </button>
+
+            <a href="https://github.com/suklalgorai" target="_blank" rel="noopener" class="contact-channel">
+              <span class="contact-channel-left">
+                <span>🐙</span>
+                <span>github.com/suklalgorai</span>
+              </span>
+              <span style="color:var(--muted);font-size:0.8rem;">Repos →</span>
+            </a>
+
+            <a href="https://www.linkedin.com/in/suklal-gorai-7ab4533b0" target="_blank" rel="noopener" class="contact-channel">
+              <span class="contact-channel-left">
+                <span>💼</span>
+                <span>linkedin.com/in/suklal-gorai-7ab4533b0</span>
+              </span>
+              <span style="color:var(--muted);font-size:0.8rem;">Connect →</span>
+            </a>
+
+            <a href="https://instagram.com/suklal_gorai" target="_blank" rel="noopener" class="contact-channel">
+              <span class="contact-channel-left">
+                <span>📸</span>
+                <span>@suklal_gorai</span>
+              </span>
+              <span style="color:var(--muted);font-size:0.8rem;">DM →</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form-card reveal">
+          <h3 class="contact-heading">Quick Project / Collab Composer</h3>
+          <p class="contact-text">Fill out your brief below to open a pre-formatted message directly in your mail client.</p>
+          <form id="portfolioContactForm">
+            <div class="form-group">
+              <label class="form-label" for="contactName">Your Name</label>
+              <input type="text" id="contactName" class="form-input" placeholder="e.g. Rahul Sharma" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contactTopic">What are we building?</label>
+              <select id="contactTopic" class="form-select">
+                <option value="CodeCraft Digital Website Package">CodeCraft Digital Website Package</option>
+                <option value="Android / Flutter App Collaboration">Android / Flutter App Collaboration</option>
+                <option value="Client Website / App Inquiry">Client Website / App Inquiry</option>
+                <option value="Internship / Developer Opportunity">Internship / Developer Opportunity</option>
+                <option value="General Hello">General Hello</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="contactMessage">Project Details or Message</label>
+              <textarea id="contactMessage" class="form-textarea" placeholder="Tell me about your project goals, timeline, or idea..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary" style="width:100%;">
+              🚀 Compose & Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════════════
+       FOOTER
+       ═══════════════════════════════════════════ -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <p class="footer-text">
+          Designed & Built by <strong style="color:var(--paper)">Suklal Gorai</strong> • Founder of CodeCraft Digital &copy; 2026
+        </p>
+        <div class="footer-links">
+          <a href="#hero">Top ↑</a>
+          <a href="https://github.com/suklalgorai" target="_blank" rel="noopener">GitHub</a>
+          <a href="https://www.linkedin.com/in/suklal-gorai-7ab4533b0" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="mailto:suklalgorai@gmail.com">Email</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ═══════════════════════════════════════════
+       PROJECT DETAIL MODAL (With Visual Preview Header)
+       ═══════════════════════════════════════════ -->
+  <div class="modal-overlay" id="projectModalOverlay">
+    <div class="modal">
+      <button type="button" class="modal-close" id="projectModalClose" aria-label="Close">&times;</button>
+      <div class="modal-hero-banner">
+        <img id="projectModalBannerImg" src="assets/images/modal-banner-default.jpg" alt="Project Visual Preview">
+      </div>
+      <div class="modal-body" id="projectModalBody">
+        <!-- Populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════════
+       INTERACTIVE DEVELOPER TERMINAL MODAL (Ctrl+K)
+       ═══════════════════════════════════════════ -->
+  <div class="modal-overlay" id="terminalModalOverlay">
+    <div class="modal terminal-modal">
+      <div class="terminal-header">
+        <div class="window-dots"><span></span><span></span><span></span></div>
+        <span class="terminal-title">suklal@nsu-cse:~ (Interactive Portfolio CLI)</span>
+        <button type="button" class="modal-close" id="terminalModalClose" aria-label="Close" style="position:static;width:28px;height:28px;font-size:1rem;">&times;</button>
+      </div>
+      <div class="terminal-chips">
+        <button type="button" class="term-chip" data-cmd="help">help</button>
+        <button type="button" class="term-chip" data-cmd="projects">projects</button>
+        <button type="button" class="term-chip" data-cmd="skills">skills</button>
+        <button type="button" class="term-chip" data-cmd="story">story</button>
+        <button type="button" class="term-chip" data-cmd="agency">agency</button>
+        <button type="button" class="term-chip" data-cmd="socials">socials</button>
+        <button type="button" class="term-chip" data-cmd="theme">theme</button>
+        <button type="button" class="term-chip" data-cmd="clear">clear</button>
+      </div>
+      <div class="terminal-output" id="terminalOutput">
+        <div class="term-line" style="color:var(--ink-green)">Welcome to SuklalOS v2.6 — Interactive Developer Shell</div>
+        <div class="term-line" style="color:var(--muted);margin-bottom:14px;">Click any command chip above or type a command below (e.g. <strong>projects</strong>, <strong>skills</strong>, <strong>story</strong>).</div>
+      </div>
+      <form class="terminal-input-bar" id="terminalForm">
+        <span class="terminal-prompt-symbol">suklal@dev:~$</span>
+        <input type="text" class="terminal-input" id="terminalInput" placeholder="Type a command (help, projects, skills, story...)" autocomplete="off">
+        <button type="submit" class="btn btn-sm btn-primary" style="padding:5px 12px;">Run</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Toast Container -->
+  <div class="toast-container" id="toastContainer"></div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
