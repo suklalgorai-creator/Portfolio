@@ -293,7 +293,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: "attendance-tracker",
       name: "College Attendance Tracker",
       screenshots: [
-        { title: "Live Dashboard (100% Attendance & Streak)", url: "assets/images/attendance-dashboard.jpg" },
+        { title: "Live Dashboard (100% Attendance & Streak)", url: "assets/images/project-attendance-tracker.jpg" },
         { title: "Daily Attendance Register & Actions", url: "assets/images/attendance-register.jpg" },
         { title: "User Profile & Settings (Suklal Gorai)", url: "assets/images/attendance-profile.jpg" },
         { title: "Sticky Notes Module (localhost:3000/notes)", url: "assets/images/attendance-notes.jpg" }
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: "focus-guard",
       name: "Focus Guard & StudyFlow Companion",
       screenshots: [
-        { title: "StudyFlow Focus Timer & Pomodoro (25:00)", url: "assets/images/studyflow-dashboard.jpg" },
+        { title: "StudyFlow Focus Timer & Pomodoro (25:00)", url: "assets/images/project-studyflow.jpg" },
         { title: "Physics Syllabus Progress Tracker", url: "assets/images/studyflow-syllabus.jpg" },
         { title: "Daily Goals Checklist & AI Mentor", url: "assets/images/studyflow-tasks.jpg" }
       ],
@@ -422,7 +422,7 @@ document.addEventListener('DOMContentLoaded', () => {
       id: "resort-website",
       name: "Aranyak Resort & Nature Retreat",
       screenshots: [
-        { title: "Aranyak Resort — Hero & Booking", url: "assets/images/resort-hero.jpg" },
+        { title: "Aranyak Resort — Hero & Booking", url: "assets/images/project-resort.jpg" },
         { title: "Deluxe Rooms & Luxury Suites Showcase", url: "assets/images/resort-rooms.jpg" },
         { title: "Resort Villas & Landscape Grounds", url: "assets/images/resort-amenities.jpg" },
         { title: "Explore Neighbourhood & Sightseeing", url: "assets/images/resort-neighbourhood.jpg" }
