@@ -20,10 +20,10 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
     <section className="hero" id="hero">
       <div className="container">
         <div className="hero-grid">
-          {/* Left Column: Persona Switcher, Intro & CTAs */}
+          {/* Left Column: Story, Identity, Narrative & CTAs */}
           <div className="hero-left">
-            {/* Unified Luxury Identity Row */}
-            <div className="hero-identity-bar">
+            {/* 1. Identity Row: Story Capsule + Persona Segmented Switcher */}
+            <div className="hero-identity-bar hero-seq-1">
               {/* Story trigger capsule */}
               <div
                 className="hero-story-banner"
@@ -58,7 +58,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                 </div>
               </div>
 
-              {/* Segmented Persona Control */}
+              {/* Persona Segmented Control */}
               <div
                 className="persona-switcher"
                 role="group"
@@ -83,49 +83,48 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
               </div>
             </div>
 
-            {/* Technical Architecture Eyebrow */}
-            <div className="hero-eyebrow">
+            {/* 2. Technical Domain Eyebrow */}
+            <div className="hero-eyebrow hero-seq-2">
               <span className="hero-eyebrow-accent">//</span>
-              <span>MOBILE &amp; SYSTEMS ARCHITECT &bull; JAMSHEDPUR, IN</span>
+              <span>{isFounder ? 'FOUNDER & DIGITAL STRATEGIST • JAMSHEDPUR, IN' : 'MOBILE ARCHITECT & SYSTEMS ENGINEER • JAMSHEDPUR, IN'}</span>
             </div>
 
-            {/* Hero Name Headline */}
-            <h1 className="hero-name">
+            {/* 3. Primary Focal Point: Hero Name Headline */}
+            <h1 className="hero-name hero-seq-2">
               Suklal <span className="gradient-span">Gorai</span>
             </h1>
 
-            {/* Specialization Typing Subtitle */}
-            <div className="hero-title">
+            {/* 4. Specialization Typing Subtitle */}
+            <div className="hero-title hero-seq-3">
               <span className="hero-title-prefix">SPECIALIZATION &bull;</span>
               <span className="typing-text">{typewriterText}</span>
               <span className="cursor" aria-hidden="true"></span>
             </div>
 
-            {/* Narrative Pitch */}
-            <p className="hero-tagline" id="heroTaglineText">
+            {/* 5. Natural Storytelling Narrative */}
+            <p className="hero-tagline hero-seq-3" id="heroTaglineText">
               {isFounder ? (
                 <>
-                  As the founder of <strong>CodeCraft Digital</strong>, I design and ship{' '}
-                  <strong>high-converting websites, booking portals, and custom mobile apps</strong> for
-                  businesses, resorts, clinics, and NGOs across Jharkhand and beyond.
+                  As founder of <strong>CodeCraft Digital</strong>, I engineer and deliver{' '}
+                  <strong>high-performance websites, client portals, and mobile solutions</strong> for
+                  regional businesses, resorts, and clinics across Jharkhand — designed to convert visitors into customers.
                 </>
               ) : (
                 <>
-                  I build <strong>real software products that solve everyday problems</strong> &mdash; from
-                  offline-first college PWAs and native Kotlin wellbeing apps to high-converting
-                  websites for businesses through <strong>CodeCraft Digital</strong>.
+                  I engineer <strong>production mobile apps and web platforms</strong> that solve real problems &mdash; from
+                  offline-first college attendance utilities in <strong>Flutter &amp; Kotlin</strong> to robust digital platforms delivered through <strong>CodeCraft Digital</strong>.
                 </>
               )}
             </p>
 
-            {/* Primary & Secondary CTA Buttons */}
-            <div className="hero-cta">
+            {/* 6. High-Contrast, Clear Primary & Secondary CTAs */}
+            <div className="hero-cta hero-seq-4">
               <a
                 href={isFounder ? '#agency' : '#projects'}
-                className="btn btn-primary"
+                className="btn btn-primary btn-hero-primary"
                 id="heroPrimaryCta"
               >
-                <span>{isFounder ? 'View 8+ Client Websites' : 'Explore 12+ Shipped Projects'}</span>
+                <span>{isFounder ? 'View Client Platforms' : 'View Shipped Projects'}</span>
                 <svg
                   className="btn-arrow"
                   width="16"
@@ -143,35 +142,37 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
               </a>
               <a
                 href="#contact"
-                className="btn btn-secondary"
+                className="btn btn-secondary btn-hero-secondary"
+                id="heroSecondaryCta"
                 onClick={onInitiateProject}
               >
-                <span>Initiate Project</span>
+                <span>Contact Me</span>
                 <svg
                   className="btn-arrow-subtle"
-                  width="15"
-                  height="15"
+                  width="14"
+                  height="14"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="2.4"
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   aria-hidden="true"
                 >
-                  <path d="M7 17L17 7M17 7H7M17 7V17" />
+                  <line x1="7" y1="17" x2="17" y2="7"></line>
+                  <polyline points="7 7 17 7 17 17"></polyline>
                 </svg>
               </a>
             </div>
 
-            {/* Refined Social & Tech Telemetry Strip */}
-            <div className="hero-meta-strip">
+            {/* 7. Verification, Social & Tech Telemetry Strip */}
+            <div className="hero-meta-strip hero-seq-5">
               <div className="hero-social">
                 <a
                   href="https://github.com/suklalgorai-creator"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="GitHub"
+                  aria-label="GitHub Profile"
                   title="GitHub"
                 >
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
@@ -182,7 +183,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                   href="https://www.linkedin.com/in/suklal-gorai-7ab4533b0"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="LinkedIn"
+                  aria-label="LinkedIn Profile"
                   title="LinkedIn"
                 >
                   <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
@@ -193,7 +194,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                   href="https://instagram.com/suklal_gorai"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Instagram"
+                  aria-label="Instagram Profile"
                   title="Instagram"
                 >
                   <svg
@@ -211,7 +212,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                   </svg>
                 </a>
-                <a href="mailto:suklalgorai@gmail.com" aria-label="Email" title="Email">
+                <a href="mailto:suklalgorai@gmail.com" aria-label="Direct Email" title="Email">
                   <svg
                     width="17"
                     height="17"
@@ -243,7 +244,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
           </div>
 
           {/* Right Column: Linear-Caliber Engineering Workbench */}
-          <div className="hero-workbench">
+          <div className="hero-workbench hero-seq-workbench">
             <div className="workbench-topbar">
               <div className="window-dots" aria-hidden="true">
                 <span className="dot-red"></span>
