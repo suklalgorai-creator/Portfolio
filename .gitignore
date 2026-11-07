@@ -3,5 +3,11 @@
 Thumbs.db
 *.log
 
+# Dependencies & Build
+node_modules/
+dist/
+public/assets
+
 # Backups
 *.backup.html
+*.vanilla.html
