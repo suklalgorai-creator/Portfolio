@@ -7,8 +7,7 @@ export function useTerminal(toggleTheme) {
     {
       id: 'init-1',
       cmd: '',
-      content: 'Antigravity / Web-CLI v2.4.0 (x86_64-pc-none)<br>Type <span class="term-highlight">help</span> to list available commands or click a chip below.',
-      type: 'html'
+      content: 'Antigravity / Web-CLI v2.4.0 (x86_64-pc-none)\nType help to list available commands or click a chip below.'
     }
   ]);
   const [inputVal, setInputVal] = useState('');
@@ -25,8 +24,7 @@ export function useTerminal(toggleTheme) {
         {
           id: 'cleared-' + Date.now(),
           cmd: '',
-          content: 'Terminal cleared. Type <span class="term-highlight">help</span> or click a chip above.',
-          type: 'html'
+          content: 'Terminal cleared. Type help or click a chip above.'
         }
       ]);
       setInputVal('');
@@ -40,8 +38,7 @@ export function useTerminal(toggleTheme) {
         {
           id: 'cmd-' + Date.now(),
           cmd: rawCmd,
-          content: 'Toggled portfolio theme mode (Dark / Daylight Glass).',
-          type: 'html'
+          content: 'Toggled portfolio theme mode (Dark / Daylight Glass).'
         }
       ]);
       setInputVal('');
@@ -53,8 +50,7 @@ export function useTerminal(toggleTheme) {
       response = terminalCommands[cmd]();
     } else {
       response = {
-        type: 'html',
-        content: `Command not recognized: "${rawCmd}". Try <span class="term-highlight">help</span>, <span class="term-highlight">projects</span>, or <span class="term-highlight">skills</span>.`
+        content: `Command not recognized: "${rawCmd}". Try help, projects, or skills.`
       };
     }
 
@@ -64,7 +60,7 @@ export function useTerminal(toggleTheme) {
         id: 'cmd-' + Date.now(),
         cmd: rawCmd,
         content: response.content,
-        type: response.type
+        type: 'text'
       }
     ]);
     setInputVal('');

@@ -1,26 +1,32 @@
-# Website Architecture & Performance Engineering
+# Architecture
 
-The portfolio is a high-performance, vanilla static site designed to run with zero build step overhead and deploy directly to GitHub Pages, Netlify, or Vercel.
+This is a React 19 single-page application built with Vite.
 
-## Directory Structure
+## Structure
 
 ```text
-index.html                 Semantic HTML5 document with async fonts, lazy media, and accessible milestones
-css/
-  style.css                Editorial design system, layout, cinematic styling, and GPU-optimized transitions
-js/
-  main.js                  Unified coordinator for canvas, interactive components, GSAP reveals, and video scrubbing
-assets/
-  images/                  Optimized raster assets with explicit loading="lazy" and decoding="async"
-  videos/                  Hero media (assets/videos/part 1.mp4) for GSAP ScrollTrigger video scrubbing
+index.html                 HTML document and Vite entrypoint
+src/
+  App.jsx                  Application composition and global interaction state
+  components/              Shared layout, modal, and feedback components
+  config/                  Shared public configuration
+  data/                    Portfolio content and project records
+  hooks/                   Stateful interaction logic
+  sections/                Page-level feature sections
+css/style.css              Design tokens, layout, animation, and responsive rules
+assets/                    Images and video
 ```
 
-## Performance & Rendering Highlights
+## Engineering decisions
 
-- **Font Delivery:** Google Fonts preconnected and loaded asynchronously via `media="print" onload="this.media='all'"` with `<noscript>` fallback, eliminating render-blocking CSS.
-- **Cinematic Hero:** Scroll-scrubbed HTML5 video powered by GSAP ScrollTrigger (`part 1.mp4`), decoupled from scroll events via `requestAnimationFrame` seeking throttles and hardware acceleration.
-- **Progressive Enhancement:** Fully accessible without JavaScript; `.reveal` elements render visible by default and receive motion treatment only when `.js-enabled` is applied.
-- **Scroll Reveals:** Restrained opacity and translate tweens batched via `ScrollTrigger.batch()`, with CSS transitions disabled when GSAP is active (`html.gsap-enabled .reveal { transition: none !important; }`).
-- **Interactive Canvas:** HTML5 2D canvas with `IntersectionObserver` auto-pause when off-screen, `document.visibilitychange` tab-switch pausing, reduced particle counts on mobile (< 768px), and full cancellation on `prefers-reduced-motion: reduce`.
-- **CSS Containment:** `content-visibility: auto` with `contain-intrinsic-size` on sections, `contain: layout style paint` on project cards, and GPU promotion (`will-change: transform`) on active animated layers.
-- **Mobile Optimizations:** Throttled `backdrop-filter` on mobile viewports (< 480px), touch-friendly targets, and static poster fallback for cinematic video on handheld devices.
+- Content is separated from rendering in `src/data` so project and terminal updates do not require component changes.
+- Stateful behavior such as theme, terminal, story playback, and simulations lives in hooks with explicit cleanup.
+- The contact form uses a prefilled `mailto:` action and does not expose secrets or require a backend.
+- Images use lazy loading where appropriate; the canvas and video components pause or reduce work when possible.
+- The UI uses semantic sections, labels, keyboard-accessible controls, focusable cards, and a skip link.
+- An application-level error boundary provides a recoverable fallback for unexpected render failures.
+- Decorative canvas animation pauses when the document is hidden and is disabled for reduced-motion users; background video uses poster-first metadata loading.
+
+The active application entry is `index.html` → `src/main.jsx`. The previous vanilla prototype files are not part of the build graph.
+
+The optional `server.js` is an ES-module local static server with validated traversal and media-range handling; Vite preview remains the recommended production-like preview path.

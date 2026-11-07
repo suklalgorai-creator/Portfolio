@@ -4,12 +4,13 @@
  * Run with: node server.js
  */
 
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
+import http from 'node:http';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 
 const DEFAULT_PORT = 3000;
-const ROOT = __dirname;
+const ROOT = path.dirname(fileURLToPath(import.meta.url));
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -36,7 +37,8 @@ const server = http.createServer((req, res) => {
   const filePath = path.normalize(path.join(ROOT, safeUrl));
 
   // Security check: prevent directory traversal
-  if (!filePath.startsWith(ROOT)) {
+  const relativePath = path.relative(ROOT, filePath);
+  if (relativePath.startsWith('..') || path.isAbsolute(relativePath)) {
     res.writeHead(403, { 'Content-Type': 'text/plain' });
     return res.end('403 Forbidden');
   }
@@ -68,7 +70,16 @@ function serveFile(req, res, filePath, stat) {
   if (range && ext === '.mp4') {
     const parts = range.replace(/bytes=/, '').split('-');
     const start = parseInt(parts[0], 10);
-    const end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+    const requestedEnd = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+    if (!Number.isInteger(start) || start < 0 || start >= fileSize) {
+      res.writeHead(416, { 'Content-Range': `bytes */${fileSize}` });
+      return res.end();
+    }
+    const end = Math.min(Number.isInteger(requestedEnd) ? requestedEnd : fileSize - 1, fileSize - 1);
+    if (end < start) {
+      res.writeHead(416, { 'Content-Range': `bytes */${fileSize}` });
+      return res.end();
+    }
     const chunkSize = (end - start) + 1;
     const file = fs.createReadStream(filePath, { start, end });
 

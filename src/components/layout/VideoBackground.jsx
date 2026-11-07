@@ -6,6 +6,7 @@ export function VideoBackground() {
   useEffect(() => {
     const video = videoRef.current;
     if (!video) return;
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
     video.muted = true;
     video.defaultMuted = true;
@@ -27,8 +28,25 @@ export function VideoBackground() {
       }
     };
 
-    playVideo();
+    let idleHandle;
+    let fallbackTimer;
+    const loadVideo = () => {
+      video.load();
+      playVideo();
+    };
+
+    if ('requestIdleCallback' in window) {
+      idleHandle = window.requestIdleCallback(loadVideo, { timeout: 3000 });
+    } else {
+      fallbackTimer = window.setTimeout(loadVideo, 1500);
+    }
+
     video.addEventListener('canplay', playVideo, { once: true });
+    return () => {
+      video.removeEventListener('canplay', playVideo);
+      if (idleHandle && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleHandle);
+      if (fallbackTimer) window.clearTimeout(fallbackTimer);
+    };
   }, []);
 
   return (
@@ -43,7 +61,7 @@ export function VideoBackground() {
         muted
         playsInline
         webkit-playsinline="true"
-        preload="auto"
+        preload="none"
         poster="assets/images/developer-workspace.jpg"
       >
         <source src="assets/videos/part 1.mp4" type="video/mp4" />

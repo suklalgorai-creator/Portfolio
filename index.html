@@ -7,11 +7,21 @@
   <meta name="description" content="Portfolio of Suklal Gorai — B.Tech CSE student at NSU Jamshedpur, Flutter &amp; Kotlin Android developer, and founder of CodeCraft Digital.">
   <meta name="author" content="Suklal Gorai">
   <meta name="theme-color" content="#050709">
+  <script>
+    (function () {
+      try {
+        var savedTheme = localStorage.getItem('sg_theme');
+        if (savedTheme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+      } catch (error) {
+        // The app will default to dark mode if storage is unavailable.
+      }
+    }());
+  </script>
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
-  <noscript><link href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&family=Geist:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet"></noscript>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
+  <noscript><link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Manrope:wght@400;500;600;700;800&family=Syne:wght@500;600;700;800&display=swap" rel="stylesheet"></noscript>
 </head>
 <body>
   <div id="root"></div>

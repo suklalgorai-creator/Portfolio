@@ -1,7 +1,8 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useTheme } from './hooks/useTheme';
 import { useStoryViewer } from './hooks/useStoryViewer';
 import { useTerminal } from './hooks/useTerminal';
+import { useMotionSystem } from './hooks/useMotionSystem';
 
 import { VideoBackground } from './components/layout/VideoBackground';
 import { ConstellationCanvas } from './components/layout/ConstellationCanvas';
@@ -22,6 +23,7 @@ import { JourneySection } from './sections/Journey/JourneySection';
 import { ContactSection } from './sections/Contact/ContactSection';
 
 export function App() {
+  useMotionSystem();
   const { isLight, toggleTheme } = useTheme();
   const storyViewer = useStoryViewer();
   const terminal = useTerminal(toggleTheme);
@@ -30,13 +32,20 @@ export function App() {
   const [contactTopic, setContactTopic] = useState('');
   const [contactMessage, setContactMessage] = useState('');
   const [toasts, setToasts] = useState([]);
+  const toastTimers = useRef(new Set());
+
+  useEffect(() => () => {
+    toastTimers.current.forEach((timer) => clearTimeout(timer));
+  }, []);
 
   const showToast = useCallback((message) => {
     const id = Date.now() + Math.random();
     setToasts((prev) => [...prev, { id, message }]);
-    setTimeout(() => {
+    const timer = setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
+      toastTimers.current.delete(timer);
     }, 3200);
+    toastTimers.current.add(timer);
   }, []);
 
   const handleStartInquiry = useCallback(() => {
@@ -110,14 +119,15 @@ export function App() {
       <Footer />
 
       {/* Floating WhatsApp Quick Action Button */}
-      <a
-        href="https://wa.me/918709545464?text=Hi%20Suklal,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project!"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="floating-whatsapp-btn"
-        aria-label="Chat on WhatsApp"
-        title="Chat with Suklal on WhatsApp"
-      >
+      <aside aria-label="Quick contact">
+        <a
+          href="https://wa.me/918709545464?text=Hi%20Suklal,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project!"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="floating-whatsapp-btn"
+          aria-label="Chat on WhatsApp"
+          title="Chat with Suklal on WhatsApp"
+        >
         <svg
           width="24"
           height="24"
@@ -131,7 +141,8 @@ export function App() {
           <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
         </svg>
         <span className="whatsapp-label">WhatsApp</span>
-      </a>
+        </a>
+      </aside>
 
       {/* Modals */}
       <StoryModal

@@ -1,5 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { projectsData } from '../../data/projectsData';
+import { siteConfig } from '../../config/siteConfig';
+import { RevealHeading } from '../../components/common/RevealHeading';
 
 export function ProjectsSection({ onSelectProject }) {
   const [filter, setFilter] = useState('all');
@@ -24,51 +26,32 @@ export function ProjectsSection({ onSelectProject }) {
       <div className="container">
         <div className="section-header reveal">
           <span className="section-eyebrow">// 03 &bull; PROOF OF WORK</span>
-          <h2 className="section-title">Featured Products &amp; Client Deployments</h2>
+          <RevealHeading className="section-title">Ideas are better when they leave the notebook.</RevealHeading>
           <p className="section-subtitle">
-            Explore production applications, client platforms, and interactive software with full architecture highlights and releases.
+            Browse production applications, client platforms, and experiments—each one built around a real use case, constraint, or opportunity.
           </p>
         </div>
 
         {/* Linear-Style Segmented Filter Bar + Search */}
         <div className="projects-toolbar reveal">
-          <div className="filter-segmented-bar" role="tablist">
-            <button
-              type="button"
-              className={`filter-tab-btn ${filter === 'all' ? 'active' : ''}`}
-              onClick={() => setFilter('all')}
-              role="tab"
-              aria-selected={filter === 'all'}
-            >
-              All Works <span className="tab-count">12</span>
-            </button>
-            <button
-              type="button"
-              className={`filter-tab-btn ${filter === 'app' ? 'active' : ''}`}
-              onClick={() => setFilter('app')}
-              role="tab"
-              aria-selected={filter === 'app'}
-            >
-              Flagship Apps <span className="tab-count">4</span>
-            </button>
-            <button
-              type="button"
-              className={`filter-tab-btn ${filter === 'client' ? 'active' : ''}`}
-              onClick={() => setFilter('client')}
-              role="tab"
-              aria-selected={filter === 'client'}
-            >
-              Client Platforms <span className="tab-count">7</span>
-            </button>
-            <button
-              type="button"
-              className={`filter-tab-btn ${filter === 'fun' ? 'active' : ''}`}
-              onClick={() => setFilter('fun')}
-              role="tab"
-              aria-selected={filter === 'fun'}
-            >
-              Creative <span className="tab-count">1</span>
-            </button>
+          <div className="filter-segmented-bar" role="tablist" aria-label="Filter projects">
+            {siteConfig.projectCategories.map((category) => {
+              const count = category.id === 'all'
+                ? projectsData.length
+                : projectsData.filter((project) => project.category === category.id).length;
+              return (
+                <button
+                  key={category.id}
+                  type="button"
+                  className={`filter-tab-btn ${filter === category.id ? 'active' : ''}`}
+                  onClick={() => setFilter(category.id)}
+                  role="tab"
+                  aria-selected={filter === category.id}
+                >
+                  {category.label} <span className="tab-count">{count}</span>
+                </button>
+              );
+            })}
           </div>
 
           <div className="project-search-container">
@@ -113,9 +96,6 @@ export function ProjectsSection({ onSelectProject }) {
                 key={p.id}
                 className="refined-project-card reveal"
                 onClick={() => onSelectProject(p)}
-                tabIndex={0}
-                role="button"
-                aria-label={`View details for ${p.name}`}
               >
                 {/* Visual Media Showcase Frame */}
                 <div className="project-media-wrap">
@@ -167,13 +147,21 @@ export function ProjectsSection({ onSelectProject }) {
                         ))}
                     </div>
 
-                    <div className="project-cta-link">
+                    <button
+                      type="button"
+                      className="project-cta-link"
+                      onClick={(event) => {
+                        event.stopPropagation();
+                        onSelectProject(p);
+                      }}
+                      aria-label={`Inspect ${p.name}`}
+                    >
                       <span>Inspect</span>
                       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                         <line x1="5" y1="12" x2="19" y2="12" />
                         <polyline points="12 5 19 12 12 19" />
                       </svg>
-                    </div>
+                    </button>
                   </div>
                 </div>
               </article>

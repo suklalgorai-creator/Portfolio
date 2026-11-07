@@ -11,3 +11,7 @@ public/assets
 # Backups
 *.backup.html
 *.vanilla.html
+
+# QA artifacts
+test-results/
+lighthouse-report*.json

@@ -1,18 +1,30 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export function useTheme() {
   const [theme, setTheme] = useState(() => {
-    return localStorage.getItem('sg_theme') || 'dark';
+    try {
+      return localStorage.getItem('sg_theme') === 'light' ? 'light' : 'dark';
+    } catch {
+      return 'dark';
+    }
   });
 
   useEffect(() => {
     document.documentElement.setAttribute('data-theme', theme);
-    localStorage.setItem('sg_theme', theme);
+    const themeColorMeta = document.querySelector('meta[name="theme-color"]');
+    if (themeColorMeta) {
+      themeColorMeta.setAttribute('content', theme === 'light' ? '#f3eee6' : '#080a10');
+    }
+    try {
+      localStorage.setItem('sg_theme', theme);
+    } catch {
+      // Theme still applies for the current session when storage is unavailable.
+    }
   }, [theme]);
 
-  const toggleTheme = () => {
+  const toggleTheme = useCallback(() => {
     setTheme(prev => (prev === 'light' ? 'dark' : 'light'));
-  };
+  }, []);
 
   return {
     theme,

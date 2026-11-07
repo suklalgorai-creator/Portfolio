@@ -21,7 +21,11 @@ export function Navbar({ onOpenStory, onOpenTerminal, isLight, onToggleTheme }) 
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
+    handleScroll();
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      document.body.style.overflow = '';
+    };
   }, []);
 
   const closeMenu = () => {
@@ -45,9 +49,18 @@ export function Navbar({ onOpenStory, onOpenTerminal, isLight, onToggleTheme }) 
             className="nav-story-ring"
             id="navStoryTrigger"
             title="View Suklal's Story"
+            role="button"
+            tabIndex={0}
+            aria-label="View Suklal's story"
             onClick={(e) => {
               e.preventDefault();
               onOpenStory();
+            }}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                onOpenStory();
+              }
             }}
           >
             <img src="assets/images/avatar.jpg" alt="Suklal Gorai" />
@@ -55,7 +68,7 @@ export function Navbar({ onOpenStory, onOpenTerminal, isLight, onToggleTheme }) 
           <span className="logo-text">&lt;SG/&gt;</span>
         </a>
 
-        <ul className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
+        <ul id="primary-navigation" className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li>
             <a
               href="#about"
@@ -118,7 +131,7 @@ export function Navbar({ onOpenStory, onOpenTerminal, isLight, onToggleTheme }) 
             className="cmd-terminal-btn"
             id="cmdTerminalBtn"
             title="Open Interactive Dev Terminal"
-            aria-label="Open Interactive Dev Terminal"
+            aria-label="Terminal: open interactive developer terminal"
             onClick={onOpenTerminal}
           >
             <span className="cmd-prompt">&gt;_</span>
@@ -175,6 +188,8 @@ export function Navbar({ onOpenStory, onOpenTerminal, isLight, onToggleTheme }) 
             type="button"
             className={`hamburger ${isMenuOpen ? 'active' : ''}`}
             aria-label="Toggle navigation"
+            aria-expanded={isMenuOpen}
+            aria-controls="primary-navigation"
             onClick={toggleMenu}
           >
             <span></span>

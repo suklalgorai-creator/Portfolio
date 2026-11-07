@@ -31,6 +31,9 @@ export function ProjectModal({ project, isOpen, onClose, onInquire }) {
     <div
       className={`modal-overlay ${isOpen ? 'active' : ''}`}
       id="projectModalOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="projectModalTitle"
       onClick={(e) => {
         if (e.target.id === 'projectModalOverlay') onClose();
       }}
@@ -58,7 +61,7 @@ export function ProjectModal({ project, isOpen, onClose, onInquire }) {
 
         <div className="modal-body" id="projectModalBody">
           <div className="modal-header">
-            <h2 className="modal-project-name">{project.name}</h2>
+            <h2 className="modal-project-name" id="projectModalTitle">{project.name}</h2>
             {project.version ? (
               <span className="modal-version-badge">v{project.version}</span>
             ) : (
@@ -87,6 +90,15 @@ export function ProjectModal({ project, isOpen, onClose, onInquire }) {
                       selectedScreenshot?.url === s.url ? 'active' : ''
                     }`}
                     onClick={() => setSelectedScreenshot(s)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'Enter' || event.key === ' ') {
+                        event.preventDefault();
+                        setSelectedScreenshot(s);
+                      }
+                    }}
+                    role="button"
+                    tabIndex={0}
+                    aria-label={`Preview ${s.title}`}
                   >
                     <img src={s.url} alt={s.title} loading="lazy" />
                     <span className="gallery-thumb-caption">{s.title}</span>
@@ -111,8 +123,8 @@ export function ProjectModal({ project, isOpen, onClose, onInquire }) {
           {/* Tech Stack */}
           {project.techStack && (
             <div className="modal-tech-stack">
-              {project.techStack.map((t, idx) => (
-                <span key={idx} className="modal-tech-tag">
+                {project.techStack.map((t) => (
+                <span key={t} className="modal-tech-tag">
                   {t}
                 </span>
               ))}

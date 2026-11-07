@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { RevealHeading } from '../../components/common/RevealHeading';
 
 export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
   const [name, setName] = useState('');
@@ -13,7 +14,20 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
 
   const handleCopyEmail = async () => {
     try {
-      await navigator.clipboard.writeText('suklalgorai@gmail.com');
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText('suklalgorai@gmail.com');
+      } else {
+        const fallback = document.createElement('textarea');
+        fallback.value = 'suklalgorai@gmail.com';
+        fallback.setAttribute('readonly', '');
+        fallback.style.position = 'fixed';
+        fallback.style.opacity = '0';
+        document.body.appendChild(fallback);
+        fallback.select();
+        const copiedWithFallback = document.execCommand('copy');
+        fallback.remove();
+        if (!copiedWithFallback) throw new Error('Clipboard unavailable');
+      }
       setCopied(true);
       setTimeout(() => setCopied(false), 2400);
       if (onToast) onToast('Copied suklalgorai@gmail.com to clipboard');
@@ -35,9 +49,9 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
       <div className="container">
         <div className="section-header reveal">
           <span className="section-eyebrow">05 • Get In Touch</span>
-          <h2 className="section-title">Let's Build Something Together</h2>
+          <RevealHeading className="section-title">Have a problem worth building around?</RevealHeading>
           <p className="section-subtitle">
-            Have a business website in mind, want to collaborate on an app, or looking for an engineering intern?
+            Tell me what is stuck, what could be clearer, or what you want to make real. I’ll bring the technical plan and an honest next step.
           </p>
         </div>
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { skillsData } from '../../data/skillsData';
+import { RevealHeading } from '../../components/common/RevealHeading';
 
 export function TechStackSection() {
   return (
@@ -7,9 +8,9 @@ export function TechStackSection() {
       <div className="container">
         <div className="section-header reveal">
           <span className="section-eyebrow">// 02 &bull; TOOLKIT</span>
-          <h2 className="section-title">Technical Capabilities &amp; Stack</h2>
+          <RevealHeading className="section-title">The tools are only the beginning.</RevealHeading>
           <p className="section-subtitle">
-            Languages, frameworks, and cloud services engineered for performance, maintainability, and clean architecture.
+            A practical toolkit for turning ambiguous ideas into fast, maintainable products people can actually use.
           </p>
         </div>
 

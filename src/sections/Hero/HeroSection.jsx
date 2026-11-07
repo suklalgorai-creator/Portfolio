@@ -33,6 +33,12 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                 title="Click to view Suklal's Story"
                 aria-label="Suklal Gorai, Available for Projects, click to view story"
                 onClick={onOpenStory}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter' || event.key === ' ') {
+                    event.preventDefault();
+                    onOpenStory();
+                  }
+                }}
               >
                 <div className="hero-story-ring">
                   <img src="assets/images/avatar.jpg" alt="Suklal Gorai" />
@@ -90,7 +96,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
             </div>
 
             {/* 3. Primary Focal Point: Hero Name Headline */}
-            <h1 className="hero-name hero-seq-2">
+            <h1 className="hero-name hero-seq-2 split-heading" data-parallax="0.025">
               Suklal <span className="gradient-span">Gorai</span>
             </h1>
 
@@ -122,6 +128,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
               <a
                 href={isFounder ? '#agency' : '#projects'}
                 className="btn btn-primary btn-hero-primary"
+                data-magnetic="0.9"
                 id="heroPrimaryCta"
               >
                 <span>{isFounder ? 'View Client Platforms' : 'View Shipped Projects'}</span>
@@ -143,6 +150,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
               <a
                 href="#contact"
                 className="btn btn-secondary btn-hero-secondary"
+                data-magnetic="0.65"
                 id="heroSecondaryCta"
                 onClick={onInitiateProject}
               >
@@ -244,7 +252,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
           </div>
 
           {/* Right Column: Linear-Caliber Engineering Workbench */}
-          <div className="hero-workbench hero-seq-workbench">
+          <div className="hero-workbench hero-seq-workbench" data-parallax="0.04">
             <div className="workbench-topbar">
               <div className="window-dots" aria-hidden="true">
                 <span className="dot-red"></span>

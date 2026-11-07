@@ -58,6 +58,8 @@ export function useStoryViewer() {
     return () => clearInterval(timerRef.current);
   }, [isOpen, isPaused, nextSlide]);
 
+  useEffect(() => () => clearInterval(timerRef.current), []);
+
   // Handle ESC key
   useEffect(() => {
     const handleKeyDown = (e) => {

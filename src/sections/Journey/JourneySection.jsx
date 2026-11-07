@@ -1,5 +1,6 @@
 import React from 'react';
 import { timelineData } from '../../data/timelineData';
+import { RevealHeading } from '../../components/common/RevealHeading';
 
 export function JourneySection() {
   return (
@@ -7,9 +8,9 @@ export function JourneySection() {
       <div className="container">
         <div className="section-header reveal">
           <span className="section-eyebrow">04 • Milestones</span>
-          <h2 className="section-title">My Builder Journey</h2>
+          <RevealHeading className="section-title">The route is part of the work.</RevealHeading>
           <p className="section-subtitle">
-            Every pivot and project that shaped how I engineer software today
+            From intense exam preparation to production software, every chapter shaped how I think, learn, and build.
           </p>
         </div>
 

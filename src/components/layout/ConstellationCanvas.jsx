@@ -8,10 +8,14 @@ export function ConstellationCanvas({ isLight = false }) {
     if (!canvas) return;
 
     const ctx = canvas.getContext('2d');
+    if (!ctx) return;
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
     let mouse = { x: width / 2, y: height / 2 };
     let animId = null;
+    let isPageVisible = !document.hidden;
 
     const handleMouseMove = (e) => {
       document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
@@ -25,8 +29,14 @@ export function ConstellationCanvas({ isLight = false }) {
       height = canvas.height = window.innerHeight;
     };
 
+    const handleVisibilityChange = () => {
+      isPageVisible = !document.hidden;
+      if (isPageVisible && animId === null) render();
+    };
+
     window.addEventListener('mousemove', handleMouseMove, { passive: true });
     window.addEventListener('resize', handleResize, { passive: true });
+    document.addEventListener('visibilitychange', handleVisibilityChange);
 
     const isMobile = window.innerWidth < 768;
     const nodeCount = isMobile
@@ -42,6 +52,10 @@ export function ConstellationCanvas({ isLight = false }) {
     }));
 
     const render = () => {
+      if (!isPageVisible) {
+        animId = null;
+        return;
+      }
       ctx.clearRect(0, 0, width, height);
       // Subtle, non-intrusive particle alpha for dark cinematic aesthetic
       const dotColor = isLight ? 'rgba(16, 185, 129, 0.22)' : 'rgba(16, 185, 129, 0.28)';
@@ -100,12 +114,13 @@ export function ConstellationCanvas({ isLight = false }) {
       cancelAnimationFrame(animId);
       window.removeEventListener('mousemove', handleMouseMove);
       window.removeEventListener('resize', handleResize);
+      document.removeEventListener('visibilitychange', handleVisibilityChange);
     };
   }, [isLight]);
 
   return (
     <>
-      <canvas id="bgConstellation" ref={canvasRef} />
+      <canvas id="bgConstellation" ref={canvasRef} aria-hidden="true" />
       <div className="cursor-spotlight" id="cursorSpotlight" aria-hidden="true" />
       <div className="bg-grid-overlay" aria-hidden="true" />
       <div className="mesh-orb-3" aria-hidden="true" />

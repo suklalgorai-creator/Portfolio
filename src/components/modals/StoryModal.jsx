@@ -18,6 +18,9 @@ export function StoryModal({
     <div
       className={`story-modal-overlay ${isOpen ? 'active' : ''}`}
       id="storyModalOverlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="storySlideTitle"
       onClick={(e) => {
         if (e.target.id === 'storyModalOverlay') onClose();
       }}
@@ -75,6 +78,13 @@ export function StoryModal({
           onMouseUp={onResume}
           onTouchStart={onPause}
           onTouchEnd={onResume}
+          onKeyDown={(event) => {
+            if (event.key === 'ArrowRight' || event.key === 'Enter') onNext();
+            if (event.key === 'ArrowLeft') onPrev();
+          }}
+          role="button"
+          tabIndex={0}
+          aria-label="Story slide. Use arrow keys to navigate."
           onClick={(e) => {
             const rect = e.currentTarget.getBoundingClientRect();
             const clickX = e.clientX - rect.left;
@@ -101,7 +111,10 @@ export function StoryModal({
                 href="#contact"
                 className="btn btn-sm btn-primary story-contact-btn"
                 id="storyContactBtn"
-                onClick={onClose}
+                onClick={(event) => {
+                  event.stopPropagation();
+                  onClose();
+                }}
               >
                 Get In Touch &rarr;
               </a>
