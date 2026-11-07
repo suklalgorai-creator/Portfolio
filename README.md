@@ -4,8 +4,8 @@ Personal developer portfolio & CodeCraft Digital agency showcase.
 
 ## 🚀 Built With
 - **HTML5, CSS3, JavaScript (ES6+)** — Zero framework bloat, instant loading
-- **Theme** — Cyber-Emerald Glassmorphism & Attendance Tracker Dark/Daylight theme
-- **Design System** — Outfit + JetBrains Mono typography
+- **Theme** — Cinematic dark editorial UI with a restrained technical accent system
+- **Design System** — Space Grotesk + Inter + JetBrains Mono typography
 - **Interactive Features** — Developer Terminal, Constellation Canvas, APK Download Engine, Project Modals
 
 ## 📁 Structure

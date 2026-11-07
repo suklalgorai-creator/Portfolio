@@ -1,10 +1,16 @@
 /* ============================================================
    SUKLAL GORAI — Portfolio Interactive Logic (Vanilla ES6+)
    Includes: Constellation Particle Canvas, Spotlight Cursor,
-   Persona Switcher, Interactive Terminal, Live Attendance Demo
+   Persona Switcher, Interactive Terminal, Live Attendance Demo,
+   GSAP ScrollTrigger Reveals, Cinematic Hero Scroll-Scrub
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
+  document.documentElement.classList.add('js-enabled');
+
+  // ─── GLOBAL HELPERS ──────────────────────────────────────
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const isMobile = () => window.innerWidth < 768;
 
   // ─── TOAST HELPER ─────────────────────────────────────────
   const toastContainer = document.getElementById('toastContainer');
@@ -21,12 +27,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 3200);
   }
 
-  // ─── CURSOR SPOTLIGHT TRACKER ─────────────────────────────
-  window.addEventListener('mousemove', (e) => {
-    document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
-    document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
-  });
-
   // ─── INTERACTIVE CONSTELLATION PARTICLE CANVAS ────────────
   const canvas = document.getElementById('bgConstellation');
   if (canvas) {
@@ -34,18 +34,29 @@ document.addEventListener('DOMContentLoaded', () => {
     let width = canvas.width = window.innerWidth;
     let height = canvas.height = window.innerHeight;
     let mouse = { x: width / 2, y: height / 2 };
+    let isLightTheme = document.documentElement.getAttribute('data-theme') === 'light';
+    let canvasAnimId = null;
+    let canvasPaused = false;
+    let canvasVisible = true;
 
+    // Combined mousemove listener (spotlight + canvas + cursor)
     window.addEventListener('mousemove', (e) => {
+      document.documentElement.style.setProperty('--mouse-x', `${e.clientX}px`);
+      document.documentElement.style.setProperty('--mouse-y', `${e.clientY}px`);
       mouse.x = e.clientX;
       mouse.y = e.clientY;
-    });
+    }, { passive: true });
 
     window.addEventListener('resize', () => {
       width = canvas.width = window.innerWidth;
       height = canvas.height = window.innerHeight;
-    });
+    }, { passive: true });
 
-    const nodeCount = Math.min(48, Math.floor(width / 28));
+    // Reduce particle count on mobile
+    const nodeCount = isMobile()
+      ? Math.min(20, Math.floor(width / 50))
+      : Math.min(48, Math.floor(width / 28));
+
     const nodes = Array.from({ length: nodeCount }, () => ({
       x: Math.random() * width,
       y: Math.random() * height,
@@ -55,9 +66,13 @@ document.addEventListener('DOMContentLoaded', () => {
     }));
 
     function drawConstellation() {
+      if (canvasPaused || !canvasVisible) {
+        canvasAnimId = null;
+        return;
+      }
+
       ctx.clearRect(0, 0, width, height);
-      const isLight = document.documentElement.getAttribute('data-theme') === 'light';
-      const dotColor = isLight ? 'rgba(16, 185, 129, 0.45)' : 'rgba(16, 185, 129, 0.55)';
+      const dotColor = isLightTheme ? 'rgba(16, 185, 129, 0.45)' : 'rgba(16, 185, 129, 0.55)';
 
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
@@ -79,7 +94,7 @@ document.addEventListener('DOMContentLoaded', () => {
           const dy = n.y - m.y;
           const dist = Math.hypot(dx, dy);
           if (dist < 135) {
-            const alpha = (1 - dist / 135) * (isLight ? 0.14 : 0.18);
+            const alpha = (1 - dist / 135) * (isLightTheme ? 0.14 : 0.18);
             ctx.beginPath();
             ctx.moveTo(n.x, n.y);
             ctx.lineTo(m.x, m.y);
@@ -89,23 +104,113 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         }
 
-        // Connect to mouse cursor
-        const mdx = n.x - mouse.x;
-        const mdy = n.y - mouse.y;
-        const mDist = Math.hypot(mdx, mdy);
-        if (mDist < 170) {
-          const alpha = (1 - mDist / 170) * 0.32;
-          ctx.beginPath();
-          ctx.moveTo(n.x, n.y);
-          ctx.lineTo(mouse.x, mouse.y);
-          ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
+        // Connect to mouse cursor (skip on mobile for perf)
+        if (!isMobile()) {
+          const mdx = n.x - mouse.x;
+          const mdy = n.y - mouse.y;
+          const mDist = Math.hypot(mdx, mdy);
+          if (mDist < 170) {
+            const alpha = (1 - mDist / 170) * 0.32;
+            ctx.beginPath();
+            ctx.moveTo(n.x, n.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
         }
       }
-      requestAnimationFrame(drawConstellation);
+      canvasAnimId = requestAnimationFrame(drawConstellation);
     }
-    drawConstellation();
+
+    function startCanvas() {
+      if (!canvasAnimId && !canvasPaused && canvasVisible) {
+        canvasAnimId = requestAnimationFrame(drawConstellation);
+      }
+    }
+
+    function stopCanvas() {
+      if (canvasAnimId) {
+        cancelAnimationFrame(canvasAnimId);
+        canvasAnimId = null;
+      }
+    }
+
+    // Pause when tab hidden
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        stopCanvas();
+      } else if (!canvasPaused && canvasVisible) {
+        startCanvas();
+      }
+    });
+
+    // Pause when canvas not visible (IntersectionObserver)
+    if ('IntersectionObserver' in window) {
+      const canvasObserver = new IntersectionObserver((entries) => {
+        canvasVisible = entries[0].isIntersecting;
+        if (canvasVisible && !canvasPaused) {
+          startCanvas();
+        } else {
+          stopCanvas();
+        }
+      }, { threshold: 0 });
+      canvasObserver.observe(canvas);
+    }
+
+    // Respect reduced-motion
+    if (prefersReducedMotion.matches) {
+      canvasPaused = true;
+      canvas.style.display = 'none';
+    } else {
+      startCanvas();
+    }
+
+    prefersReducedMotion.addEventListener('change', (e) => {
+      canvasPaused = e.matches;
+      if (e.matches) {
+        stopCanvas();
+        canvas.style.display = 'none';
+      } else {
+        canvas.style.display = '';
+        startCanvas();
+      }
+    });
+
+    // Expose theme update for canvas
+    window._updateCanvasTheme = (light) => { isLightTheme = light; };
+  }
+
+  // Optional cinematic reel from the supplied video parts (workbench pane).
+  const heroVisual = document.querySelector('.holo-visual-core');
+  const heroVideo = document.querySelector('.hero-cinematic-video');
+  if (heroVisual && heroVideo) {
+    const reel = [
+      'assets/videos/part 1.mp4',
+      'assets/videos/part 2.mp4',
+      'assets/videos/part 3.mp4'
+    ];
+    let reelIndex = 0;
+    const showVideoFallback = () => {
+      heroVisual.classList.add('video-fallback');
+      heroVideo.pause();
+    };
+
+    heroVideo.addEventListener('error', showVideoFallback, { once: true });
+    heroVideo.addEventListener('ended', () => {
+      reelIndex = (reelIndex + 1) % reel.length;
+      heroVideo.src = reel[reelIndex];
+      heroVideo.load();
+      heroVideo.play().catch(showVideoFallback);
+    });
+
+    if (prefersReducedMotion.matches) {
+      showVideoFallback();
+    } else {
+      heroVideo.play().catch(() => {
+        // Autoplay can be blocked; poster and fallback remain usable.
+      });
+    }
   }
 
   // ─── SAFE LOCALSTORAGE & THEME TOGGLE ─────────────────────
@@ -131,11 +236,13 @@ document.addEventListener('DOMContentLoaded', () => {
         document.documentElement.removeAttribute('data-theme');
         themeToggle.textContent = '🌙';
         setStoredTheme('dark');
+        if (window._updateCanvasTheme) window._updateCanvasTheme(false);
         showToast('Switched to Cyber-Emerald Dark theme');
       } else {
         document.documentElement.setAttribute('data-theme', 'light');
         themeToggle.textContent = '☀️';
         setStoredTheme('light');
+        if (window._updateCanvasTheme) window._updateCanvasTheme(true);
         showToast('Switched to Daylight Glass theme');
       }
     });
@@ -396,9 +503,7 @@ document.addEventListener('DOMContentLoaded', () => {
       ],
       techStack: ["HTML5", "CSS3", "JavaScript", "SEO"],
       githubUrl: "https://github.com/suklalgorai-creator",
-      downloadUrl: null,
-      apkSize: null,
-      changelog: null
+      downloadUrl: null, apkSize: null, changelog: null
     },
     {
       id: "sahyog-jharkhand",
@@ -413,10 +518,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Clean component architecture with strict ESLint rules"
       ],
       techStack: ["Next.js", "React", "CSS Modules", "SEO"],
-      githubUrl: null,
-      downloadUrl: null,
-      apkSize: null,
-      changelog: null
+      githubUrl: null, downloadUrl: null, apkSize: null, changelog: null
     },
     {
       id: "resort-website",
@@ -437,10 +539,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Responsive layout across mobile, tablet, and desktop"
       ],
       techStack: ["HTML5", "CSS3", "JavaScript"],
-      githubUrl: null,
-      downloadUrl: null,
-      apkSize: null,
-      changelog: null
+      githubUrl: null, downloadUrl: null, apkSize: null, changelog: null
     },
     {
       id: "tour-travels",
@@ -455,10 +554,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "1-tap call and WhatsApp booking triggers"
       ],
       techStack: ["HTML5", "CSS3", "JavaScript"],
-      githubUrl: null,
-      downloadUrl: null,
-      apkSize: null,
-      changelog: null
+      githubUrl: null, downloadUrl: null, apkSize: null, changelog: null
     },
     {
       id: "wedding-photography",
@@ -473,10 +569,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Smooth scroll-reveal animations that frame each photo"
       ],
       techStack: ["HTML5", "CSS3", "JavaScript"],
-      githubUrl: null,
-      downloadUrl: null,
-      apkSize: null,
-      changelog: null
+      githubUrl: null, downloadUrl: null, apkSize: null, changelog: null
     },
     {
       id: "food-ordering",
@@ -491,10 +584,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Zero-commission direct ordering flow for local restaurants"
       ],
       techStack: ["HTML5", "CSS3", "JavaScript"],
-      githubUrl: null,
-      downloadUrl: null,
-      apkSize: null,
-      changelog: null
+      githubUrl: null, downloadUrl: null, apkSize: null, changelog: null
     },
     {
       id: "parlour-saloon",
@@ -509,10 +599,7 @@ document.addEventListener('DOMContentLoaded', () => {
         "Quick appointment scheduling form"
       ],
       techStack: ["HTML5", "CSS3", "JavaScript"],
-      githubUrl: null,
-      downloadUrl: null,
-      apkSize: null,
-      changelog: null
+      githubUrl: null, downloadUrl: null, apkSize: null, changelog: null
     },
     {
       id: "friend-teasing",
@@ -527,39 +614,43 @@ document.addEventListener('DOMContentLoaded', () => {
         "Viral shareability in college WhatsApp groups"
       ],
       techStack: ["HTML5", "CSS3", "JavaScript"],
-      githubUrl: null,
-      downloadUrl: null,
-      apkSize: null,
-      changelog: null
+      githubUrl: null, downloadUrl: null, apkSize: null, changelog: null
     }
   ];
 
-  // ─── NAVBAR SCROLL & ACTIVE SECTION SPY ───────────────────
+  // ─── NAVBAR SCROLL & ACTIVE SECTION SPY (Throttled) ───────
   const navbar = document.querySelector('.navbar');
   const navLinks = document.querySelectorAll('.nav-link');
   const sections = document.querySelectorAll('section[id]');
+  let scrollTicking = false;
 
   window.addEventListener('scroll', () => {
-    if (window.scrollY > 40) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
-    }
+    if (!scrollTicking) {
+      requestAnimationFrame(() => {
+        if (window.scrollY > 40) {
+          navbar.classList.add('scrolled');
+        } else {
+          navbar.classList.remove('scrolled');
+        }
 
-    let current = '';
-    sections.forEach(section => {
-      const sectionTop = section.offsetTop - 140;
-      if (window.scrollY >= sectionTop) {
-        current = section.getAttribute('id');
-      }
-    });
-    navLinks.forEach(link => {
-      link.classList.remove('active');
-      if (link.getAttribute('href') === `#${current}`) {
-        link.classList.add('active');
-      }
-    });
-  });
+        let current = '';
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 140;
+          if (window.scrollY >= sectionTop) {
+            current = section.getAttribute('id');
+          }
+        });
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${current}`) {
+            link.classList.add('active');
+          }
+        });
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
+  }, { passive: true });
 
   // ─── MOBILE HAMBURGER MENU ────────────────────────────────
   const hamburger = document.querySelector('.hamburger');
@@ -619,9 +710,14 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(typeEffect, typeSpeed);
   }
 
-  typeEffect();
+  if (!prefersReducedMotion.matches) {
+    typeEffect();
+  } else {
+    // Show first word statically
+    if (typingElement) typingElement.textContent = words[0];
+  }
 
-  // ─── SCROLL REVEAL ────────────────────────────────────────
+  // ─── SCROLL REVEAL (IntersectionObserver fallback) ────────
   const revealObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -647,6 +743,10 @@ document.addEventListener('DOMContentLoaded', () => {
   document.querySelectorAll('.stat-number').forEach(el => statObserver.observe(el));
 
   function animateCounter(el, target) {
+    if (prefersReducedMotion.matches) {
+      el.innerHTML = el.dataset.plus ? `${target}<span class="plus">+</span>` : `${target}`;
+      return;
+    }
     const duration = 1600;
     const start = performance.now();
 
@@ -994,22 +1094,29 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  // ─── COPY EMAIL BUTTON ────────────────────────────────────
+  // ─── COPY EMAIL BUTTON (Modern Clipboard API) ────────────
   const copyEmailBtn = document.getElementById('copyEmailBtn');
   if (copyEmailBtn) {
-    copyEmailBtn.addEventListener('click', () => {
+    copyEmailBtn.addEventListener('click', async () => {
       const email = 'suklalgorai@gmail.com';
-      const tempInput = document.createElement('textarea');
-      tempInput.value = email;
-      document.body.appendChild(tempInput);
-      tempInput.select();
       try {
-        document.execCommand('copy');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(email);
+        } else {
+          // Fallback for older browsers
+          const tempInput = document.createElement('textarea');
+          tempInput.value = email;
+          tempInput.style.position = 'fixed';
+          tempInput.style.opacity = '0';
+          document.body.appendChild(tempInput);
+          tempInput.select();
+          document.execCommand('copy');
+          tempInput.remove();
+        }
         showToast('Copied suklalgorai@gmail.com to clipboard!');
       } catch (err) {
         showToast('Email: suklalgorai@gmail.com');
       }
-      tempInput.remove();
     });
   }
 
@@ -1034,7 +1141,6 @@ document.addEventListener('DOMContentLoaded', () => {
       contactForm.reset();
     });
   }
-
 
   // ─── INSTAGRAM STORY VIEWER INTERACTIVITY ────────────────
   const storyOverlay = document.getElementById('storyModalOverlay');
@@ -1075,7 +1181,7 @@ document.addEventListener('DOMContentLoaded', () => {
   let currentStoryIdx = 0;
   let storyInterval = null;
   let storyProgress = 0;
-  const slideDuration = 4500; // 4.5 seconds per slide
+  const slideDuration = 4500;
   const progressStepTime = 50;
 
   function updateStorySlide(idx) {
@@ -1084,18 +1190,16 @@ document.addEventListener('DOMContentLoaded', () => {
     currentStoryIdx = idx;
     storyProgress = 0;
 
-    storySlideBadge.textContent = slide.badge;
-    storySlideTitle.textContent = slide.title;
-    storySlideDesc.textContent = slide.desc;
-    storyHeaderTime.textContent = slide.time;
-    storySlideBody.style.backgroundImage = `url('${slide.bg}')`;
+    if (storySlideBadge) storySlideBadge.textContent = slide.badge;
+    if (storySlideTitle) storySlideTitle.textContent = slide.title;
+    if (storySlideDesc) storySlideDesc.textContent = slide.desc;
+    if (storyHeaderTime) storyHeaderTime.textContent = slide.time;
+    if (storySlideBody) storySlideBody.style.backgroundImage = `url('${slide.bg}')`;
 
-    // Reset fills
     for (let i = 0; i < 3; i++) {
       const fill = document.getElementById(`storyFill${i}`);
       if (fill) {
         if (i < idx) fill.style.width = '100%';
-        else if (i === idx) fill.style.width = '0%';
         else fill.style.width = '0%';
       }
     }
@@ -1149,10 +1253,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (e.target === storyOverlay) {
         closeStory();
       } else if (e.target.closest('.story-slide-body')) {
-        // Tap right to advance, tap left to go back
-        const rect = e.currentTarget.getBoundingClientRect();
-        const clickX = e.clientX;
-        if (clickX > window.innerWidth / 2) {
+        if (e.clientX > window.innerWidth / 2) {
           if (currentStoryIdx < storySlides.length - 1) {
             updateStorySlide(currentStoryIdx + 1);
           } else {
@@ -1178,5 +1279,111 @@ document.addEventListener('DOMContentLoaded', () => {
       closeStory();
     }
   });
+
+  // ─── GSAP SCROLL ANIMATIONS & CINEMATIC HERO ─────────────
+  function initGSAP() {
+    if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') return;
+
+    gsap.registerPlugin(ScrollTrigger);
+    document.documentElement.classList.add('gsap-enabled');
+
+    if (prefersReducedMotion.matches) return;
+
+    // Enhanced section header reveals
+    gsap.utils.toArray('.section-header.reveal').forEach(header => {
+      gsap.fromTo(header,
+        { opacity: 0, y: 28 },
+        {
+          opacity: 1, y: 0, duration: 0.75, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: header,
+            start: 'top 85%',
+            once: true,
+            onEnter: () => header.classList.add('active')
+          }
+        }
+      );
+    });
+
+    // Project card batch stagger
+    const gsapProjectCards = gsap.utils.toArray('.project-card.reveal');
+    if (gsapProjectCards.length) {
+      ScrollTrigger.batch(gsapProjectCards, {
+        onEnter: batch => {
+          batch.forEach(el => el.classList.add('active'));
+          gsap.fromTo(batch,
+            { opacity: 0, y: 22 },
+            { opacity: 1, y: 0, duration: 0.6, stagger: 0.08, ease: 'power2.out' }
+          );
+        },
+        start: 'top 88%',
+        once: true
+      });
+    }
+
+    // Generic section element reveals (About, Skills, Heatmap, Agency, Milestones, Contact, Toolbar)
+    gsap.utils.toArray('.about-card.reveal, .about-stats.reveal, .heatmap-card.reveal, .tech-category.reveal, .contact-info-card.reveal, .contact-form-card.reveal, .agency-banner.reveal, .timeline-item.reveal, .projects-toolbar.reveal').forEach(el => {
+      gsap.fromTo(el,
+        { opacity: 0, y: 20 },
+        {
+          opacity: 1, y: 0, duration: 0.65, ease: 'power2.out',
+          scrollTrigger: {
+            trigger: el,
+            start: 'top 88%',
+            once: true,
+            onEnter: () => el.classList.add('active')
+          }
+        }
+      );
+    });
+
+    // Cinematic hero scroll-scrub
+    initCinematicHero();
+  }
+
+  function initCinematicHero() {
+    const video = document.getElementById('cinematicVideo');
+    if (!video) return;
+
+    video.muted = true;
+    video.defaultMuted = true;
+
+    const startPlayback = () => {
+      const p = video.play();
+      if (p !== undefined) {
+        p.catch(() => {
+          const unlock = () => {
+            video.play().catch(() => {});
+            window.removeEventListener('click', unlock);
+            window.removeEventListener('scroll', unlock);
+            window.removeEventListener('touchstart', unlock);
+          };
+          window.addEventListener('click', unlock, { once: true });
+          window.addEventListener('scroll', unlock, { once: true });
+          window.addEventListener('touchstart', unlock, { once: true });
+        });
+      }
+    };
+
+    startPlayback();
+    video.addEventListener('loadedmetadata', startPlayback, { once: true });
+    video.addEventListener('canplay', startPlayback, { once: true });
+
+    // Global background plays across all sections; pause only on tab switch to save power
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        video.pause();
+      } else {
+        video.play().catch(() => {});
+      }
+    });
+  }
+
+  // Initialize GSAP when all scripts are loaded
+  if (document.readyState === 'complete') {
+    initGSAP();
+  } else {
+    window.addEventListener('load', initGSAP);
+  }
 
 });
