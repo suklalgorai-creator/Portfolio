@@ -43,8 +43,72 @@ export function TerminalModal({
       }}
     >
       <div className="terminal-gemini-wrap">
-        <div className="terminal-gemini-glow" aria-hidden="true" />
-        <div className="terminal-gemini-track" aria-hidden="true" />
+        {/* Ambient Bloom Glow SVG moving clockwise along perimeter */}
+        <svg className="terminal-gemini-glow-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="geminiGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#10b981" />
+              <stop offset="25%" stopColor="#06b6d4" />
+              <stop offset="50%" stopColor="#3b82f6" />
+              <stop offset="75%" stopColor="#8b5cf6" />
+              <stop offset="100%" stopColor="#ec4899" />
+            </linearGradient>
+          </defs>
+          <rect
+            className="gemini-beam-path"
+            x="20"
+            y="20"
+            width="960"
+            height="960"
+            rx="32"
+            fill="none"
+            stroke="url(#geminiGlowGrad)"
+            strokeWidth="48"
+            pathLength="1000"
+          />
+        </svg>
+
+        {/* Sharp Clockwise Perimeter Beam SVG */}
+        <svg className="terminal-gemini-border-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <linearGradient id="geminiBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stopColor="#10b981" />
+              <stop offset="20%" stopColor="#06b6d4" />
+              <stop offset="45%" stopColor="#3b82f6" />
+              <stop offset="70%" stopColor="#8b5cf6" />
+              <stop offset="90%" stopColor="#ec4899" />
+              <stop offset="100%" stopColor="#ffffff" />
+            </linearGradient>
+          </defs>
+          {/* Subtle hairline edge guide */}
+          <rect
+            x="2"
+            y="2"
+            width="996"
+            height="996"
+            rx="20"
+            fill="none"
+            stroke="rgba(255, 255, 255, 0.08)"
+            strokeWidth="1.5"
+            vectorEffect="non-scaling-stroke"
+          />
+          {/* Active Clockwise Perimeter Beam */}
+          <rect
+            className="gemini-beam-path"
+            x="2"
+            y="2"
+            width="996"
+            height="996"
+            rx="20"
+            fill="none"
+            stroke="url(#geminiBorderGrad)"
+            strokeWidth="2.5"
+            strokeLinecap="round"
+            pathLength="1000"
+            vectorEffect="non-scaling-stroke"
+          />
+        </svg>
+
         <div className="terminal-window">
           <div className="terminal-topbar">
             <div className="terminal-dots">

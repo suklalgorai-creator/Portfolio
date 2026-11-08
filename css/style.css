@@ -6549,7 +6549,7 @@ body {
   -webkit-backdrop-filter: blur(12px);
 }
 
-/* Gemini AI Multi-Color Border Beam & Ambient Moving Glow (Hardware GPU Composited) */
+/* Gemini AI Clockwise Perimeter Traveling Beam & Ambient Aura */
 .terminal-gemini-wrap {
   position: relative;
   width: min(740px, 100%);
@@ -6561,82 +6561,43 @@ body {
   isolation: isolate;
 }
 
-/* Ambient luminous aura that projects light outwards */
-.terminal-gemini-glow {
+/* Ambient luminous aura moving along the perimeter */
+.terminal-gemini-glow-svg {
   position: absolute;
-  inset: -14px;
-  border-radius: 30px;
-  overflow: hidden;
+  inset: -10px;
+  width: calc(100% + 20px);
+  height: calc(100% + 20px);
+  pointer-events: none;
+  z-index: 0;
   filter: blur(28px);
   opacity: 0.85;
-  z-index: 0;
-  pointer-events: none;
 }
 
-.terminal-gemini-glow::before {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 300%;
-  height: 300%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 140deg,
-    rgba(16, 185, 129, 0.7) 180deg,
-    rgba(6, 182, 212, 0.85) 215deg,
-    rgba(59, 130, 246, 0.95) 250deg,
-    rgba(139, 92, 246, 0.95) 280deg,
-    rgba(236, 72, 153, 0.85) 310deg,
-    #38bdf8 340deg,
-    transparent 360deg
-  );
-  animation: geminiBorderSpin 4s linear infinite;
-  will-change: transform;
-}
-
-/* Crisp perimeter border beam track */
-.terminal-gemini-track {
+/* Sharp hairline border moving along the perimeter */
+.terminal-gemini-border-svg {
   position: absolute;
   inset: 0;
-  border-radius: 18px;
-  overflow: hidden;
-  padding: 2px;
-  z-index: 1;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
+  z-index: 3;
+  overflow: visible;
 }
 
-.terminal-gemini-track::before {
-  content: '';
-  position: absolute;
-  top: -100%;
-  left: -100%;
-  width: 300%;
-  height: 300%;
-  background: conic-gradient(
-    from 0deg,
-    transparent 0deg,
-    transparent 140deg,
-    #10b981 180deg,
-    #06b6d4 215deg,
-    #3b82f6 250deg,
-    #8b5cf6 280deg,
-    #ec4899 310deg,
-    #ffffff 335deg,
-    #38bdf8 350deg,
-    transparent 360deg
-  );
-  animation: geminiBorderSpin 4s linear infinite;
-  will-change: transform;
+/* Clockwise Traveling Beam Path Animation */
+.gemini-beam-path {
+  stroke-dasharray: 280 720;
+  stroke-dashoffset: 0;
+  animation: geminiClockwiseTravel 3.8s linear infinite;
+  will-change: stroke-dashoffset;
 }
 
-@keyframes geminiBorderSpin {
+@keyframes geminiClockwiseTravel {
   from {
-    transform: rotate(0deg);
+    stroke-dashoffset: 1000;
   }
   to {
-    transform: rotate(360deg);
+    stroke-dashoffset: 0;
   }
 }
 
@@ -6644,16 +6605,15 @@ body {
 .terminal-window {
   position: relative;
   z-index: 2;
-  width: calc(100% - 4px);
-  max-height: calc(min(680px, 88vh) - 4px);
-  margin: 2px;
+  width: 100%;
+  max-height: min(680px, 88vh);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   border: none;
   border-radius: 16px;
   background: #080b11;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.07);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.05);
 }
 
 .terminal-topbar {
@@ -6781,10 +6741,9 @@ body {
 @media (max-width: 600px) {
   .terminal-modal-overlay { align-items: end; padding: 12px; }
   .terminal-gemini-wrap { width: 100%; max-height: 84vh; border-radius: 16px; }
-  .terminal-gemini-track { border-radius: 16px; padding: 1.5px; }
   .terminal-gemini-wrap .terminal-window,
-  .terminal-window { max-height: calc(84vh - 3px); border-radius: 14.5px; margin: 1.5px; width: calc(100% - 3px); }
-  .terminal-gemini-glow { inset: -10px; border-radius: 24px; filter: blur(20px); }
+  .terminal-window { max-height: 84vh; border-radius: 14px; width: 100%; margin: 0; }
+  .terminal-gemini-glow-svg { inset: -6px; width: calc(100% + 12px); height: calc(100% + 12px); filter: blur(20px); }
   .terminal-chips { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
   .terminal-chips::-webkit-scrollbar { display: none; }
   .term-chip { flex: 0 0 auto; }
@@ -6793,10 +6752,9 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .terminal-modal-overlay { backdrop-filter: none; -webkit-backdrop-filter: none; }
-  .terminal-gemini-glow::before,
-  .terminal-gemini-track::before {
+  .gemini-beam-path {
     animation: none !important;
-    transform: rotate(220deg);
+    stroke-dashoffset: 500;
   }
 }
 
@@ -7082,6 +7040,19 @@ body {
   .cinematic-story-stage { position: relative; inset: auto; transform: none; opacity: 1; visibility: visible; margin-top: 1rem; }
   .cinematic-story-stages { min-height: 0; }
 }
+
+/* Keep every navigation control reachable on the narrowest supported width. */
+@media (max-width: 380px) {
+  .navbar .container { width: calc(100% - 16px); gap: 4px; }
+  .nav-logo { min-width: 0; gap: 5px; }
+  .nav-actions { flex-shrink: 0; gap: 4px; }
+  .cmd-terminal-btn { padding: 7px 9px; gap: 0; }
+  .cmd-terminal-btn .cmd-label,
+  .nav-github-btn .github-label { display: none; }
+  .nav-github-btn { padding: 7px 9px; }
+  .theme-toggle,
+  .hamburger { width: 36px; height: 36px; padding: 7px; }
+}
 [data-theme="light"] .workbench-topbar { background: rgba(238, 244, 239, 0.82); border-bottom-color: var(--glass-border); }
 [data-theme="light"] .workbench-title,
 [data-theme="light"] .workbench-tab { color: var(--paper-secondary); }
@@ -7198,7 +7169,7 @@ body {
 
 [data-theme="light"] .terminal-modal-overlay { background: rgba(44, 39, 32, 0.38); }
 [data-theme="light"] .terminal-gemini-wrap { box-shadow: 0 24px 80px rgba(53, 45, 31, 0.25); }
-[data-theme="light"] .terminal-gemini-glow { opacity: 0.55; filter: blur(24px); }
+[data-theme="light"] .terminal-gemini-glow-svg { opacity: 0.55; filter: blur(24px); }
 [data-theme="light"] .terminal-gemini-wrap .terminal-window,
 [data-theme="light"] .terminal-window { background: #fffaf2; border: none; box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08); }
 [data-theme="light"] .terminal-topbar { background: #eaf4ee; border-bottom-color: var(--glass-border); }
