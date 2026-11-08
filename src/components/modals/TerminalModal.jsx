@@ -44,6 +44,7 @@ export function TerminalModal({
     >
       <div className="terminal-gemini-wrap">
         <div className="terminal-gemini-glow" aria-hidden="true" />
+        <div className="terminal-gemini-track" aria-hidden="true" />
         <div className="terminal-window">
           <div className="terminal-topbar">
             <div className="terminal-dots">
