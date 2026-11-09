@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { Fragment, useRef, useEffect } from 'react';
 import { terminalQuickChips } from '../../data/terminalCommands';
 
 export function TerminalModal({
@@ -42,74 +42,16 @@ export function TerminalModal({
         if (e.target.id === 'terminalModalOverlay') onClose();
       }}
     >
-      <div className="terminal-gemini-wrap">
-        {/* Ambient Bloom Glow SVG moving clockwise along perimeter */}
-        <svg className="terminal-gemini-glow-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="geminiGlowGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#10b981" />
-              <stop offset="25%" stopColor="#06b6d4" />
-              <stop offset="50%" stopColor="#3b82f6" />
-              <stop offset="75%" stopColor="#8b5cf6" />
-              <stop offset="100%" stopColor="#ec4899" />
-            </linearGradient>
-          </defs>
-          <rect
-            className="gemini-beam-path"
-            x="20"
-            y="20"
-            width="960"
-            height="960"
-            rx="32"
-            fill="none"
-            stroke="url(#geminiGlowGrad)"
-            strokeWidth="48"
-            pathLength="1000"
-          />
-        </svg>
+      <div className="terminal-gemini-container">
+        {/* Ambient Bloom Glow moving clockwise along perimeter */}
+        <div className="terminal-gemini-bloom" aria-hidden="true">
+          <div className="gemini-spin-conic" />
+        </div>
 
-        {/* Sharp Clockwise Perimeter Beam SVG */}
-        <svg className="terminal-gemini-border-svg" viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
-          <defs>
-            <linearGradient id="geminiBorderGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-              <stop offset="0%" stopColor="#10b981" />
-              <stop offset="20%" stopColor="#06b6d4" />
-              <stop offset="45%" stopColor="#3b82f6" />
-              <stop offset="70%" stopColor="#8b5cf6" />
-              <stop offset="90%" stopColor="#ec4899" />
-              <stop offset="100%" stopColor="#ffffff" />
-            </linearGradient>
-          </defs>
-          {/* Subtle hairline edge guide */}
-          <rect
-            x="2"
-            y="2"
-            width="996"
-            height="996"
-            rx="20"
-            fill="none"
-            stroke="rgba(255, 255, 255, 0.08)"
-            strokeWidth="1.5"
-            vectorEffect="non-scaling-stroke"
-          />
-          {/* Active Clockwise Perimeter Beam */}
-          <rect
-            className="gemini-beam-path"
-            x="2"
-            y="2"
-            width="996"
-            height="996"
-            rx="20"
-            fill="none"
-            stroke="url(#geminiBorderGrad)"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            pathLength="1000"
-            vectorEffect="non-scaling-stroke"
-          />
-        </svg>
-
-        <div className="terminal-window">
+        {/* Modal Card with Moving Perimeter Border Beam */}
+        <div className="terminal-gemini-wrap">
+          <div className="gemini-spin-conic" aria-hidden="true" />
+          <div className="terminal-window">
           <div className="terminal-topbar">
             <div className="terminal-dots">
               <button type="button" className="dot-red" onClick={onClose} aria-label="Close terminal" />
@@ -159,10 +101,10 @@ export function TerminalModal({
                   }}
                 >
                   {item.content.split('\n').map((line, index) => (
-                    <React.Fragment key={`${item.id}-${index}`}>
+                    <Fragment key={`${item.id}-${index}`}>
                       {index > 0 && <br />}
                       {line}
-                    </React.Fragment>
+                    </Fragment>
                   ))}
                 </div>
               </div>
@@ -185,6 +127,7 @@ export function TerminalModal({
               ref={inputRef}
               value={inputVal}
               onChange={(e) => onInputChange(e.target.value)}
+              aria-label="Terminal command input"
               placeholder="Type a command (try: projects, skills, story, clear)..."
               autoComplete="off"
               spellCheck="false"
@@ -193,5 +136,6 @@ export function TerminalModal({
         </div>
       </div>
     </div>
-  );
+  </div>
+);
 }

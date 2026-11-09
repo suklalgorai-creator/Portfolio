@@ -1,0 +1,73 @@
+/* ---------- JOURNEY / TIMELINE ---------- */
+.timeline {
+  position: relative;
+  max-width: 760px;
+  margin: 0 auto;
+  padding-left: 38px;
+}
+
+.timeline::before {
+  content: '';
+  position: absolute;
+  left: 13px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--ink-green), var(--purple), var(--rule-bright));
+}
+
+.timeline-item {
+  position: relative;
+  margin-bottom: 30px;
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  backdrop-filter: blur(10px);
+  transition: all var(--transition);
+}
+
+.timeline-item:hover {
+  border-color: var(--glass-border-strong);
+  transform: translateX(4px);
+}
+
+.timeline-dot {
+  position: absolute;
+  left: -32px;
+  top: 26px;
+  width: 14px;
+  height: 14px;
+  background: var(--surface-solid);
+  border: 3px solid var(--ink-green);
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline-item:first-child .timeline-dot {
+  background: var(--ink-green);
+  box-shadow: 0 0 12px var(--ink-green);
+}
+
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  color: var(--amber);
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.timeline-title {
+  font-size: 1.08rem;
+  font-weight: 800;
+  color: var(--paper);
+  margin-bottom: 6px;
+}
+
+.timeline-desc {
+  font-size: 0.9rem;
+  color: var(--muted);
+  line-height: 1.65;
+}

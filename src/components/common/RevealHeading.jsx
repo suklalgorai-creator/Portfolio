@@ -1,4 +1,3 @@
-import React from 'react';
 
 export function RevealHeading({ as: Tag = 'h2', children, className = '' }) {
   const text = typeof children === 'string' ? children : '';

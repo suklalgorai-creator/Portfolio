@@ -1,0 +1,407 @@
+/* ---------- ADVANCED RESPONSIVE & MOBILE SCROLL OPTIMIZATION ---------- */
+
+/* Global Mobile Scroll Protection */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden !important;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Touch device adjustments */
+@media (hover: none) and (pointer: coarse) {
+  .cursor-spotlight {
+    display: none !important;
+  }
+}
+
+/* Floating WhatsApp Quick Connect Button */
+.floating-whatsapp-btn {
+  position: fixed;
+  bottom: 24px;
+  right: 22px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px;
+  background: #25D366;
+  color: #FFFFFF !important;
+  border-radius: 999px;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 700;
+  box-shadow: 0 10px 28px rgba(37, 211, 102, 0.4);
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  text-decoration: none;
+}
+
+.floating-whatsapp-btn:hover {
+  background: #20BA5A;
+  transform: translateY(-3px) scale(1.03);
+  box-shadow: 0 14px 34px rgba(37, 211, 102, 0.55);
+  color: #FFFFFF !important;
+}
+
+.floating-whatsapp-btn svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+}
+
+/* ---------- TABLET (max-width: 992px) ---------- */
+@media (max-width: 992px) {
+  .container {
+    width: 92%;
+  }
+
+  .hero-grid,
+  .about-grid,
+  .agency-banner,
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .hero {
+    padding-top: 100px;
+    padding-bottom: 60px;
+    min-height: auto;
+  }
+
+  .hero-workbench {
+    max-width: 620px;
+    margin: 0 auto;
+    width: 100%;
+  }
+
+  .projects-grid {
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+  }
+}
+
+/* ---------- MOBILE (max-width: 768px) ---------- */
+@media (max-width: 768px) {
+  section {
+    padding: 64px 0;
+  }
+
+  /* Navigation Drawer */
+  .hamburger {
+    display: flex;
+  }
+
+  .cmd-kbd {
+    display: none !important;
+  }
+
+  .navbar {
+    padding: 12px 0;
+  }
+
+  .navbar.scrolled {
+    padding: 8px 0;
+  }
+
+  .nav-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 82%;
+    max-width: 320px;
+    height: 100vh;
+    height: 100dvh;
+    background: var(--surface-solid);
+    border-left: 1px solid var(--glass-border-strong);
+    flex-direction: column;
+    justify-content: flex-start;
+    padding: 84px 28px 40px;
+    gap: 20px;
+    transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1001;
+    overflow-y: auto;
+    box-shadow: -10px 0 40px rgba(0, 0, 0, 0.7);
+  }
+
+  .nav-menu.active {
+    right: 0;
+  }
+
+  .nav-link {
+    font-size: 1.15rem;
+    padding: 10px 0;
+    width: 100%;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  /* Hero Section Typography */
+  .hero-name {
+    font-size: 2.7rem;
+    letter-spacing: -1px;
+  }
+
+  .hero-title {
+    font-size: 1.25rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.95rem;
+  }
+
+  .hero-cta {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+    padding: 14px 20px;
+  }
+
+  .hero-meta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  /* Horizontal Scrolling for Workbench Tabs */
+  .workbench-topbar {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    flex-wrap: nowrap;
+  }
+  .workbench-topbar::-webkit-scrollbar { display: none; }
+
+  .workbench-tabs {
+    flex-shrink: 0;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .workbench-tabs::-webkit-scrollbar { display: none; }
+
+  /* Projects Toolbar: Horizontal Scroll Rail for Filter Tabs */
+  .projects-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .filter-tabs {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 8px;
+    padding: 4px 2px 10px;
+    margin-bottom: 0;
+    scrollbar-width: none;
+  }
+  .filter-tabs::-webkit-scrollbar { display: none; }
+
+  .filter-btn {
+    flex-shrink: 0;
+    white-space: nowrap;
+    scroll-snap-align: start;
+    padding: 10px 18px;
+    font-size: 0.82rem;
+  }
+
+  .project-search-wrap {
+    width: 100%;
+  }
+
+  /* Single Column Card Grid for Clean Mobile Flow */
+  .projects-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .project-card {
+    padding: 20px;
+  }
+
+  .project-thumb-frame {
+    height: 190px;
+  }
+
+  /* CodeCraft Agency Banner: Swipeable Horizontal Rail */
+  .agency-banner {
+    padding: 28px 20px;
+  }
+
+  .agency-services {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 14px;
+    padding-bottom: 10px;
+    margin-top: 22px;
+    scrollbar-width: none;
+  }
+  .agency-services::-webkit-scrollbar { display: none; }
+
+  .agency-service-item {
+    flex: 0 0 84%;
+    min-width: 260px;
+    scroll-snap-align: center;
+    padding: 18px;
+  }
+
+  /* Interactive Terminal Modal: Mobile Native Bottom-Sheet */
+  .modal-overlay {
+    padding: 0;
+    align-items: flex-end;
+  }
+
+  .modal {
+    max-width: 100%;
+    width: 100%;
+    border-radius: 24px 24px 0 0;
+    max-height: 88vh;
+    border-bottom: none;
+    box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.7);
+  }
+
+  .modal-hero-banner {
+    height: 190px;
+  }
+
+  .modal-gallery-grid {
+    display: flex;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x mandatory;
+    gap: 8px;
+    padding-bottom: 6px;
+    scrollbar-width: none;
+  }
+  .modal-gallery-grid::-webkit-scrollbar { display: none; }
+
+  .gallery-thumb-item {
+    flex: 0 0 140px;
+    scroll-snap-align: start;
+  }
+
+  .modal-body {
+    padding: 24px 20px 40px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .terminal-modal {
+    max-height: 85vh;
+  }
+
+  /* Terminal Chips: Horizontal Swipe Rail */
+  .terminal-chips {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    flex-wrap: nowrap;
+    scrollbar-width: none;
+    padding: 10px 14px;
+    gap: 6px;
+  }
+  .terminal-chips::-webkit-scrollbar { display: none; }
+
+  .term-chip {
+    flex-shrink: 0;
+    white-space: nowrap;
+  }
+
+  /* Timeline */
+  .timeline {
+    padding-left: 30px;
+  }
+
+  .timeline::before {
+    left: 10px;
+  }
+
+  .timeline-dot {
+    left: -26px;
+  }
+
+  /* Floating WhatsApp Label hide on small screens */
+  .floating-whatsapp-btn {
+    bottom: 20px;
+    right: 18px;
+    padding: 12px 14px;
+  }
+  .floating-whatsapp-btn .whatsapp-label {
+    display: none;
+  }
+
+  .back-to-top {
+    right: 18px;
+    bottom: 76px;
+  }
+}
+
+/* Mobile performance: reduce backdrop-filter complexity */
+@media (max-width: 480px) {
+  .navbar.scrolled,
+  .persona-switcher,
+  .hero-story-banner,
+  .stat-card,
+  .about-card,
+  .heatmap-card,
+  .tech-category,
+  .contact-info-card,
+  .contact-form-card {
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+}
+/* ---------- SMALL SCREENS (max-width: 480px) ---------- */
+@media (max-width: 480px) {
+  .container {
+    width: 94%;
+  }
+
+  .hero-name {
+    font-size: 2.3rem;
+  }
+
+  .hero-tagline {
+    font-size: 0.9rem;
+  }
+
+  .about-stats {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .stat-card {
+    padding: 20px 18px;
+  }
+
+  .tech-category {
+    padding: 22px 16px;
+  }
+
+  .contact-channels {
+    gap: 10px;
+  }
+
+  .contact-channel {
+    padding: 12px 14px;
+  }
+}

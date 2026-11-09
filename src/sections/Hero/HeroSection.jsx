@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { useTypewriter } from '../../hooks/useTypewriter';
 import { useAttendanceSim } from '../../hooks/useAttendanceSim';
+import { siteConfig } from '../../config/siteConfig';
 
 export function HeroSection({ onOpenStory, onInitiateProject }) {
   const [persona, setPersona] = useState('dev');
@@ -8,13 +9,13 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
 
   const typewriterText = useTypewriter([
     'Flutter & Kotlin App Builder',
-    'Full-Stack Systems Architect',
-    'Founder @ CodeCraft Digital'
+    'Web & Mobile Developer',
+    'Cross-Platform App Builder'
   ]);
 
   const { subjects, overallPercentage, markPresent, markAbsent } = useAttendanceSim();
 
-  const isFounder = persona === 'founder';
+  const isStudio = persona === 'studio';
 
   return (
     <section className="hero" id="hero">
@@ -31,7 +32,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                 role="button"
                 tabIndex={0}
                 title="Click to view Suklal's Story"
-                aria-label="Suklal Gorai, Available for Projects, click to view story"
+                aria-label="Suklal Gorai, open to conversations, click to view story"
                 onClick={onOpenStory}
                 onKeyDown={(event) => {
                   if (event.key === 'Enter' || event.key === ' ') {
@@ -41,24 +42,14 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                 }}
               >
                 <div className="hero-story-ring">
-                  <img src="assets/images/avatar.jpg" alt="Suklal Gorai" />
+                  <img src="/assets/images/avatar.jpg" alt="Suklal Gorai" />
                 </div>
                 <div className="hero-story-text">
                   <span className="hero-story-user">
                     @suklal_gorai
-                    <svg
-                      className="verified-icon"
-                      width="13"
-                      height="13"
-                      viewBox="0 0 24 24"
-                      fill="currentColor"
-                      aria-hidden="true"
-                    >
-                      <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                    </svg>
                   </span>
                   <span className="hero-story-status">
-                    <span className="story-dot"></span> Available for Projects{' '}
+                  <span className="story-dot"></span> Open to Conversations{' '}
                     <span className="story-arrow">↗</span>
                   </span>
                 </div>
@@ -72,7 +63,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
               >
                 <button
                   type="button"
-                  className={`persona-btn ${!isFounder ? 'active' : ''}`}
+                  className={`persona-btn ${!isStudio ? 'active' : ''}`}
                   data-persona="dev"
                   onClick={() => setPersona('dev')}
                 >
@@ -80,9 +71,9 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                 </button>
                 <button
                   type="button"
-                  className={`persona-btn ${isFounder ? 'active' : ''}`}
-                  data-persona="founder"
-                  onClick={() => setPersona('founder')}
+                  className={`persona-btn ${isStudio ? 'active' : ''}`}
+                  data-persona="studio"
+                  onClick={() => setPersona('studio')}
                 >
                   <span className="persona-indicator"></span>Studio
                 </button>
@@ -92,7 +83,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
             {/* 2. Technical Domain Eyebrow */}
             <div className="hero-eyebrow hero-seq-2">
               <span className="hero-eyebrow-accent">//</span>
-              <span>{isFounder ? 'FOUNDER & DIGITAL STRATEGIST • JAMSHEDPUR, IN' : 'MOBILE ARCHITECT & SYSTEMS ENGINEER • JAMSHEDPUR, IN'}</span>
+              <span>{isStudio ? 'CURIOUS MINDS STUDIO • JAMSHEDPUR, IN' : 'WEB & MOBILE DEVELOPER • JAMSHEDPUR, IN'}</span>
             </div>
 
             {/* 3. Primary Focal Point: Hero Name Headline */}
@@ -109,16 +100,16 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
 
             {/* 5. Natural Storytelling Narrative */}
             <p className="hero-tagline hero-seq-3" id="heroTaglineText">
-              {isFounder ? (
+              {isStudio ? (
                 <>
-                  As founder of <strong>CodeCraft Digital</strong>, I engineer and deliver{' '}
-                  <strong>high-performance websites, client portals, and mobile solutions</strong> for
-                  regional businesses, resorts, and clinics across Jharkhand — designed to convert visitors into customers.
+                  <strong>Curious Minds Studio</strong> is a proposed creative-tech identity for exploring{' '}
+                  <strong>useful web platforms, mobile ideas, and regional digital concepts</strong> with
+                  clarity, care, and a practical point of view.
                 </>
               ) : (
                 <>
                   I engineer <strong>production mobile apps and web platforms</strong> that solve real problems &mdash; from
-                  offline-first college attendance utilities in <strong>Flutter &amp; Kotlin</strong> to robust digital platforms delivered through <strong>CodeCraft Digital</strong>.
+                  offline-first college attendance utilities in <strong>Flutter &amp; Kotlin</strong> to thoughtful web concepts explored through <strong>Curious Minds Studio</strong>.
                 </>
               )}
             </p>
@@ -126,12 +117,12 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
             {/* 6. High-Contrast, Clear Primary & Secondary CTAs */}
             <div className="hero-cta hero-seq-4">
               <a
-                href={isFounder ? '#agency' : '#projects'}
+                href={isStudio ? '/studio' : '/projects'}
                 className="btn btn-primary btn-hero-primary"
                 data-magnetic="0.9"
                 id="heroPrimaryCta"
               >
-                <span>{isFounder ? 'View Client Platforms' : 'View Shipped Projects'}</span>
+                <span>{isStudio ? 'View Studio Work' : 'View Featured Projects'}</span>
                 <svg
                   className="btn-arrow"
                   width="16"
@@ -148,11 +139,14 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                 </svg>
               </a>
               <a
-                href="#contact"
+                href="/contact"
                 className="btn btn-secondary btn-hero-secondary"
                 data-magnetic="0.65"
                 id="heroSecondaryCta"
-                onClick={onInitiateProject}
+                onClick={(event) => {
+                  event.preventDefault();
+                  onInitiateProject();
+                }}
               >
                 <span>Contact Me</span>
                 <svg
@@ -177,7 +171,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
             <div className="hero-meta-strip hero-seq-5">
               <div className="hero-social">
                 <a
-                  href="https://github.com/suklalgorai-creator"
+                  href={siteConfig.github}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="GitHub Profile"
@@ -188,7 +182,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                   </svg>
                 </a>
                 <a
-                  href="https://www.linkedin.com/in/suklal-gorai-7ab4533b0"
+                  href={siteConfig.linkedin}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="LinkedIn Profile"
@@ -199,7 +193,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                   </svg>
                 </a>
                 <a
-                  href="https://instagram.com/suklal_gorai"
+                  href={siteConfig.instagram}
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="Instagram Profile"
@@ -220,7 +214,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                     <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
                   </svg>
                 </a>
-                <a href="mailto:suklalgorai@gmail.com" aria-label="Direct Email" title="Email">
+                <a href={'mailto:' + siteConfig.email} aria-label="Direct Email" title="Email">
                   <svg
                     width="17"
                     height="17"
@@ -283,7 +277,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                       <line x1="12" y1="18" x2="12.01" y2="18" />
                     </svg>
                   </span>
-                  <span>Live App Demo</span>
+                  <span>App Simulator</span>
                 </button>
                 <button
                   type="button"
@@ -313,7 +307,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                 <div className="holo-showcase">
                   <div className="holo-img-wrap">
                     <img
-                      src="assets/images/developer-workspace.jpg"
+                      src="/assets/images/developer-workspace.jpg"
                       alt="Suklal Gorai at Developer Engineering Workspace"
                     />
                     <div className="holo-vignette-scrim"></div>
@@ -321,19 +315,19 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                     {/* Top Live Status Pill */}
                     <div className="holo-live-tag">
                       <span className="live-pulse"></span>
-                      <span>ONLINE &bull; JAMSHEDPUR, IN</span>
+                      <span>BASED IN JAMSHEDPUR, IN</span>
                     </div>
 
                     {/* Docked Glass Telemetry Shelf at bottom */}
                     <div className="holo-telemetry-shelf">
                       <div className="holo-metric">
-                        <span className="holo-metric-val">12+</span>
-                        <span className="holo-metric-lbl">Shipped Apps</span>
+                        <span className="holo-metric-val">4</span>
+                        <span className="holo-metric-lbl">Featured Apps</span>
                       </div>
                       <div className="holo-metric-sep"></div>
                       <div className="holo-metric">
-                        <span className="holo-metric-val">Founder</span>
-                        <span className="holo-metric-lbl">@ CodeCraft</span>
+                        <span className="holo-metric-val">Curious Minds</span>
+                        <span className="holo-metric-lbl">Studio Identity</span>
                       </div>
                       <div className="holo-metric-sep"></div>
                       <div className="holo-metric">
@@ -346,7 +340,7 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                   <div className="holo-caption-bar">
                     <div className="holo-caption-status">
                       <span className="status-indicator"></span>
-                      <span>Systems Architecture &amp; Production Engineering</span>
+                      <span>Web &amp; Mobile Development</span>
                     </div>
                     <span className="holo-tab-hint">Switch tabs above &uarr;</span>
                   </div>
@@ -437,22 +431,22 @@ export function HeroSection({ onOpenStory, onInitiateProject }) {
                 </div>
                 <pre className="code-block">
                   <code>
-                    <span className="code-comment">// Suklal Gorai &mdash; Engineering &amp; Architecture Profile</span>{'\n'}
+                    <span className="code-comment">// Suklal Gorai &mdash; Engineering Profile</span>{'\n'}
                     <span className="code-kw">export const</span> <span className="code-prop">developer</span> = {'{'}{'\n'}
                     {'  '}<span className="code-prop">name</span>: <span className="code-str">"Suklal Gorai"</span>,{'\n'}
-                    {'  '}<span className="code-prop">role</span>: <span className="code-str">"Mobile Systems Architect"</span>,{'\n'}
-                    {'  '}<span className="code-prop">agency</span>: <span className="code-str">"CodeCraft Digital (Founder)"</span>,{'\n'}
+                    {'  '}<span className="code-prop">role</span>: <span className="code-str">"Web &amp; Mobile Developer"</span>,{'\n'}
+                    {'  '}<span className="code-prop">studio</span>: <span className="code-str">"Curious Minds Studio (proposed)"</span>,{'\n'}
                     {'  '}<span className="code-prop">education</span>: <span className="code-str">"B.Tech CSE @ NSU Jamshedpur"</span>,{'\n'}
                     {'  '}<span className="code-prop">coreStack</span>: [{'\n'}
-                    {'    '}<span className="code-str">"Flutter &amp; Dart"</span>, <span className="code-str">"Kotlin Android"</span>,{'\n'}
-                    {'    '}<span className="code-str">"React / Next.js"</span>, <span className="code-str">"Firebase &amp; SQL"</span>{'\n'}
+                    {'    '}<span className="code-str">"Flutter &amp; Dart"</span>, <span className="code-str">"Android"</span>,{'\n'}
+                    {'    '}<span className="code-str">"React / Next.js"</span>, <span className="code-str">"Tailwind CSS"</span>{'\n'}
                     {'  '}],{'\n'}
-                    {'  '}<span className="code-prop">metrics</span>: {'{'}{'\n'}
-                    {'    '}<span className="code-prop">productsShipped</span>: <span className="code-num">12</span>,{'\n'}
-                    {'    '}<span className="code-prop">activeUsers</span>: <span className="code-str">"2,000+"</span>,{'\n'}
-                    {'    '}<span className="code-prop">uptime</span>: <span className="code-str">"99.98%"</span>{'\n'}
+                    {'  '}<span className="code-prop">focus</span>: {'{'}{'\n'}
+                    {'    '}<span className="code-prop">primaryProject</span>: <span className="code-str">"College Attendance Tracker PWA"</span>,{'\n'}
+                    {'    '}<span className="code-prop">featuredApps</span>: <span className="code-num">4</span>,{'\n'}
+                    {'    '}<span className="code-prop">openSource</span>: <span className="code-str">"github.com/suklalgorai-creator"</span>{'\n'}
                     {'  '}{'}'},{'\n'}
-                    {'  '}<span className="code-prop">status</span>: <span className="code-str">"Open for high-impact contracts &amp; roles"</span>{'\n'}
+                    {'  '}<span className="code-prop">status</span>: <span className="code-str">"Open for developer roles &amp; projects"</span>{'\n'}
                     {'}'};
                   </code>
                 </pre>

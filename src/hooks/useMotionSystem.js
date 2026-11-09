@@ -7,7 +7,7 @@ const isCoarsePointer = () => (
   || (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4)
 );
 
-export function useMotionSystem() {
+export function useMotionSystem(scopeKey = '') {
   useEffect(() => {
     const root = document.documentElement;
     root.classList.add('js-enabled');
@@ -36,9 +36,22 @@ export function useMotionSystem() {
           observer.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px 80px 0px', threshold: 0.02 });
 
-    revealNodes.forEach((node) => observer.observe(node));
+    const markIfVisible = (node) => {
+      const rect = node.getBoundingClientRect();
+      if (rect.top < window.innerHeight + 100 && rect.bottom > -50) {
+        node.classList.add('active');
+        return true;
+      }
+      return false;
+    };
+
+    revealNodes.forEach((node) => {
+      if (!markIfVisible(node)) {
+        observer.observe(node);
+      }
+    });
 
     let frame = 0;
     let pointerX = 0;
@@ -101,5 +114,5 @@ export function useMotionSystem() {
         node.style.removeProperty('--parallax-y');
       });
     };
-  }, []);
+  }, [scopeKey]);
 }

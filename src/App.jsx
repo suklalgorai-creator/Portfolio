@@ -1,29 +1,31 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import { useState, useCallback, useEffect, useRef } from 'react';
 import { useTheme } from './hooks/useTheme';
 import { useStoryViewer } from './hooks/useStoryViewer';
 import { useTerminal } from './hooks/useTerminal';
 import { useMotionSystem } from './hooks/useMotionSystem';
+import { pageMeta, notFoundMeta } from './config/pageMeta';
+import { siteConfig } from './config/siteConfig';
 
 import { VideoBackground } from './components/layout/VideoBackground';
 import { ConstellationCanvas } from './components/layout/ConstellationCanvas';
 import { Navbar } from './components/layout/Navbar';
 import { Footer } from './components/layout/Footer';
 import { Toast } from './components/common/Toast';
+import { BackToTop } from './components/common/BackToTop';
 
 import { StoryModal } from './components/modals/StoryModal';
 import { TerminalModal } from './components/modals/TerminalModal';
 import { ProjectModal } from './components/modals/ProjectModal';
+import { PortfolioPage } from './pages/PortfolioPages';
 
-import { HeroSection } from './sections/Hero/HeroSection';
-import { AboutSection } from './sections/About/AboutSection';
-import { TechStackSection } from './sections/TechStack/TechStackSection';
-import { ProjectsSection } from './sections/Projects/ProjectsSection';
-import { CodeCraftSection } from './sections/CodeCraft/CodeCraftSection';
-import { JourneySection } from './sections/Journey/JourneySection';
-import { ContactSection } from './sections/Contact/ContactSection';
+function normalizePath(pathname) {
+  const path = pathname.replace(/\/+$/, '');
+  return path || '/';
+}
 
 export function App() {
-  useMotionSystem();
+  const [pathname, setPathname] = useState(() => normalizePath(window.location.pathname));
+  useMotionSystem(pathname);
   const { isLight, toggleTheme } = useTheme();
   const storyViewer = useStoryViewer();
   const terminal = useTerminal(toggleTheme);
@@ -38,6 +40,58 @@ export function App() {
     toastTimers.current.forEach((timer) => clearTimeout(timer));
   }, []);
 
+  useEffect(() => {
+    const previousScrollRestoration = window.history.scrollRestoration;
+    window.history.scrollRestoration = 'manual';
+    const handlePopState = () => {
+      setPathname(normalizePath(window.location.pathname));
+      window.scrollTo(0, 0);
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => {
+      window.removeEventListener('popstate', handlePopState);
+      window.history.scrollRestoration = previousScrollRestoration;
+    };
+  }, []);
+
+  useEffect(() => {
+    const metadata = pageMeta[pathname] || notFoundMeta;
+    document.title = metadata.title;
+    const description = document.querySelector('meta[name="description"]');
+    if (description) description.setAttribute('content', metadata.description);
+  }, [pathname]);
+
+  const navigate = useCallback((path) => {
+    const nextPath = normalizePath(path);
+    if (nextPath === pathname) {
+      window.scrollTo(0, 0);
+      return;
+    }
+    window.history.pushState({}, '', nextPath);
+    setPathname(nextPath);
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  useEffect(() => {
+    const handleInternalLink = (event) => {
+      if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      const anchor = event.target.closest?.('a[href]');
+      if (!anchor || anchor.target === '_blank' || anchor.hasAttribute('download')) return;
+
+      const href = anchor.getAttribute('href');
+      if (!href || !href.startsWith('/') || href.startsWith('//')) return;
+
+      const url = new URL(href, window.location.origin);
+      if (url.origin !== window.location.origin) return;
+
+      event.preventDefault();
+      navigate(url.pathname);
+    };
+
+    document.addEventListener('click', handleInternalLink);
+    return () => document.removeEventListener('click', handleInternalLink);
+  }, [navigate]);
+
   const showToast = useCallback((message) => {
     const id = Date.now() + Math.random();
     setToasts((prev) => [...prev, { id, message }]);
@@ -49,33 +103,31 @@ export function App() {
   }, []);
 
   const handleStartInquiry = useCallback(() => {
-    setContactTopic('CodeCraft Digital Website Package');
+    setContactTopic('Curious Minds Studio conversation');
     setContactMessage(
-      'Hi Suklal, I want to build a professional website for my business with CodeCraft Digital. Let us discuss pricing and timeline.'
+      'Hi Suklal, I have a digital product idea and would like to discuss the problem, scope, and a practical next step.'
     );
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    navigate('/contact');
     showToast('Scrolled to project inquiry composer');
-  }, [showToast]);
+  }, [navigate, showToast]);
 
   const handleProjectInquire = useCallback((projectName) => {
-    setContactTopic('Client Website / App Inquiry');
+    setContactTopic('Website / App Inquiry');
     setContactMessage(
-      `Hi Suklal, I saw your "${projectName}" showcase and would like to build something similar for my business/project.`
+      `Hi Suklal, I saw your "${projectName}" showcase and would like to discuss a similar problem or experience for my project.`
     );
-    const el = document.getElementById('contact');
-    if (el) el.scrollIntoView({ behavior: 'smooth' });
+    navigate('/contact');
     showToast(`Inquiring about ${projectName}`);
-  }, [showToast]);
+  }, [navigate, showToast]);
 
   return (
     <>
-      <a className="skip-link" href="#hero">
+      <a className="skip-link" href="#main-content">
         Skip to main content
       </a>
 
-      {/* Global Cinematic Video Background */}
-      <VideoBackground />
+      {/* Ambient video is a Home experience; detail pages stay lighter. */}
+      {pathname === '/' && <VideoBackground />}
 
       {/* Particle Constellation & Spotlight */}
       <ConstellationCanvas isLight={isLight} />
@@ -86,61 +138,50 @@ export function App() {
         onOpenTerminal={terminal.openTerminal}
         isLight={isLight}
         onToggleTheme={toggleTheme}
+        currentPath={pathname}
+        onNavigate={navigate}
       />
 
       {/* Main Page Sections */}
-      <main>
-        <HeroSection
+      <main id="main-content">
+        <PortfolioPage
+          pathname={pathname}
           onOpenStory={() => storyViewer.openStory(0)}
-          onInitiateProject={() => {
-            const el = document.getElementById('contact');
-            if (el) el.scrollIntoView({ behavior: 'smooth' });
-          }}
-        />
-
-        <AboutSection onToast={showToast} />
-
-        <TechStackSection />
-
-        <ProjectsSection onSelectProject={(p) => setSelectedProject(p)} />
-
-        <CodeCraftSection onStartInquiry={handleStartInquiry} />
-
-        <JourneySection />
-
-        <ContactSection
+          onInitiateProject={() => navigate('/contact')}
+          onSelectProject={setSelectedProject}
+          onStartInquiry={handleStartInquiry}
+          onToast={showToast}
           selectedTopic={contactTopic}
           prefilledMessage={contactMessage}
-          onToast={showToast}
         />
       </main>
 
       {/* Footer */}
       <Footer />
 
-      {/* Floating WhatsApp Quick Action Button */}
       <aside aria-label="Quick contact">
         <a
-          href="https://wa.me/918709545464?text=Hi%20Suklal,%20I%20saw%20your%20portfolio%20and%20would%20like%20to%20discuss%20a%20project!"
+          href={siteConfig.whatsapp}
           target="_blank"
           rel="noopener noreferrer"
           className="floating-whatsapp-btn"
           aria-label="Chat on WhatsApp"
           title="Chat with Suklal on WhatsApp"
         >
-        <svg
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
-        </svg>
-        <span className="whatsapp-label">WhatsApp</span>
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            aria-hidden="true"
+          >
+            <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z" />
+          </svg>
+          <span className="whatsapp-label">WhatsApp</span>
         </a>
       </aside>
 
@@ -156,6 +197,7 @@ export function App() {
         onPrev={storyViewer.prevSlide}
         onPause={() => storyViewer.setIsPaused(true)}
         onResume={() => storyViewer.setIsPaused(false)}
+        onContact={() => navigate('/contact')}
       />
 
       <TerminalModal
@@ -177,6 +219,7 @@ export function App() {
 
       {/* Notifications */}
       <Toast toasts={toasts} />
+      <BackToTop />
     </>
   );
 }

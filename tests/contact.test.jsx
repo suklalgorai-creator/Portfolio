@@ -23,13 +23,28 @@ describe('ContactSection', () => {
   it('applies inquiry context passed by the project flow', () => {
     render(
       <ContactSection
-        selectedTopic="Client Website / App Inquiry"
+        selectedTopic="Website / App Inquiry"
         prefilledMessage="Build a booking portal"
         onToast={vi.fn()}
       />
     );
 
-    expect(screen.getByLabelText('Scope / Inquiry Type')).toHaveValue('Client Website / App Inquiry');
+    expect(screen.getByLabelText('Scope / Inquiry Type')).toHaveValue('Website / App Inquiry');
     expect(screen.getByLabelText('Details / Message')).toHaveValue('Build a booking portal');
+  });
+
+  it('shows actionable validation feedback for incomplete inquiries', async () => {
+    const user = userEvent.setup();
+    render(<ContactSection onToast={vi.fn()} />);
+
+    await user.click(screen.getByRole('button', { name: 'Compose Message' }));
+
+    expect(screen.getByRole('alert')).toHaveTextContent(/enter your name/i);
+
+    await user.type(screen.getByLabelText('Your Name'), 'AB');
+    await user.type(screen.getByLabelText('Details / Message'), 'Short');
+    await user.click(screen.getByRole('button', { name: 'Compose Message' }));
+
+    expect(screen.getByRole('alert')).toHaveTextContent(/more detail/i);
   });
 });

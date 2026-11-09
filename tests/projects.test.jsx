@@ -11,9 +11,9 @@ describe('ProjectsSection', () => {
 
     expect(screen.getByRole('tab', { name: new RegExp(`All Works ${projectsData.length}`) })).toBeInTheDocument();
 
-    await user.click(screen.getByRole('tab', { name: /Client Platforms/ }));
+    await user.click(screen.getByRole('tab', { name: /Web Concepts/ }));
 
-    expect(screen.getByText('Client Platforms')).toBeInTheDocument();
+    expect(screen.getByText('Web Concepts')).toBeInTheDocument();
     expect(screen.queryByText('College Attendance Tracker')).not.toBeInTheDocument();
   });
 

@@ -1,4 +1,5 @@
-import React from 'react';
+
+import { useEffect, useRef } from 'react';
 
 export function StoryModal({
   isOpen,
@@ -10,8 +11,23 @@ export function StoryModal({
   onNext,
   onPrev,
   onPause,
-  onResume
+  onResume,
+  onContact
 }) {
+  const closeButtonRef = useRef(null);
+  const previousFocusRef = useRef(null);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    previousFocusRef.current = document.activeElement;
+    const focusFrame = requestAnimationFrame(() => closeButtonRef.current?.focus());
+    return () => {
+      cancelAnimationFrame(focusFrame);
+      previousFocusRef.current?.focus?.();
+    };
+  }, [isOpen]);
+
   if (!isOpen || !currentSlide) return null;
 
   return (
@@ -49,7 +65,7 @@ export function StoryModal({
         <div className="story-header">
           <div className="story-user-badge">
             <div className="story-avatar-micro">
-              <img src="assets/images/avatar.jpg" alt="Suklal Gorai" />
+              <img src="/assets/images/avatar.jpg" alt="Suklal Gorai" />
             </div>
             <div>
               <span className="story-username">suklal_gorai</span>
@@ -62,6 +78,7 @@ export function StoryModal({
             type="button"
             className="story-close-btn"
             id="storyCloseBtn"
+            ref={closeButtonRef}
             aria-label="Close Story"
             onClick={onClose}
           >
@@ -108,12 +125,13 @@ export function StoryModal({
             </p>
             <div className="story-actions">
               <a
-                href="#contact"
+                href="/contact"
                 className="btn btn-sm btn-primary story-contact-btn"
                 id="storyContactBtn"
                 onClick={(event) => {
                   event.stopPropagation();
                   onClose();
+                  onContact?.();
                 }}
               >
                 Get In Touch &rarr;

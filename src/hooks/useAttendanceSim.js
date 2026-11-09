@@ -1,13 +1,8 @@
 import { useState } from 'react';
-
-const initialSubjects = [
-  { id: 'dsa', name: 'Data Structures & C', attended: 22, total: 25 },
-  { id: 'flutter', name: 'Mobile App Dev Lab', attended: 19, total: 20 },
-  { id: 'math', name: 'Engineering Mathematics', attended: 16, total: 21 }
-];
+import { initialAttendanceSubjects } from '../data/attendanceData';
 
 export function useAttendanceSim() {
-  const [subjects, setSubjects] = useState(initialSubjects);
+  const [subjects, setSubjects] = useState(initialAttendanceSubjects);
 
   const markPresent = (id) => {
     setSubjects(prev =>

@@ -1,0 +1,274 @@
+/* ==========================================================================
+   HERO SECTION CINEMATIC COMPOSITION & STORYTELLING REFINEMENTS
+   ========================================================================== */
+
+/* Enhanced Cinematic Scrim: deep left vignette for typography contrast + ambient depth */
+.cinematic-bg-scrim {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 75% 28%, rgba(16, 185, 129, 0.09), transparent 52%),
+    radial-gradient(circle at 25% 65%, rgba(59, 130, 246, 0.06), transparent 50%),
+    linear-gradient(180deg, rgba(5, 7, 11, 0.82) 0%, rgba(5, 7, 11, 0.52) 42%, rgba(5, 7, 11, 0.96) 100%),
+    linear-gradient(90deg, rgba(5, 7, 11, 0.96) 0%, rgba(5, 7, 11, 0.86) 46%, rgba(5, 7, 11, 0.48) 76%, rgba(5, 7, 11, 0.88) 100%) !important;
+}
+
+/* Hero First Viewport Container Proportions */
+.hero {
+  min-height: calc(100vh - 72px);
+  display: flex;
+  align-items: center;
+  position: relative;
+  padding-top: clamp(32px, 6vh, 64px);
+  padding-bottom: clamp(48px, 7vh, 80px);
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.95fr) !important;
+  gap: clamp(36px, 4.5vw, 64px) !important;
+  align-items: center !important;
+}
+
+/* Staggered Cinematic Cascade Animations */
+@keyframes heroFadeUp {
+  0% {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes heroScaleIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.97) translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.hero-seq-1 {
+  animation: heroFadeUp 0.65s cubic-bezier(0.16, 1, 0.3, 1) 0.05s both;
+}
+.hero-seq-2 {
+  animation: heroFadeUp 0.7s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+.hero-seq-3 {
+  animation: heroFadeUp 0.75s cubic-bezier(0.16, 1, 0.3, 1) 0.25s both;
+}
+.hero-seq-4 {
+  animation: heroFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.35s both;
+}
+.hero-seq-5 {
+  animation: heroFadeUp 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
+}
+.hero-seq-workbench {
+  animation: heroScaleIn 0.85s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-seq-1,
+  .hero-seq-2,
+  .hero-seq-3,
+  .hero-seq-4,
+  .hero-seq-5,
+  .hero-seq-workbench {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+/* Focal Point: Name Headline */
+.hero-name {
+  font-family: var(--font-display) !important;
+  font-size: clamp(3.4rem, 6.8vw, 5.8rem) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.058em !important;
+  line-height: 0.98 !important;
+  color: #ffffff !important;
+  margin-bottom: 16px !important;
+  text-wrap: balance !important;
+}
+
+.hero-name .gradient-span {
+  background: linear-gradient(135deg, #ffffff 15%, #6ee7b7 65%, #10b981 100%) !important;
+  -webkit-background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+  color: #34d399 !important;
+  text-shadow: 0 0 45px rgba(16, 185, 129, 0.25) !important;
+}
+
+/* Typing Subtitle */
+.hero-title {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  font-size: clamp(1.08rem, 1.8vw, 1.35rem) !important;
+  color: var(--paper-secondary);
+  margin-bottom: 20px !important;
+  min-height: 1.8em;
+  flex-wrap: wrap;
+}
+
+/* Story Narrative Paragraph */
+.hero-tagline {
+  font-family: var(--font-body) !important;
+  font-size: clamp(0.96rem, 1.08vw, 1.08rem) !important;
+  line-height: 1.76 !important;
+  color: #94a3b8 !important;
+  max-width: 540px !important;
+  margin-bottom: 30px !important;
+  text-wrap: pretty !important;
+}
+
+.hero-tagline strong {
+  color: #f8fafc !important;
+  font-weight: 600 !important;
+}
+
+/* High-Contrast, Distinct CTAs */
+.hero-cta {
+  display: flex;
+  align-items: center;
+  gap: 16px !important;
+  margin-bottom: 32px !important;
+  flex-wrap: wrap;
+}
+
+.btn-hero-primary {
+  gap: 10px;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%) !important;
+  color: #021a11 !important;
+  font-weight: 700 !important;
+  padding: 13px 26px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 0 8px 24px rgba(16, 185, 129, 0.32), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-hero-primary:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 14px 34px rgba(16, 185, 129, 0.44), inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
+}
+
+.btn-hero-primary .btn-arrow {
+  transition: transform 0.22s ease;
+}
+
+.btn-hero-primary:hover .btn-arrow {
+  transform: translateX(4px);
+}
+
+.btn-hero-secondary {
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.04) !important;
+  color: #f8fafc !important;
+  font-weight: 600 !important;
+  padding: 13px 24px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(14px) !important;
+  -webkit-backdrop-filter: blur(14px) !important;
+  transition: all 0.24s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.btn-hero-secondary:hover {
+  background: rgba(255, 255, 255, 0.09) !important;
+  border-color: rgba(255, 255, 255, 0.26) !important;
+  color: #ffffff !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4) !important;
+}
+
+.btn-hero-secondary .btn-arrow-subtle {
+  transition: transform 0.22s ease;
+}
+
+.btn-hero-secondary:hover .btn-arrow-subtle {
+  transform: translate(2px, -2px);
+}
+
+/* Refined Workbench Grounding */
+.hero-workbench {
+  background: rgba(10, 14, 23, 0.72) !important;
+  border: 1px solid rgba(255, 255, 255, 0.09) !important;
+  border-radius: 16px !important;
+  overflow: hidden !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  box-shadow: 0 24px 60px -20px rgba(0, 0, 0, 0.8), 0 0 1px 1px rgba(255, 255, 255, 0.06) !important;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+.hero-workbench:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 30px 70px -20px rgba(0, 0, 0, 0.88), 0 0 1px 1px rgba(16, 185, 129, 0.25) !important;
+  border-color: rgba(255, 255, 255, 0.16) !important;
+}
+
+
+/* ---------- HERO RESPONSIVE STACKING FIX ---------- */
+@media (max-width: 900px) {
+  .hero {
+    padding-top: 32px !important;
+    padding-bottom: 48px !important;
+    min-height: auto !important;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+  .hero-left {
+    text-align: left;
+    max-width: 100%;
+  }
+  .hero-name {
+    font-size: clamp(2.6rem, 11vw, 3.8rem) !important;
+    line-height: 1.04 !important;
+  }
+  .hero-workbench {
+    width: 100% !important;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+}
+
+@media (max-width: 540px) {
+  .hero-identity-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .hero-cta {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+  .hero-cta .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .hero-meta-strip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .hero-tech-divider {
+    display: none;
+  }
+}
+
+
+/* ==========================================================================
+   CINEMATIC DEVELOPER ORIGIN STORY: FROM NEET ASPIRANT TO SHIPPING SOFTWARE
+   ========================================================================== */

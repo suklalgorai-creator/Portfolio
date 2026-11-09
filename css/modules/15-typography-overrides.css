@@ -1,0 +1,642 @@
+/* ============================================================
+   MASTER EDITORIAL & LUXURY TYPOGRAPHY SYSTEM
+   Design Language: Linear / Apple / Awwwards Editorial Cyberpunk
+   Fonts: Space Grotesk (Display) + Geist (Body) + Geist Mono (Technical)
+   ============================================================ */
+
+/* ---------- 1. GLOBAL RENDERING & SMOOTHING ---------- */
+html, body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11', 'ss01', 'tnum';
+  font-optical-sizing: auto;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 400;
+  letter-spacing: -0.014em;
+  line-height: 1.68;
+  color: var(--muted);
+}
+
+/* Selection aesthetics */
+::selection {
+  background: rgba(16, 185, 129, 0.28);
+  color: #ffffff;
+}
+
+/* ---------- 2. DISPLAY & HEADINGS HIERARCHY ---------- */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--paper);
+  font-family: var(--font-display);
+  font-feature-settings: 'ss01', 'cv02';
+  text-wrap: balance;
+  margin: 0;
+}
+
+/* Hero Display Title */
+.hero-name {
+  font-family: var(--font-display);
+  font-size: clamp(3.4rem, 7.8vw, 6.4rem);
+  font-weight: 700;
+  letter-spacing: -0.065em;
+  line-height: 0.95;
+  color: var(--paper);
+  text-wrap: balance;
+  margin-bottom: 14px;
+}
+
+.hero-name .gradient-span {
+  background: none;
+  -webkit-text-fill-color: initial;
+  color: var(--ink-green);
+  text-shadow: 0 0 38px rgba(16, 185, 129, 0.28);
+}
+
+/* Hero Typing Subtitle */
+.hero-title {
+  font-family: var(--font-body);
+  font-size: clamp(1.25rem, 2.2vw, 1.65rem);
+  font-weight: 500;
+  letter-spacing: -0.024em;
+  line-height: 1.35;
+  color: var(--paper-secondary);
+  margin-bottom: 18px;
+}
+
+.hero-title .cursor {
+  color: var(--ink-green);
+  font-weight: 300;
+}
+
+/* Hero Tagline / Bio Paragraph */
+.hero-tagline {
+  font-family: var(--font-body);
+  font-size: clamp(0.98rem, 1.15vw, 1.1rem);
+  line-height: 1.78;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  color: var(--muted);
+  text-wrap: pretty;
+  max-width: 580px;
+  margin-bottom: 28px;
+}
+
+.hero-tagline strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+/* Section Header Eyebrow (e.g. â€” 01 â€¢ MY STORY) */
+.section-eyebrow {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: clamp(0.68rem, 0.8vw, 0.76rem);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-green);
+  margin-bottom: 12px;
+}
+
+.section-eyebrow::before {
+  content: 'â€” ';
+  color: var(--ink-green);
+  opacity: 0.7;
+}
+
+/* Section Main Title */
+.section-title {
+  font-family: var(--font-display);
+  font-size: clamp(2.3rem, 4.8vw, 3.8rem);
+  font-weight: 700;
+  letter-spacing: -0.05em;
+  line-height: 1.02;
+  color: var(--paper);
+  text-wrap: balance;
+  margin-bottom: 14px;
+}
+
+/* Section Subtitle */
+.section-subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.96rem, 1.15vw, 1.08rem);
+  font-weight: 400;
+  line-height: 1.72;
+  letter-spacing: -0.01em;
+  color: var(--paper-secondary);
+  text-wrap: pretty;
+  max-width: 620px;
+  margin-bottom: 42px;
+}
+
+/* ---------- 3. CARD TITLES & BODY TEXT ---------- */
+/* Project Cards */
+.project-card-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.22rem, 1.5vw, 1.5rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.18;
+  color: var(--paper);
+}
+
+.project-card-desc {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.68;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* About Cards */
+.about-card p {
+  font-family: var(--font-body);
+  font-size: 0.96rem;
+  line-height: 1.76;
+  font-weight: 400;
+  letter-spacing: -0.012em;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.about-card p strong {
+  color: var(--paper);
+  font-weight: 600;
+}
+
+/* Agency Banner */
+.agency-banner h3 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 2.6vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1.08;
+  color: var(--paper);
+}
+
+.agency-banner p {
+  font-family: var(--font-body);
+  font-size: 0.98rem;
+  line-height: 1.74;
+  letter-spacing: -0.01em;
+  text-wrap: pretty;
+}
+
+/* Timeline / Milestones */
+.timeline-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  color: var(--paper);
+}
+
+.timeline-date {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--amber);
+}
+
+.timeline-desc {
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  line-height: 1.72;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+/* Contact Info & Forms */
+.contact-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 1.8vw, 1.6rem);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+  line-height: 1.2;
+  color: var(--paper);
+}
+
+.contact-text {
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  color: var(--muted);
+  text-wrap: pretty;
+}
+
+.form-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--paper-secondary);
+}
+
+.form-input, .form-select, .form-textarea {
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  color: var(--paper);
+}
+
+/* ---------- 4. NUMERICAL DATA & MONOSPACE ACCENTS ---------- */
+.stat-number {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 3.8vw, 3.6rem);
+  font-weight: 700;
+  letter-spacing: -0.045em;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+  color: var(--paper);
+}
+
+.stat-label {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.sim-overall-badge {
+  font-family: var(--font-mono);
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.sim-subject-name {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 500;
+  letter-spacing: -0.015em;
+  color: var(--paper);
+}
+
+.sim-subject-stats {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+#commitCountSpan {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+}
+
+.tech-category-title {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--paper);
+}
+
+.tech-count {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+}
+
+.code-block, .term-line {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  line-height: 1.7;
+}
+
+/* ---------- 5. BUTTONS, NAVIGATION & PILLS ---------- */
+.nav-logo {
+  font-family: var(--font-mono);
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: -0.04em;
+}
+
+.nav-link {
+  font-family: var(--font-body);
+  font-size: 0.86rem;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  color: var(--paper-secondary);
+  transition: color 0.2s ease;
+}
+
+.nav-link:hover, .nav-link.active {
+  color: var(--paper);
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.btn-sm {
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+
+.cmd-btn {
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+}
+
+.cmd-kbd {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+}
+
+.persona-btn {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.005em;
+}
+
+.status-pill {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.hero-story-user {
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.hero-story-status {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  font-weight: 400;
+  letter-spacing: -0.005em;
+}
+
+.workbench-tab {
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: 0.84rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.term-chip {
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+}
+
+.quick-pill {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.holo-floating-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+/* ---------- 6. MODALS & STORY VIEWER ---------- */
+.modal-project-name {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.5vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.15;
+}
+
+.modal-version-badge {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.story-slide-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+  font-weight: 700;
+  letter-spacing: -0.04em;
+  line-height: 1.18;
+}
+
+.story-slide-desc {
+  font-family: var(--font-body);
+  font-size: 0.94rem;
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+}
+
+.story-slide-badge {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+/* ---------- 7. RESPONSIVE ADAPTATIONS (MOBILE / TABLET) ---------- */
+@media (max-width: 768px) {
+  body {
+    letter-spacing: -0.01em;
+  }
+  .hero-name {
+    font-size: clamp(2.8rem, 13vw, 4.4rem);
+    letter-spacing: -0.06em;
+    line-height: 0.98;
+  }
+  .section-title {
+    font-size: clamp(2rem, 9vw, 3rem);
+    letter-spacing: -0.045em;
+    line-height: 1.05;
+  }
+  .hero-tagline,
+  .section-subtitle,
+  .about-card p,
+  .contact-text,
+  .project-card-desc,
+  .timeline-desc {
+    line-height: 1.68;
+  }
+  .section-eyebrow,
+  .hero-greeting,
+  .nav-link {
+    letter-spacing: 0.12em;
+  }
+}
+
+
+/* â”€â”€â”€ Hero Master Responsive Rules â”€â”€â”€ */
+@media (max-width: 992px) {
+  .hero {
+    min-height: auto;
+    padding-top: 116px;
+    padding-bottom: 64px;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 48px !important;
+  }
+  .hero-left {
+    max-width: 680px;
+    margin: 0 auto;
+    width: 100%;
+  }
+  .hero-workbench {
+    max-width: 680px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero {
+    padding-top: 98px;
+    padding-bottom: 48px;
+  }
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 36px !important;
+  }
+  .hero-identity-bar {
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .hero-story-banner {
+    padding: 4px 12px 4px 5px;
+  }
+  .hero-story-ring {
+    width: 34px;
+    height: 34px;
+  }
+  .hero-story-user {
+    font-size: 0.74rem;
+  }
+  .hero-story-status {
+    font-size: 0.68rem;
+  }
+  .persona-btn {
+    padding: 5px 11px;
+    font-size: 0.71rem;
+  }
+  .hero-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    flex-wrap: wrap;
+    margin-bottom: 10px;
+  }
+  .hero-name {
+    font-size: clamp(2.7rem, 11vw, 3.8rem) !important;
+    letter-spacing: -0.05em;
+    line-height: 1.02;
+    margin-bottom: 12px;
+  }
+  .hero-title {
+    font-size: clamp(1rem, 4.4vw, 1.22rem) !important;
+    margin-bottom: 14px;
+    min-height: auto;
+  }
+  .hero-tagline {
+    font-size: 0.95rem;
+    line-height: 1.68;
+    margin-bottom: 24px;
+  }
+  .hero-cta {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+  .hero-cta .btn {
+    padding: 12px 18px;
+    font-size: 0.85rem;
+  }
+  .hero-meta-strip {
+    gap: 12px;
+    padding-top: 18px;
+  }
+  .hero-social a {
+    width: 36px;
+    height: 36px;
+  }
+  .hero-tech-divider {
+    display: none;
+  }
+  .hero-tech-pill {
+    font-size: 0.7rem;
+    padding: 4px 9px;
+  }
+  .workbench-topbar {
+    padding: 10px 14px;
+  }
+  .workbench-title {
+    display: none;
+  }
+  .workbench-tab {
+    padding: 4px 9px;
+    font-size: 0.68rem;
+  }
+  .holo-telemetry-shelf {
+    padding: 10px 8px;
+  }
+  .holo-metric-val {
+    font-size: 0.92rem;
+  }
+  .holo-metric-lbl {
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-cta {
+    flex-direction: column;
+    width: 100%;
+  }
+  .hero-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .holo-caption-bar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

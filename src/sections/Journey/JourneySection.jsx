@@ -1,4 +1,3 @@
-import React from 'react';
 import { timelineData } from '../../data/timelineData';
 import { RevealHeading } from '../../components/common/RevealHeading';
 

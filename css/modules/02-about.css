@@ -1,0 +1,206 @@
+/* ---------- ABOUT & VISUAL BENTO ---------- */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  gap: 36px;
+  align-items: stretch;
+}
+
+.about-card {
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  backdrop-filter: blur(14px);
+  box-shadow: var(--card-shadow);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.about-card p {
+  margin-bottom: 16px;
+  font-size: 1rem;
+  line-height: 1.78;
+}
+
+.about-card .highlight {
+  color: var(--ink-green);
+  font-weight: 700;
+}
+
+.about-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid var(--glass-border);
+}
+
+.pillar-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.pillar-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: var(--ink-green-soft);
+  color: var(--ink-green);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1rem;
+}
+
+.pillar-item h4 {
+  font-size: 0.88rem;
+  color: var(--paper);
+  font-weight: 700;
+}
+
+.pillar-item p {
+  font-size: 0.78rem;
+  color: var(--muted);
+  margin: 0;
+  line-height: 1.4;
+}
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.stat-card {
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  padding: 24px 18px;
+  text-align: center;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--card-shadow);
+  transition: all var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ink-green), var(--blue));
+  opacity: 0.8;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(16, 185, 129, 0.45);
+  box-shadow: var(--card-shadow-hover);
+}
+
+.stat-number {
+  font-size: 2.25rem;
+  font-weight: 800;
+  color: var(--paper);
+  font-family: var(--font-mono);
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-number .plus { color: var(--ink-green); }
+
+.stat-label {
+  font-size: 0.76rem;
+  color: var(--muted);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+}
+
+.currently-building {
+  grid-column: 1 / -1;
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.14), rgba(59, 130, 246, 0.1));
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.currently-building-text {
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.currently-building-text strong {
+  color: var(--paper);
+  font-weight: 700;
+}
+
+/* ---------- INTERACTIVE GITHUB SHIPPING HEATMAP ---------- */
+.heatmap-card {
+  margin-top: 28px;
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 24px 28px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--card-shadow);
+}
+
+.heatmap-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.heatmap-title-group h3 {
+  font-size: 1.05rem;
+  color: var(--paper);
+  font-weight: 800;
+}
+
+.heatmap-title-group p {
+  font-size: 0.8rem;
+  color: var(--muted);
+  font-family: var(--font-mono);
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(26, 1fr);
+  gap: 5px;
+  overflow-x: auto;
+  padding-bottom: 4px;
+}
+
+.heat-cell {
+  aspect-ratio: 1;
+  min-width: 12px;
+  border-radius: 3px;
+  background: var(--rule-bright);
+  cursor: pointer;
+  transition: transform 0.15s ease, background 0.2s ease;
+}
+
+.heat-cell:hover {
+  transform: scale(1.3);
+  outline: 1px solid var(--paper);
+}
+
+.heat-lvl-1 { background: rgba(16, 185, 129, 0.28); }
+.heat-lvl-2 { background: rgba(16, 185, 129, 0.52); }
+.heat-lvl-3 { background: rgba(16, 185, 129, 0.78); }
+.heat-lvl-4 { background: #10B981; box-shadow: 0 0 8px rgba(16, 185, 129, 0.45); }

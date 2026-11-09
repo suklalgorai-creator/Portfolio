@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 
 export function ProjectModal({ project, isOpen, onClose, onInquire }) {
   const [selectedScreenshot, setSelectedScreenshot] = useState(null);
+  const closeButtonRef = useRef(null);
+  const previousFocusRef = useRef(null);
 
   useEffect(() => {
     if (project && project.screenshots && project.screenshots.length > 0) {
@@ -10,6 +12,17 @@ export function ProjectModal({ project, isOpen, onClose, onInquire }) {
       setSelectedScreenshot(null);
     }
   }, [project]);
+
+  useEffect(() => {
+    if (!isOpen) return undefined;
+
+    previousFocusRef.current = document.activeElement;
+    const focusFrame = requestAnimationFrame(() => closeButtonRef.current?.focus());
+    return () => {
+      cancelAnimationFrame(focusFrame);
+      previousFocusRef.current?.focus?.();
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -25,7 +38,7 @@ export function ProjectModal({ project, isOpen, onClose, onInquire }) {
 
   const bannerImg = selectedScreenshot
     ? selectedScreenshot.url
-    : 'assets/images/modal-banner-default.jpg';
+    : '/assets/images/modal-banner-default.jpg';
 
   return (
     <div
@@ -43,6 +56,7 @@ export function ProjectModal({ project, isOpen, onClose, onInquire }) {
           type="button"
           className="modal-close"
           id="projectModalClose"
+          ref={closeButtonRef}
           aria-label="Close"
           onClick={onClose}
         >
@@ -62,10 +76,11 @@ export function ProjectModal({ project, isOpen, onClose, onInquire }) {
         <div className="modal-body" id="projectModalBody">
           <div className="modal-header">
             <h2 className="modal-project-name" id="projectModalTitle">{project.name}</h2>
-            {project.version ? (
+            <span className={`project-category-badge ${project.category === 'app' ? 'badge-app' : 'badge-client'}`}>
+              {project.projectType || 'Project'}
+            </span>
+            {project.version && (
               <span className="modal-version-badge">v{project.version}</span>
-            ) : (
-              <span className="project-category-badge badge-client">CodeCraft Digital</span>
             )}
           </div>
 
@@ -76,7 +91,7 @@ export function ProjectModal({ project, isOpen, onClose, onInquire }) {
             <div className="modal-gallery-section">
               <div className="modal-gallery-header">
                 <span className="modal-gallery-title">
-                  Verified Screenshots ({project.screenshots.length})
+                  Project Screenshots ({project.screenshots.length})
                 </span>
                 <span className="modal-gallery-hint">
                   Select thumbnail to preview full resolution
@@ -136,7 +151,7 @@ export function ProjectModal({ project, isOpen, onClose, onInquire }) {
             <div className="modal-download-section">
               <div className="download-info">
                 <h4>Direct Android APK Package</h4>
-                <p>Release v{project.version} • {project.apkSize} • Verified Build</p>
+                <p>Release v{project.version} • {project.apkSize} • Build package</p>
               </div>
               <a
                 href={project.downloadUrl}

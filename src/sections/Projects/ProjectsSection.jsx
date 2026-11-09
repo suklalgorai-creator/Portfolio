@@ -1,14 +1,15 @@
-import React, { useState, useMemo } from 'react';
+import { useState, useMemo } from 'react';
 import { projectsData } from '../../data/projectsData';
 import { siteConfig } from '../../config/siteConfig';
 import { RevealHeading } from '../../components/common/RevealHeading';
 
-export function ProjectsSection({ onSelectProject }) {
+export function ProjectsSection({ onSelectProject, featuredOnly = false }) {
   const [filter, setFilter] = useState('all');
   const [search, setSearch] = useState('');
 
   const filteredProjects = useMemo(() => {
-    return projectsData.filter((p) => {
+    const sourceProjects = featuredOnly ? projectsData.slice(0, 3) : projectsData;
+    return sourceProjects.filter((p) => {
       const matchesFilter = filter === 'all' || p.category === filter;
       const q = search.trim().toLowerCase();
       const matchesSearch =
@@ -19,7 +20,7 @@ export function ProjectsSection({ onSelectProject }) {
 
       return matchesFilter && matchesSearch;
     });
-  }, [filter, search]);
+  }, [featuredOnly, filter, search]);
 
   return (
     <section id="projects" className="projects-section">
@@ -28,12 +29,12 @@ export function ProjectsSection({ onSelectProject }) {
           <span className="section-eyebrow">// 03 &bull; PROOF OF WORK</span>
           <RevealHeading className="section-title">Ideas are better when they leave the notebook.</RevealHeading>
           <p className="section-subtitle">
-            Browse production applications, client platforms, and experiments—each one built around a real use case, constraint, or opportunity.
+            Browse personal applications, a studio showcase, web concepts, and experiments—each one built around a real use case, constraint, or opportunity.
           </p>
         </div>
 
         {/* Linear-Style Segmented Filter Bar + Search */}
-        <div className="projects-toolbar reveal">
+        {!featuredOnly && <div className="projects-toolbar reveal">
           <div className="filter-segmented-bar" role="tablist" aria-label="Filter projects">
             {siteConfig.projectCategories.map((category) => {
               const count = category.id === 'all'
@@ -72,12 +73,13 @@ export function ProjectsSection({ onSelectProject }) {
               type="text"
               id="projectSearchInput"
               className="project-search-input"
+              aria-label="Search projects by name or technology"
               placeholder="Filter by tech (Kotlin, Flutter, Next.js...)"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
             />
           </div>
-        </div>
+        </div>}
 
         {/* Refined Projects Grid */}
         <div className="projects-grid">
@@ -85,11 +87,12 @@ export function ProjectsSection({ onSelectProject }) {
             const thumbImg =
               p.screenshots && p.screenshots.length > 0
                 ? p.screenshots[0].url
-                : `assets/images/project-${p.id}.jpg`;
+                : `/assets/images/project-${p.id}.jpg`;
 
-            const isApp = p.category === 'app';
-            const isClient = p.category === 'client';
-            const categoryLabel = isApp ? 'Native App' : isClient ? 'Client Platform' : 'Micro-App';
+            const categoryLabel = p.projectType || (
+              p.category === 'app' ? 'Personal app' :
+                p.category === 'client' ? 'Concept prototype' : 'Experiment'
+            );
 
             return (
               <article
@@ -175,6 +178,11 @@ export function ProjectsSection({ onSelectProject }) {
             </div>
           )}
         </div>
+        {featuredOnly && (
+          <div className="page-section-link">
+            <a className="btn btn-secondary" href="/projects">Explore all projects <span aria-hidden="true">→</span></a>
+          </div>
+        )}
       </div>
     </section>
   );

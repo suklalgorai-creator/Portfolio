@@ -1,4 +1,3 @@
-import React from 'react';
 
 export function CodeCraftSection({ onStartInquiry }) {
   return (
@@ -6,10 +5,10 @@ export function CodeCraftSection({ onStartInquiry }) {
       <div className="container">
         <div className="studio-showcase-panel reveal">
           <div className="studio-content-left">
-            <span className="studio-eyebrow-tag">CODECRAFT DIGITAL &bull; STUDIO</span>
-            <h3 className="studio-heading">Direct Studio Engagements for Ambitious Businesses</h3>
+            <span className="studio-eyebrow-tag">CURIOUS MINDS STUDIO &bull; CREATIVE-TECH SHOWCASE</span>
+            <h3 className="studio-heading">Ideas that earn their way into the interface.</h3>
             <p className="studio-desc">
-              Through <strong>CodeCraft Digital</strong>, I partner directly with local businesses, clinics, resorts, and organizations to architect and ship fast, high-converting web platforms and custom mobile software &mdash; without agency overhead or unnecessary complexity.
+              <strong>Curious Minds Studio</strong> is a proposed secondary identity for exploring useful web platforms, mobile product ideas, and regional digital concepts. The archive includes CodeCraft Digital as a studio showcase, while concepts remain clearly marked as concepts.
             </p>
             <div className="studio-cta-row">
               <button
@@ -18,7 +17,7 @@ export function CodeCraftSection({ onStartInquiry }) {
                 id="agencyInquireBtn"
                 onClick={onStartInquiry}
               >
-                <span>Initiate Studio Project</span>
+                <span>Discuss a Project Idea</span>
                 <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <line x1="5" y1="12" x2="19" y2="12" />
                   <polyline points="12 5 19 12 12 19" />
@@ -31,25 +30,25 @@ export function CodeCraftSection({ onStartInquiry }) {
             <div className="studio-service-card">
               <div className="service-card-header">
                 <span className="service-dot" />
-                <span className="service-title">Hospitality &amp; Business Platforms</span>
+                <span className="service-title">Web Platforms &amp; Interfaces</span>
               </div>
-              <span className="service-meta">Turnkey Design &amp; Deployment</span>
+              <span className="service-meta">Concepts and prototypes</span>
             </div>
 
             <div className="studio-service-card">
               <div className="service-card-header">
                 <span className="service-dot" />
-                <span className="service-title">Native Mobile Engineering</span>
+                <span className="service-title">Mobile Product Experiments</span>
               </div>
-              <span className="service-meta">Cross-Platform Flutter &amp; Android</span>
+              <span className="service-meta">Flutter and Android builds</span>
             </div>
 
             <div className="studio-service-card">
               <div className="service-card-header">
                 <span className="service-dot" />
-                <span className="service-title">Infrastructure &amp; Lead Systems</span>
+                <span className="service-title">Performance-Minded Delivery</span>
               </div>
-              <span className="service-meta">SEO, Cloud Hosting &amp; WhatsApp Flows</span>
+              <span className="service-meta">SEO, hosting and accessible flows</span>
             </div>
           </div>
         </div>

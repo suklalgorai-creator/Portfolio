@@ -3,12 +3,13 @@ export const projectsData = [
     id: "attendance-tracker",
     name: "College Attendance Tracker",
     screenshots: [
-      { title: "Live Dashboard (100% Attendance & Streak)", url: "assets/images/project-attendance-tracker.jpg" },
-      { title: "Daily Attendance Register & Actions", url: "assets/images/attendance-register.jpg" },
-      { title: "User Profile & Settings (Suklal Gorai)", url: "assets/images/attendance-profile.jpg" },
-      { title: "Sticky Notes Module (localhost:3000/notes)", url: "assets/images/attendance-notes.jpg" }
+      { title: "Attendance Dashboard & Streak", url: "/assets/images/project-attendance-tracker.jpg" },
+      { title: "Daily Attendance Register & Actions", url: "/assets/images/attendance-register.jpg" },
+      { title: "User Profile & Settings (Suklal Gorai)", url: "/assets/images/attendance-profile.jpg" },
+      { title: "Sticky Notes Module", url: "/assets/images/attendance-notes.jpg" }
     ],
     category: "app",
+    projectType: "Deployed personal app",
     version: "2.1.1",
     description: "A full-stack progressive web app for college students to track and manage their subject-wise attendance. Features real-time sync with Firebase, safe-bunk calculator, analytics dashboard, and offline-first PWA capabilities deployed on Vercel.",
     highlights: [
@@ -28,34 +29,10 @@ export const projectsData = [
     ]
   },
   {
-    id: "focus-guard",
-    name: "Focus Guard & StudyFlow Companion",
-    screenshots: [
-      { title: "StudyFlow Focus Timer & Pomodoro (25:00)", url: "assets/images/project-studyflow.jpg" },
-      { title: "Physics Syllabus Progress Tracker", url: "assets/images/studyflow-syllabus.jpg" },
-      { title: "Daily Goals Checklist & AI Mentor", url: "assets/images/studyflow-tasks.jpg" }
-    ],
-    category: "app",
-    version: "1.0.0",
-    description: "A native Android digital wellbeing app that blocks distracting apps and keeps students locked in during deep study sessions. Built with Kotlin and Android Accessibility/UsageStats APIs for zero-lag native enforcement.",
-    highlights: [
-      "Strict app-blocking shield during active study timers",
-      "Native Android UsageStats & background service integration",
-      "Material You dynamic theming with distraction analytics",
-      "Lightweight 8.2 MB APK with zero ad bloat"
-    ],
-    techStack: ["Kotlin", "Android SDK", "Material You", "Gradle"],
-    githubUrl: "https://github.com/suklalgorai-creator/focus-guard",
-    downloadUrl: "assets/apk/focus-guard.apk",
-    apkSize: "8.2 MB",
-    changelog: [
-      { version: "1.0.0", date: "Aug 2026", changes: ["App blocking shield functionality", "Custom focus session Pomodoro timer", "Daily usage statistics dashboard", "Material You design language"] }
-    ]
-  },
-  {
     id: "reelcount",
     name: "ReelCount",
     category: "app",
+    projectType: "Personal app",
     version: "1.0.0",
     description: "Break the short-form scroll addiction. ReelCount automatically counts and visualizes your daily Instagram Reels consumption with daily limits, trend graphs, and gentle mindfulness nudges.",
     highlights: [
@@ -66,8 +43,8 @@ export const projectsData = [
     ],
     techStack: ["Kotlin", "Android SDK", "Local DB", "Gradle"],
     githubUrl: "https://github.com/suklalgorai-creator/reelcount",
-    downloadUrl: "assets/apk/reelcount.apk",
-    apkSize: "6.5 MB",
+    downloadUrl: null,
+    apkSize: null,
     changelog: [
       { version: "1.0.0", date: "Aug 2026", changes: ["Automatic daily Reels counter", "Usage visualization graphs", "Daily & weekly reports", "Smart notification reminders"] }
     ]
@@ -76,6 +53,7 @@ export const projectsData = [
     id: "scientific-calculator",
     name: "Scientific Calculator",
     category: "app",
+    projectType: "Personal app",
     version: "1.0.0",
     description: "A cross-platform scientific calculator crafted with Flutter and Dart. Features expression parsing, trigonometric & logarithmic functions, persistent calculation tape history, and adaptive dark/light themes.",
     highlights: [
@@ -86,22 +64,23 @@ export const projectsData = [
     ],
     techStack: ["Flutter", "Dart", "Material 3"],
     githubUrl: "https://github.com/suklalgorai-creator/scientific-calculator",
-    downloadUrl: "assets/apk/scientific-calculator.apk",
-    apkSize: "12.0 MB",
+    downloadUrl: null,
+    apkSize: null,
     changelog: [
       { version: "1.0.0", date: "Oct 2026", changes: ["Basic & scientific expression parser", "Persistent calculation history", "Responsive portrait layout", "Dark & light theme support"] }
     ]
   },
   {
     id: "codecraft-digital",
-    name: "CodeCraft Digital Agency",
+    name: "CodeCraft Digital",
     category: "client",
+    projectType: "Studio showcase",
     version: null,
-    description: "The official agency portal for CodeCraft Digital — my web design & software studio helping local businesses across Jharkhand establish a high-converting digital presence.",
+    description: "The web development portal for CodeCraft Digital — presenting modern website solutions, design concepts, and digital templates tailored for regional businesses.",
     highlights: [
-      "Tiered transparent pricing packages for local businesses",
-      "Interactive live portfolio showcase across 7+ industries",
-      "Fast WhatsApp & direct lead capture workflow",
+      "Tiered transparent service packages for regional businesses",
+      "Interactive showcase of web templates across diverse industries",
+      "Fast lead inquiry and consultation capture workflow",
       "Mobile-first performance tuned for regional networks"
     ],
     techStack: ["HTML5", "CSS3", "JavaScript", "SEO"],
@@ -112,11 +91,12 @@ export const projectsData = [
     id: "sahyog-jharkhand",
     name: "Sahyog Jharkhand NGO",
     category: "client",
+    projectType: "Concept prototype",
     version: null,
-    description: "A modern web platform for a Jharkhand-based social organization. Built with Next.js and React to showcase community drives, volunteer onboarding, and transparent impact reports.",
+    description: "A web platform design concept and prototype created for a regional social initiative, demonstrating community drives, volunteer onboarding, and impact reporting.",
     highlights: [
-      "Server-side SEO optimization with Next.js App architecture",
-      "Community initiative gallery & volunteer registration flow",
+      "Server-side SEO structure with Next.js App architecture",
+      "Community initiative showcase & volunteer registration concept",
       "Accessible bilingual-friendly typography and fast load times",
       "Clean component architecture with strict ESLint rules"
     ],
@@ -127,34 +107,20 @@ export const projectsData = [
     id: "resort-website",
     name: "Aranyak Resort & Nature Retreat",
     screenshots: [
-      { title: "Aranyak Resort — Hero & Booking", url: "assets/images/project-resort.jpg" },
-      { title: "Deluxe Rooms & Luxury Suites Showcase", url: "assets/images/resort-rooms.jpg" },
-      { title: "Resort Villas & Landscape Grounds", url: "assets/images/resort-amenities.jpg" },
-      { title: "Explore Neighbourhood & Sightseeing", url: "assets/images/resort-neighbourhood.jpg" }
+      { title: "Aranyak Resort — Hero & Booking", url: "/assets/images/project-resort.jpg" },
+      { title: "Deluxe Rooms & Luxury Suites Showcase", url: "/assets/images/resort-rooms.jpg" },
+      { title: "Resort Villas & Landscape Grounds", url: "/assets/images/resort-amenities.jpg" },
+      { title: "Explore Neighbourhood & Sightseeing", url: "/assets/images/resort-neighbourhood.jpg" }
     ],
     category: "client",
+    projectType: "Concept prototype",
     version: null,
-    description: "An elegant hospitality website featuring luxury room showcases, tariff comparisons, interactive photo gallery, and direct WhatsApp/phone reservation inquiries.",
+    description: "A hospitality website concept and design prototype featuring luxury room showcases, tariff comparisons, an interactive photo gallery, and reservation inquiry flows.",
     highlights: [
       "Room suite cards with amenity badges & seasonal pricing",
       "Immersive visual gallery with lightbox viewing",
-      "Direct booking inquiry integration for higher guest conversion",
+      "Direct booking inquiry integration for hospitality conversion",
       "Responsive layout across mobile, tablet, and desktop"
-    ],
-    techStack: ["HTML5", "CSS3", "JavaScript"],
-    githubUrl: null, downloadUrl: null, apkSize: null, changelog: null
-  },
-  {
-    id: "tour-travels",
-    name: "Tour & Travels Agency",
-    category: "client",
-    version: null,
-    description: "A travel agency website featuring curated domestic tour packages, itinerary highlights, fleet options, and instant cab/tour inquiry forms.",
-    highlights: [
-      "Filterable destination packages with day-by-day itineraries",
-      "Vehicle fleet showcase with per-km & package rates",
-      "Customer testimonial carousel & trust badges",
-      "1-tap call and WhatsApp booking triggers"
     ],
     techStack: ["HTML5", "CSS3", "JavaScript"],
     githubUrl: null, downloadUrl: null, apkSize: null, changelog: null
@@ -163,8 +129,9 @@ export const projectsData = [
     id: "wedding-photography",
     name: "Wedding & Photography Studio",
     category: "client",
+    projectType: "Concept prototype",
     version: null,
-    description: "A visual-first portfolio website for a wedding photography and cinematography studio, showcasing pre-wedding shoots, bridal stories, and customizable event packages.",
+    description: "A visual portfolio website concept for a wedding photography and cinematography studio, showcasing story galleries, service tiers, and consultation request flows.",
     highlights: [
       "Masonry-style high-resolution wedding story galleries",
       "Pre-wedding, candid & cinematic video package tiers",
@@ -178,13 +145,14 @@ export const projectsData = [
     id: "food-ordering",
     name: "Restaurant & Food Ordering",
     category: "client",
+    projectType: "Concept prototype",
     version: null,
-    description: "A mobile-first restaurant and cloud kitchen web app featuring dynamic category menus, quick cart summary, and direct order dispatch.",
+    description: "A mobile-first restaurant and food ordering web concept featuring dynamic category menus, quick cart summary, and direct order messaging.",
     highlights: [
       "Instant category filtering (Starters, Mains, Beverages)",
       "Interactive item customization & live bill calculation",
-      "Thumb-friendly mobile UI designed for hungry customers",
-      "Zero-commission direct ordering flow for local restaurants"
+      "Thumb-friendly mobile UI designed for rapid ordering",
+      "Direct ordering message workflow for local food businesses"
     ],
     techStack: ["HTML5", "CSS3", "JavaScript"],
     githubUrl: null, downloadUrl: null, apkSize: null, changelog: null
@@ -193,8 +161,9 @@ export const projectsData = [
     id: "parlour-saloon",
     name: "Parlour & Salon Studio",
     category: "client",
+    projectType: "Concept prototype",
     version: null,
-    description: "A sleek beauty parlour and unisex salon website with transparent service menus, bridal makeover packages, and appointment slot requests.",
+    description: "A beauty parlour and salon website concept featuring transparent service menus, bridal makeover packages, and appointment request forms.",
     highlights: [
       "Categorized service menu with clear pricing tables",
       "Bridal & festive combo package highlights",
@@ -208,13 +177,14 @@ export const projectsData = [
     id: "friend-teasing",
     name: "Friend Teasing Micro-Site",
     category: "fun",
+    projectType: "Experiment",
     version: null,
     description: "A playful interactive web experience built to prank and tease friends with dodging buttons, personalized roast messages, and celebratory confetti.",
     highlights: [
       "Dodging 'No' button physics that responds to cursor/touch",
       "Custom URL query support for personalized friend names",
       "Playful sound-free CSS keyframe animations",
-      "Viral shareability in college WhatsApp groups"
+      "Easy sharing for playful friend-to-friend interactions"
     ],
     techStack: ["HTML5", "CSS3", "JavaScript"],
     githubUrl: null, downloadUrl: null, apkSize: null, changelog: null

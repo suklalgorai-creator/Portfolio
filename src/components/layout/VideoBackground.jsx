@@ -1,7 +1,8 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 export function VideoBackground() {
   const videoRef = useRef(null);
+  const source = '/assets/videos/part 1.mp4';
 
   useEffect(() => {
     const video = videoRef.current;
@@ -28,24 +29,38 @@ export function VideoBackground() {
       }
     };
 
-    let idleHandle;
-    let fallbackTimer;
     const loadVideo = () => {
+      if (video.src) {
+        playVideo();
+        return;
+      }
+      video.src = video.dataset.src;
       video.load();
-      playVideo();
+      video.addEventListener('canplay', playVideo, { once: true });
     };
 
-    if ('requestIdleCallback' in window) {
-      idleHandle = window.requestIdleCallback(loadVideo, { timeout: 3000 });
-    } else {
-      fallbackTimer = window.setTimeout(loadVideo, 1500);
-    }
+    const activate = () => {
+      loadVideo();
+      window.removeEventListener('pointerdown', activate);
+      window.removeEventListener('keydown', activate);
+      window.removeEventListener('scroll', activate);
+      window.removeEventListener('touchstart', activate);
+    };
 
-    video.addEventListener('canplay', playVideo, { once: true });
+    // Keep the large ambient asset out of the critical path. The poster is
+    // immediately visible; the moving background begins once the visitor
+    // interacts with the page, while the cinematic section remains intact.
+    window.addEventListener('pointerdown', activate, { passive: true });
+    window.addEventListener('keydown', activate, { passive: true });
+    window.addEventListener('scroll', activate, { passive: true });
+    window.addEventListener('touchstart', activate, { passive: true });
+
     return () => {
       video.removeEventListener('canplay', playVideo);
-      if (idleHandle && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleHandle);
-      if (fallbackTimer) window.clearTimeout(fallbackTimer);
+      window.removeEventListener('pointerdown', activate);
+      window.removeEventListener('keydown', activate);
+      window.removeEventListener('scroll', activate);
+      window.removeEventListener('touchstart', activate);
     };
   }, []);
 
@@ -55,16 +70,15 @@ export function VideoBackground() {
         ref={videoRef}
         className="cinematic-bg-video"
         id="cinematicVideo"
-        src="assets/videos/part 1.mp4"
+        data-src={source}
         autoPlay
         loop
         muted
         playsInline
         webkit-playsinline="true"
         preload="none"
-        poster="assets/images/developer-workspace.jpg"
+        poster="/assets/images/developer-workspace.jpg"
       >
-        <source src="assets/videos/part 1.mp4" type="video/mp4" />
       </video>
       <div className="cinematic-bg-scrim" />
     </div>

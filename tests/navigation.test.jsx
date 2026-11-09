@@ -28,4 +28,24 @@ describe('Navbar', () => {
     expect(onOpenTerminal).toHaveBeenCalledOnce();
     expect(onToggleTheme).toHaveBeenCalledOnce();
   });
+
+  it('opens the story without activating the home link', async () => {
+    const user = userEvent.setup();
+    const onOpenStory = vi.fn();
+    const onNavigate = vi.fn();
+    render(
+      <Navbar
+        onOpenStory={onOpenStory}
+        onOpenTerminal={vi.fn()}
+        isLight={false}
+        onToggleTheme={vi.fn()}
+        onNavigate={onNavigate}
+      />
+    );
+
+    await user.click(screen.getByRole('button', { name: "View Suklal's story" }));
+
+    expect(onOpenStory).toHaveBeenCalledOnce();
+    expect(onNavigate).not.toHaveBeenCalled();
+  });
 });

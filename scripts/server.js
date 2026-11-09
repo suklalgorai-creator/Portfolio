@@ -1,7 +1,7 @@
 /**
  * Local Static HTTP Server for Suklal Gorai's Portfolio
  * Features: HTTP 206 Partial Content (Range Requests) for smooth video playback & scrubbing.
- * Run with: node server.js
+ * Run with: node scripts/server.js
  */
 
 import http from 'node:http';
@@ -10,7 +10,8 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const DEFAULT_PORT = 3000;
-const ROOT = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const PUBLIC_ROOT = path.join(ROOT, 'public');
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -34,7 +35,12 @@ const server = http.createServer((req, res) => {
   let safeUrl = decodeURIComponent(req.url.split('?')[0]);
   if (safeUrl === '/') safeUrl = '/index.html';
 
-  const filePath = path.normalize(path.join(ROOT, safeUrl));
+  const relativeRequest = safeUrl.replace(/^\/+/, '');
+  const filePath = path.normalize(
+    safeUrl.startsWith('/assets/')
+      ? path.join(PUBLIC_ROOT, relativeRequest)
+      : path.join(ROOT, relativeRequest)
+  );
 
   // Security check: prevent directory traversal
   const relativePath = path.relative(ROOT, filePath);
@@ -44,6 +50,13 @@ const server = http.createServer((req, res) => {
   }
 
   if (!fs.existsSync(filePath)) {
+    // Vite's client-side router owns extensionless application routes. Keep
+    // missing assets/files as real 404s while allowing direct page refreshes
+    // such as /about and /projects when using this local server.
+    if (!path.extname(safeUrl)) {
+      const indexPath = path.join(ROOT, 'index.html');
+      return serveFile(req, res, indexPath, fs.statSync(indexPath));
+    }
     res.writeHead(404, { 'Content-Type': 'text/plain' });
     return res.end(`404 Not Found: ${safeUrl}`);
   }

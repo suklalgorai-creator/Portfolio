@@ -1,7 +1,13 @@
 import { useState, useEffect } from 'react';
 
+const defaultWords = [
+  'Flutter & Kotlin App Builder',
+  'Web & Mobile Developer',
+  'Frontend & Full-Stack Builder'
+];
+
 export function useTypewriter(
-  words = ['Flutter & Kotlin App Builder', 'Full-Stack Systems Architect', 'Founder @ CodeCraft Digital'],
+  words = defaultWords,
   typeSpeed = 75,
   deleteSpeed = 35,
   pauseDelay = 1800

@@ -2,20 +2,20 @@ export const timelineData = [
   {
     date: "Oct 2026 — Present",
     tag: "Active Shipping",
-    title: "Shipping Apps & Scaling CodeCraft Digital",
-    desc: "Shipped College Attendance Tracker v2.1.1, Focus Guard, ReelCount, and Scientific Calculator while serving regional business clients and mastering C & DSA fundamentals."
+    title: "Shipping Apps & Web Solutions",
+    desc: "Shipped College Attendance Tracker v2.1.1, ReelCount, and Scientific Calculator while exploring regional web concepts and mastering C & DSA fundamentals."
   },
   {
     date: "Jul 2026",
     tag: "Higher Education",
     title: "Started B.Tech CSE @ Netaji Subhas University",
-    desc: "Enrolled in Computer Science & Engineering in Jamshedpur — committing 100% to software engineering, mobile architecture, and product development."
+    desc: "Enrolled in Computer Science & Engineering in Jamshedpur, committing to software engineering, mobile app development, and product creation."
   },
   {
     date: "Mid 2026",
-    tag: "Studio Launch",
-    title: "Founded CodeCraft Digital",
-    desc: "Launched my own web design studio for local businesses and organizations, delivering 8+ tailored websites across hospitality, travel, food, and social impact sectors."
+    tag: "Creative Technology",
+    title: "Explored a Studio Direction",
+    desc: "Developed web concepts across hospitality, food, and social impact themes while shaping Curious Minds Studio as a proposed creative-tech identity."
   },
   {
     date: "Early 2026",

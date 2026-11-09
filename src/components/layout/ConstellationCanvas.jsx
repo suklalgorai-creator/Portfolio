@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 
 export function ConstellationCanvas({ isLight = false }) {
   const canvasRef = useRef(null);

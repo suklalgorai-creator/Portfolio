@@ -1,23 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
+import { siteConfig } from '../../config/siteConfig';
 
-export function Navbar({ onOpenStory, onOpenTerminal, isLight, onToggleTheme }) {
+export function Navbar({ onOpenStory, onOpenTerminal, isLight, onToggleTheme, currentPath = window.location.pathname, onNavigate }) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState('hero');
+  const [activeSection, setActiveSection] = useState(currentPath);
 
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 40);
-
-      const sections = ['hero', 'about', 'skills', 'projects', 'agency', 'journey', 'contact'];
-      let current = 'hero';
-      for (const id of sections) {
-        const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 160) {
-          current = id;
-        }
-      }
-      setActiveSection(current);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -27,6 +18,8 @@ export function Navbar({ onOpenStory, onOpenTerminal, isLight, onToggleTheme }) 
       document.body.style.overflow = '';
     };
   }, []);
+
+  useEffect(() => setActiveSection(currentPath), [currentPath]);
 
   const closeMenu = () => {
     setIsMenuOpen(false);
@@ -41,84 +34,81 @@ export function Navbar({ onOpenStory, onOpenTerminal, isLight, onToggleTheme }) 
     });
   };
 
+  const navigate = (event, path) => {
+    event.preventDefault();
+    closeMenu();
+    if (onNavigate) onNavigate(path);
+    else window.location.href = path;
+  };
+
   return (
-    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`}>
+    <nav className={`navbar ${isScrolled ? 'scrolled' : ''}`} aria-label="Primary navigation">
       <div className="container">
-        <a href="#hero" className="nav-logo" onClick={closeMenu}>
-          <div
+        <div className="nav-logo">
+          <button
+            type="button"
             className="nav-story-ring"
             id="navStoryTrigger"
             title="View Suklal's Story"
-            role="button"
-            tabIndex={0}
             aria-label="View Suklal's story"
-            onClick={(e) => {
-              e.preventDefault();
-              onOpenStory();
-            }}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' || e.key === ' ') {
-                e.preventDefault();
-                onOpenStory();
-              }
-            }}
+            onClick={onOpenStory}
           >
-            <img src="assets/images/avatar.jpg" alt="Suklal Gorai" />
-          </div>
-          <span className="logo-text">&lt;SG/&gt;</span>
-        </a>
+            <img src="/assets/images/avatar.jpg" alt="Suklal Gorai" />
+          </button>
+          <a href="/" className="logo-text" onClick={(event) => navigate(event, '/')}>&lt;SG/&gt;</a>
+        </div>
 
         <ul id="primary-navigation" className={`nav-menu ${isMenuOpen ? 'active' : ''}`}>
           <li>
             <a
-              href="#about"
-              className={`nav-link ${activeSection === 'about' ? 'active' : ''}`}
-              onClick={closeMenu}
+              href="/"
+              className={`nav-link ${activeSection === '/' ? 'active' : ''}`}
+              onClick={(event) => navigate(event, '/')}
+            >
+              Home
+            </a>
+          </li>
+          <li>
+            <a
+              href="/about"
+              className={`nav-link ${activeSection === '/about' ? 'active' : ''}`}
+              onClick={(event) => navigate(event, '/about')}
             >
               About
             </a>
           </li>
           <li>
             <a
-              href="#skills"
-              className={`nav-link ${activeSection === 'skills' ? 'active' : ''}`}
-              onClick={closeMenu}
+              href="/tech-stack"
+              className={`nav-link ${activeSection === '/tech-stack' ? 'active' : ''}`}
+              onClick={(event) => navigate(event, '/tech-stack')}
             >
               Tech Stack
             </a>
           </li>
           <li>
             <a
-              href="#projects"
-              className={`nav-link ${activeSection === 'projects' ? 'active' : ''}`}
-              onClick={closeMenu}
+              href="/projects"
+              className={`nav-link ${activeSection === '/projects' ? 'active' : ''}`}
+              onClick={(event) => navigate(event, '/projects')}
             >
               Projects
             </a>
           </li>
           <li>
             <a
-              href="#agency"
-              className={`nav-link ${activeSection === 'agency' ? 'active' : ''}`}
-              onClick={closeMenu}
+              href="/studio"
+              className={`nav-link ${activeSection === '/studio' ? 'active' : ''}`}
+              onClick={(event) => navigate(event, '/studio')}
             >
-              CodeCraft
+              Curious Minds
             </a>
           </li>
           <li>
             <a
-              href="#journey"
-              className={`nav-link ${activeSection === 'journey' ? 'active' : ''}`}
-              onClick={closeMenu}
-            >
-              Journey
-            </a>
-          </li>
-          <li>
-            <a
-              href="#contact"
-              className={`nav-link ${activeSection === 'contact' ? 'active' : ''}`}
-              onClick={closeMenu}
+              href="/contact"
+              className={`nav-link ${activeSection === '/contact' ? 'active' : ''}`}
+              onClick={(event) => navigate(event, '/contact')}
             >
               Contact
             </a>
@@ -142,7 +132,7 @@ export function Navbar({ onOpenStory, onOpenTerminal, isLight, onToggleTheme }) 
           </button>
 
           <a
-            href="https://github.com/suklalgorai-creator"
+            href={siteConfig.github}
             target="_blank"
             rel="noopener noreferrer"
             className="nav-github-btn"

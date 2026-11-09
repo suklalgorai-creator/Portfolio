@@ -1,4 +1,3 @@
-import React from 'react';
 
 export function Toast({ toasts }) {
   if (!toasts || toasts.length === 0) return null;

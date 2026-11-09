@@ -1,24 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import { siteConfig } from '../../config/siteConfig';
 import { RevealHeading } from '../../components/common/RevealHeading';
 
 export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
   const [name, setName] = useState('');
-  const [topic, setTopic] = useState('CodeCraft Digital Website Package');
+  const [topic, setTopic] = useState('Curious Minds Studio conversation');
   const [message, setMessage] = useState('');
   const [copied, setCopied] = useState(false);
+  const [formStatus, setFormStatus] = useState(null);
+  const [isComposing, setIsComposing] = useState(false);
+  const copyResetTimerRef = useRef(null);
+  const submitResetTimerRef = useRef(null);
 
   useEffect(() => {
     if (selectedTopic) setTopic(selectedTopic);
     if (prefilledMessage) setMessage(prefilledMessage);
   }, [selectedTopic, prefilledMessage]);
 
+  useEffect(() => () => {
+    if (copyResetTimerRef.current) clearTimeout(copyResetTimerRef.current);
+    if (submitResetTimerRef.current) clearTimeout(submitResetTimerRef.current);
+  }, []);
+
   const handleCopyEmail = async () => {
     try {
       if (navigator.clipboard?.writeText) {
-        await navigator.clipboard.writeText('suklalgorai@gmail.com');
+        await navigator.clipboard.writeText(siteConfig.email);
       } else {
         const fallback = document.createElement('textarea');
-        fallback.value = 'suklalgorai@gmail.com';
+        fallback.value = siteConfig.email;
         fallback.setAttribute('readonly', '');
         fallback.style.position = 'fixed';
         fallback.style.opacity = '0';
@@ -29,19 +39,43 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
         if (!copiedWithFallback) throw new Error('Clipboard unavailable');
       }
       setCopied(true);
-      setTimeout(() => setCopied(false), 2400);
-      if (onToast) onToast('Copied suklalgorai@gmail.com to clipboard');
+      if (copyResetTimerRef.current) clearTimeout(copyResetTimerRef.current);
+      copyResetTimerRef.current = setTimeout(() => {
+        setCopied(false);
+        copyResetTimerRef.current = null;
+      }, 2400);
+      if (onToast) onToast('Copied ' + siteConfig.email + ' to clipboard');
     } catch {
-      if (onToast) onToast('suklalgorai@gmail.com');
+      if (onToast) onToast(siteConfig.email);
     }
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (isComposing) return;
+
+    const trimmedName = name.trim();
+    const trimmedMessage = message.trim();
+    if (trimmedName.length < 2) {
+      setFormStatus({ type: 'error', message: 'Please enter your name (at least 2 characters).' });
+      return;
+    }
+    if (trimmedMessage.length < 10) {
+      setFormStatus({ type: 'error', message: 'Please include a little more detail (at least 10 characters).' });
+      return;
+    }
+
+    setIsComposing(true);
+    setFormStatus({ type: 'pending', message: 'Opening your email client...' });
     const mailtoSubject = encodeURIComponent(`[Portfolio Inquiry] ${topic} — from ${name}`);
     const mailtoBody = encodeURIComponent(`Hi Suklal,\n\nName: ${name}\nTopic: ${topic}\n\n${message}\n\n— Sent from portfolio contact form`);
-    window.location.href = `mailto:suklalgorai@gmail.com?subject=${mailtoSubject}&body=${mailtoBody}`;
-    if (onToast) onToast('Opened email draft to suklalgorai@gmail.com');
+    window.location.href = ['mailto:', siteConfig.email, '?subject=', mailtoSubject, '&body=', mailtoBody].join('');
+    if (onToast) onToast('Opening an email draft to ' + siteConfig.email);
+    submitResetTimerRef.current = setTimeout(() => {
+      setIsComposing(false);
+      setFormStatus(null);
+      submitResetTimerRef.current = null;
+    }, 3000);
   };
 
   return (
@@ -59,11 +93,11 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
           <div className="contact-info-card reveal">
             <h3 className="contact-heading">Direct Channels</h3>
             <p className="contact-text">
-              Reach out directly via email or verified social platforms. I typically respond within 24 hours.
+              Reach out directly via email or the social platforms below. Share the context and I’ll reply when I can.
             </p>
 
             <div className="contact-channel-list">
-              <a href="mailto:suklalgorai@gmail.com" className="contact-channel">
+              <a href={'mailto:' + siteConfig.email} className="contact-channel">
                 <span className="contact-channel-left">
                   <span className="channel-icon-wrap" aria-hidden="true">
                     <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -71,7 +105,7 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
                       <polyline points="22,6 12,13 2,6" />
                     </svg>
                   </span>
-                  <span className="channel-text">suklalgorai@gmail.com</span>
+                  <span className="channel-text">{siteConfig.email}</span>
                 </span>
                 <span className="channel-action">
                   Email
@@ -104,7 +138,7 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
               </button>
 
               <a
-                href="https://github.com/suklalgorai-creator"
+                href={siteConfig.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-channel"
@@ -127,7 +161,7 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
               </a>
 
               <a
-                href="https://www.linkedin.com/in/suklal-gorai-7ab4533b0"
+                href={siteConfig.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-channel"
@@ -150,7 +184,7 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
               </a>
 
               <a
-                href="https://instagram.com/suklal_gorai"
+                href={siteConfig.instagram}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="contact-channel"
@@ -181,7 +215,7 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
             <p className="contact-text">
               Share your project goals or inquiries below to initiate a direct conversation.
             </p>
-            <form id="portfolioContactForm" onSubmit={handleSubmit}>
+            <form id="portfolioContactForm" onSubmit={handleSubmit} noValidate>
               <div className="form-group">
                 <label className="form-label" htmlFor="contactName">
                   Your Name
@@ -192,8 +226,12 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
                   className="form-input"
                   placeholder="e.g. Rahul Sharma"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
+                  onChange={(e) => {
+                    setName(e.target.value);
+                    if (formStatus?.type === 'error') setFormStatus(null);
+                  }}
                   required
+                  minLength="2"
                 />
               </div>
               <div className="form-group">
@@ -206,9 +244,9 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
                   value={topic}
                   onChange={(e) => setTopic(e.target.value)}
                 >
-                  <option value="CodeCraft Digital Website Package">CodeCraft Digital Website Package</option>
+                  <option value="Curious Minds Studio conversation">Curious Minds Studio conversation</option>
                   <option value="Android / Flutter App Collaboration">Android / Flutter App Collaboration</option>
-                  <option value="Client Website / App Inquiry">Client Website / App Inquiry</option>
+                  <option value="Website / App Inquiry">Website / App Inquiry</option>
                   <option value="Internship / Developer Opportunity">Internship / Developer Opportunity</option>
                   <option value="General Hello">General Inquiry</option>
                 </select>
@@ -222,12 +260,21 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
                   className="form-textarea"
                   placeholder="Describe your timeline, features, or design requirements..."
                   value={message}
-                  onChange={(e) => setMessage(e.target.value)}
+                  onChange={(e) => {
+                    setMessage(e.target.value);
+                    if (formStatus?.type === 'error') setFormStatus(null);
+                  }}
                   required
+                  minLength="10"
                 />
               </div>
-              <button type="submit" className="btn btn-primary btn-submit">
-                <span>Compose Message</span>
+              {formStatus && (
+                <p className={`form-status form-status-${formStatus.type}`} role={formStatus.type === 'error' ? 'alert' : 'status'}>
+                  {formStatus.message}
+                </p>
+              )}
+              <button type="submit" className="btn btn-primary btn-submit" disabled={isComposing}>
+                <span>{isComposing ? 'Opening Email...' : 'Compose Message'}</span>
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                   <line x1="7" y1="17" x2="17" y2="7"></line>
                   <polyline points="7 7 17 7 17 17"></polyline>

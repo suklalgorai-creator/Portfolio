@@ -14,12 +14,14 @@ export function useStoryViewer() {
   const closeStory = useCallback(() => {
     setIsOpen(false);
     setProgress(0);
+    setIsPaused(false);
     clearInterval(timerRef.current);
   }, []);
 
   const openStory = useCallback((startIndex = 0) => {
     setCurrentIdx(startIndex);
     setProgress(0);
+    setIsPaused(false);
     setIsOpen(true);
   }, []);
 

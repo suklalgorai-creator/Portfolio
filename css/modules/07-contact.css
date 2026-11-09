@@ -1,0 +1,113 @@
+/* ---------- CONTACT SECTION ---------- */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 36px;
+  align-items: start;
+}
+
+.contact-info-card,
+.contact-form-card {
+  background: var(--surface);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  backdrop-filter: blur(12px);
+  box-shadow: var(--card-shadow);
+}
+
+.contact-heading {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: var(--paper);
+  margin-bottom: 10px;
+}
+
+.contact-text {
+  font-size: 0.94rem;
+  color: var(--muted);
+  margin-bottom: 22px;
+}
+
+.contact-channel-list {
+  display: flex;
+  flex-direction: column;
+  gap: 11px;
+}
+
+.contact-channel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 13px 16px;
+  background: var(--rule);
+  border: 1px solid var(--glass-border);
+  border-radius: 12px;
+  color: var(--paper);
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: all var(--transition);
+}
+
+.contact-channel:hover {
+  border-color: var(--ink-green);
+  background: var(--surface-hover);
+  transform: translateY(-2px);
+}
+
+.contact-channel-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-label {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--paper-secondary);
+  margin-bottom: 6px;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 10px;
+  border: 1px solid var(--glass-border-strong);
+  background: var(--input-bg);
+  color: var(--paper);
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+  border-color: var(--ink-green);
+}
+
+.form-textarea {
+  resize: vertical;
+  min-height: 104px;
+}
+
+.form-status {
+  margin: -2px 0 14px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+}
+
+.form-status-error { color: var(--pen-red); }
+.form-status-pending { color: var(--ink-green); }
+
+.btn-submit:disabled {
+  cursor: wait;
+  opacity: 0.7;
+}

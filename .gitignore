@@ -3,10 +3,21 @@
 Thumbs.db
 *.log
 
+# Local environment & secrets
+.env
+.env.*
+!.env.example
+
+# Editor settings
+.idea/
+.vscode/*
+!.vscode/extensions.json
+
 # Dependencies & Build
 node_modules/
 dist/
-public/assets
+.vite/
+.cache/
 
 # Backups
 *.backup.html
@@ -14,4 +25,7 @@ public/assets
 
 # QA artifacts
 test-results/
+playwright-report/
+blob-report/
+coverage/
 lighthouse-report*.json
