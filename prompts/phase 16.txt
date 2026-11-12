@@ -1,0 +1,142 @@
+# PHASE 16 — BACKEND API & CORE FEATURE DEVELOPMENT
+
+## ROLE
+Act as a Senior Backend Developer and API Engineer.
+
+Implement the core backend features using the approved architecture, database schema and authentication system.
+
+## 1. PROJECT MANAGEMENT API
+
+Implement:
+- Create project.
+- Read project.
+- Update project.
+- Delete project.
+- Publish and unpublish project.
+- Draft management.
+- Project ordering.
+- Featured project management.
+- Project category management.
+- Project tags.
+- Project search and filtering.
+- Individual project detail retrieval.
+
+Public endpoints must return only published content.
+
+Admin operations must require proper authorization.
+
+Preserve all existing project records and assets.
+
+## 2. JOURNEY CMS API
+
+Implement:
+- Create milestone.
+- Edit milestone.
+- Delete milestone.
+- Publish and unpublish milestone.
+- Timeline ordering.
+- Milestone date and metadata.
+- Public timeline retrieval.
+- Admin timeline management.
+
+Public endpoints must not reveal unpublished content.
+
+Preserve the existing Journey CMS workflow and content.
+
+## 3. MEDIA MANAGEMENT
+
+Implement the approved file storage integration.
+
+Support:
+- Project cover images.
+- Project galleries.
+- Project media.
+- Journey images where required.
+
+Implement:
+- File type validation.
+- File size limits.
+- Upload progress where practical.
+- Unique storage names.
+- Safe deletion behaviour.
+- Media references in database records.
+
+Do not trust file extensions alone.
+
+Do not expose private storage credentials.
+
+## 4. CONTACT FORM BACKEND
+
+Implement:
+- Contact form submission.
+- Server-side validation.
+- Message storage.
+- Submission status.
+- Admin message retrieval.
+- Admin message status updates.
+
+Handle invalid submissions and failed requests properly.
+
+Do not expose admin messages publicly.
+
+## 5. SITE SETTINGS
+
+Implement only approved settings, such as:
+- Public developer profile content.
+- Social links.
+- Site metadata.
+- Featured content configuration.
+
+Keep private information out of public settings.
+
+## 6. API QUALITY
+
+- Consistent response structure.
+- Correct HTTP status codes.
+- Server-side validation.
+- Pagination where required.
+- Filtering and sorting.
+- Proper error handling.
+- Database transaction handling where needed.
+- Avoid N+1 query patterns.
+
+Document every endpoint and its permissions.
+
+## 7. TESTING
+
+Write tests for:
+- Project CRUD.
+- Project publishing.
+- Public project visibility.
+- Journey CRUD.
+- Journey publishing.
+- Contact submission.
+- Media upload.
+- Unauthorized requests.
+- Invalid input.
+- Database failures.
+
+Use a separate development/test environment.
+
+## 8. DOCUMENTATION
+
+Create:
+
+PHASE-16-BACKEND-API-IMPLEMENTATION-REPORT.md
+
+Include:
+- Implemented modules.
+- API endpoint inventory.
+- Database changes.
+- Permissions per endpoint.
+- Media storage details.
+- Validation rules.
+- Test results.
+- Remaining work.
+
+IMPORTANT:
+Do not connect the frontend to all new APIs yet. Phase 17 will handle the integration systematically.
+
+Do not expose unpublished content or protected records.
+
+Wait for approval before Phase 17.

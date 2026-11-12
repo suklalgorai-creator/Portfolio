@@ -7,12 +7,12 @@ const stages = [
     number: '01',
     period: '2024 — 2025',
     tag: 'The Foundation',
-    title: 'The Crucible: NEET Preparation',
+    title: 'The Crucible: First-Principles & Focus',
     headline: 'Forging deep focus, cognitive stamina, and resilience under pressure.',
     narrative: (
       <>
-        Before writing my first line of production code, my days were defined by intense, 12 to 14-hour daily study cycles preparing for India's most competitive medical entrance exam (NEET).
-        While the syllabus was biological and physical sciences, the true takeaway was mental endurance: breaking down complex multi-step systems from first principles, managing extreme pressure, and building unconditional work ethic.
+        Before writing my first line of production code, my days were defined by intense, 12 to 14-hour daily problem-solving routines.
+        While working through intensive coursework, the true takeaway was mental endurance: breaking down complex multi-step systems from first principles, managing extreme pressure, and building an unconditional work ethic.
       </>
     ),
     takeaways: [
@@ -59,30 +59,101 @@ const stages = [
     headline: 'High-velocity execution: focused apps and modern web solutions.',
     narrative: (
       <>
-        Today, my engineering is defined by useful details. I build tools that solve concrete friction: from <strong>College Attendance Tracker v2.1.1</strong> (an offline-first PWA for managing attendance) to <strong>ReelCount</strong>, <strong>Scientific Calculator</strong>, and web concepts explored through Curious Minds Studio.
+        Today, my engineering is defined by practical execution and useful details. I architect and build tools that solve concrete user friction: focusing on offline-first progressive web applications, cross-platform mobile utilities, and creative interfaces explored through Curious Minds Studio.
       </>
     ),
     takeaways: [
-      { label: 'Featured Apps', value: '3 Apps', desc: 'Attendance Tracker, ReelCount, Scientific Calculator' },
-      { label: 'Web Work', value: 'Concepts', desc: 'Responsive interfaces and studio explorations' },
-      { label: 'Primary Focus', value: 'Full-Stack', desc: 'Offline-first PWAs, Android development, and UI engineering' }
+      { label: 'Engineering Focus', value: 'Mobile & Web', desc: 'Cross-platform apps and modern interfaces' },
+      { label: 'Architecture', value: 'Offline-First', desc: 'Local storage, service workers, and cloud sync' },
+      { label: 'Craft Philosophy', value: 'User-First', desc: 'Responsive, accessible, and high-performance design' }
     ],
     milestones: [
-      'Shipped College Attendance Tracker v2.1.1 with offline-first local storage',
-      'Developed ReelCount (Kotlin) and a Flutter scientific calculator',
-      'Explored modern web concepts through Curious Minds Studio'
+      'Architected offline-first PWA prototypes with real-time cloud sync',
+      'Engineered native Android and Flutter utilities with tactile motion',
+      'Explored modern web architectures through Curious Minds Studio'
     ]
   }
 ];
 
 export function AboutSection({ onToast } = {}) {
   const [activeStageIdx, setActiveStageIdx] = useState(2);
-
   const activeStage = stages[activeStageIdx];
 
   return (
     <section id="about" className="origin-section">
       <div className="container">
+        {/* Apple Liquid Glass Approved Hero Feature Block */}
+        <div className="about-hero-block glass-crystal">
+          <div className="about-video-col">
+            <div className="about-video-card">
+              <img
+                src="/assets/images/developer-workspace.jpg"
+                alt="Suklal Gorai workspace & craft"
+                className="about-video-thumb"
+              />
+              <div className="about-glass-curved-reflection" aria-hidden="true" />
+              <button type="button" className="about-play-button glass-frosted" aria-label="Play introduction video">
+                <span className="about-play-icon" aria-hidden="true">▶</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="about-content-col">
+            <div className="about-eyebrow">ABOUT ME</div>
+            <h2 className="about-main-title">
+              A Developer Focused on <br />
+              <span className="holographic-text">Impact, Design and Technology.</span>
+            </h2>
+            <p className="about-main-desc">
+              I turn ideas into thoughtful digital products that are functional,
+              beautiful, and enjoyable to use.
+            </p>
+
+            {/* 3 Editorial Feature Pillars */}
+            <div className="about-pillars-grid">
+              <div className="about-pillar-card glass-frosted">
+                <div className="pillar-icon-box box-blue">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                  </svg>
+                </div>
+                <div className="pillar-text">
+                  <span className="pillar-title">Build</span>
+                  <span className="pillar-caption">Scalable &amp; modern web applications</span>
+                </div>
+              </div>
+
+              <div className="about-pillar-card glass-frosted">
+                <div className="pillar-icon-box box-violet">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <div className="pillar-text">
+                  <span className="pillar-title">Design</span>
+                  <span className="pillar-caption">Clean, intuitive user experiences</span>
+                </div>
+              </div>
+
+              <div className="about-pillar-card glass-frosted">
+                <div className="pillar-icon-box box-cyan">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+                    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+                  </svg>
+                </div>
+                <div className="pillar-text">
+                  <span className="pillar-title">Explore</span>
+                  <span className="pillar-caption">New technologies and creative ideas</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Section Header: Bold, Oversized Editorial Headline */}
         <div className="origin-header reveal">
           <div className="origin-eyebrow-wrap">
@@ -90,11 +161,11 @@ export function AboutSection({ onToast } = {}) {
             <span className="origin-timeline-badge">2024 &mdash; 2026 ROADMAP</span>
           </div>
           <h2 className="origin-title">
-            From NEET Aspirant <br />
+            From Intense Discipline <br />
             <span className="origin-title-gradient">to Shipping Software.</span>
           </h2>
           <p className="origin-subtitle">
-            How two years of intense competitive discipline transformed into an unstoppable drive to architect, code, and ship production software.
+            How rigorous problem-solving discipline transformed into an unstoppable drive to architect, code, and ship production software.
           </p>
         </div>
 
@@ -139,7 +210,7 @@ export function AboutSection({ onToast } = {}) {
               <p>{activeStage.narrative}</p>
             </div>
 
-            {/* Story-Integrated Metrics (Not generic disconnected stats) */}
+            {/* Story-Integrated Metrics */}
             <div className="origin-takeaways-grid">
               {activeStage.takeaways.map((item, i) => (
                 <div key={i} className="origin-takeaway-cell">
@@ -166,7 +237,7 @@ export function AboutSection({ onToast } = {}) {
             </div>
           </div>
 
-          {/* Right Column: Sophisticated Developer System-Status Terminal */}
+          {/* Right Column: Developer System-Status Terminal */}
           <div className="origin-sidebar reveal">
             <div className="origin-terminal-card">
               <div className="origin-terminal-top">
@@ -176,7 +247,7 @@ export function AboutSection({ onToast } = {}) {
                   <span className="dot-green" />
                 </div>
                 <span className="terminal-title">suklal@origin ~ system-status</span>
-                  <span className="terminal-live-badge">
+                <span className="terminal-live-badge">
                   <span className="live-dot" /> CURRENT
                 </span>
               </div>
@@ -197,7 +268,7 @@ export function AboutSection({ onToast } = {}) {
                   </div>
                   <div className="term-row">
                     <span className="term-key">ACTIVE_FOCUS:</span>
-                    <span className="term-val highlight-amber">College Attendance Tracker v2.1.1</span>
+                    <span className="term-val highlight-amber">Curating New Project Showcase</span>
                   </div>
                   <div className="term-row">
                     <span className="term-key">CORE_SYSTEMS:</span>
@@ -267,6 +338,116 @@ export function AboutSection({ onToast } = {}) {
               </svg>
               <span>View @suklalgorai-creator on GitHub ↗</span>
             </a>
+          </div>
+        </div>
+
+        {/* Experience Pathway Banner */}
+        <div className="about-experience-pathway glass-frosted reveal" style={{ marginTop: '2rem' }}>
+          <div className="pathway-content">
+            <span className="origin-badge">// 02 &bull; PROFESSIONAL TRACKS</span>
+            <h3>Explore Hands-on Engineering Experience</h3>
+            <p>
+              Dive deeper into my work with Curious Minds Studio, undergraduate CSE coursework, and independent mobile utilities.
+            </p>
+          </div>
+          <a
+            href="/experience"
+            className="btn btn-primary glass-pill"
+            onClick={(e) => {
+              if (onToast) onToast('Navigating to Experience');
+            }}
+          >
+            <span>View Experience &amp; Focus →</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+export function AboutTeaser({ onToast } = {}) {
+  return (
+    <section id="about" className="origin-section about-teaser-section">
+      <div className="container">
+        {/* Apple Liquid Glass Approved Hero Feature Block */}
+        <div className="about-hero-block glass-crystal">
+          <div className="about-video-col">
+            <div className="about-video-card">
+              <img
+                src="/assets/images/developer-workspace.jpg"
+                alt="Suklal Gorai workspace & craft"
+                className="about-video-thumb"
+              />
+              <div className="about-glass-curved-reflection" aria-hidden="true" />
+              <button type="button" className="about-play-button glass-frosted" aria-label="Play introduction video">
+                <span className="about-play-icon" aria-hidden="true">▶</span>
+              </button>
+            </div>
+          </div>
+
+          <div className="about-content-col">
+            <div className="about-eyebrow">ABOUT ME</div>
+            <h2 className="about-main-title">
+              A Developer Focused on <br />
+              <span className="holographic-text">Impact, Design and Technology.</span>
+            </h2>
+            <p className="about-main-desc">
+              I turn ideas into thoughtful digital products that are functional,
+              beautiful, and enjoyable to use.
+            </p>
+
+            {/* 3 Editorial Feature Pillars */}
+            <div className="about-pillars-grid">
+              <div className="about-pillar-card glass-frosted">
+                <div className="pillar-icon-box box-blue">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+                    <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+                  </svg>
+                </div>
+                <div className="pillar-text">
+                  <span className="pillar-title">Build</span>
+                  <span className="pillar-caption">Scalable &amp; modern web applications</span>
+                </div>
+              </div>
+
+              <div className="about-pillar-card glass-frosted">
+                <div className="pillar-icon-box box-violet">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+                  </svg>
+                </div>
+                <div className="pillar-text">
+                  <span className="pillar-title">Design</span>
+                  <span className="pillar-caption">Clean, intuitive user experiences</span>
+                </div>
+              </div>
+
+              <div className="about-pillar-card glass-frosted">
+                <div className="pillar-icon-box box-cyan">
+                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                    <path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z" />
+                    <path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z" />
+                    <path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0" />
+                    <path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5" />
+                  </svg>
+                </div>
+                <div className="pillar-text">
+                  <span className="pillar-title">Explore</span>
+                  <span className="pillar-caption">New technologies and creative ideas</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Teaser Pathway CTA */}
+            <div className="about-teaser-footer" style={{ marginTop: '1.75rem', display: 'flex', alignItems: 'center', justifyContent: 'flex-start', gap: '1rem', flexWrap: 'wrap' }}>
+              <a href="/about" className="btn btn-secondary glass-pill" id="aboutLearnMoreLink">
+                <span>Read Full Background &amp; Philosophy →</span>
+              </a>
+              <a href="/experience" className="text-link" style={{ fontSize: '0.88rem', fontWeight: 600 }}>
+                <span>View Shipped Experience ↗</span>
+              </a>
+            </div>
           </div>
         </div>
       </div>

@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
 
-export function ConstellationCanvas({ isLight = false }) {
+export function ConstellationCanvas({ isLight = true }) {
   const canvasRef = useRef(null);
 
   useEffect(() => {
@@ -11,6 +11,7 @@ export function ConstellationCanvas({ isLight = false }) {
     if (!ctx) return;
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     if (prefersReducedMotion) return;
+
     let width = (canvas.width = window.innerWidth);
     let height = (canvas.height = window.innerHeight);
     let mouse = { x: width / 2, y: height / 2 };
@@ -40,15 +41,29 @@ export function ConstellationCanvas({ isLight = false }) {
 
     const isMobile = window.innerWidth < 768;
     const nodeCount = isMobile
-      ? Math.min(16, Math.floor(width / 65))
-      : Math.min(36, Math.floor(width / 38));
+      ? Math.min(12, Math.floor(width / 70))
+      : Math.min(26, Math.floor(width / 54));
 
-    const nodes = Array.from({ length: nodeCount }, () => ({
+    const lightPalette = [
+      'rgba(40, 120, 255, 0.35)',
+      'rgba(121, 85, 237, 0.32)',
+      'rgba(230, 90, 217, 0.28)',
+      'rgba(84, 216, 245, 0.38)'
+    ];
+    const darkPalette = [
+      'rgba(77, 142, 255, 0.4)',
+      'rgba(149, 120, 248, 0.35)',
+      'rgba(240, 123, 230, 0.32)',
+      'rgba(112, 225, 249, 0.38)'
+    ];
+
+    const nodes = Array.from({ length: nodeCount }, (_, idx) => ({
       x: Math.random() * width,
       y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.35,
-      vy: (Math.random() - 0.5) * 0.35,
-      r: Math.random() * 1.2 + 0.8
+      vx: (Math.random() - 0.5) * 0.28,
+      vy: (Math.random() - 0.5) * 0.28,
+      r: Math.random() * 1.4 + 1.0,
+      colorIndex: idx % 4
     }));
 
     const render = () => {
@@ -57,8 +72,7 @@ export function ConstellationCanvas({ isLight = false }) {
         return;
       }
       ctx.clearRect(0, 0, width, height);
-      // Subtle, non-intrusive particle alpha for dark cinematic aesthetic
-      const dotColor = isLight ? 'rgba(16, 185, 129, 0.22)' : 'rgba(16, 185, 129, 0.28)';
+      const palette = isLight ? lightPalette : darkPalette;
 
       for (let i = 0; i < nodes.length; i++) {
         const n = nodes[i];
@@ -70,7 +84,7 @@ export function ConstellationCanvas({ isLight = false }) {
 
         ctx.beginPath();
         ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = dotColor;
+        ctx.fillStyle = palette[n.colorIndex];
         ctx.fill();
 
         for (let j = i + 1; j < nodes.length; j++) {
@@ -78,13 +92,13 @@ export function ConstellationCanvas({ isLight = false }) {
           const dx = n.x - m.x;
           const dy = n.y - m.y;
           const dist = Math.hypot(dx, dy);
-          if (dist < 120) {
-            const alpha = (1 - dist / 120) * (isLight ? 0.05 : 0.08);
+          if (dist < 130) {
+            const alpha = (1 - dist / 130) * (isLight ? 0.08 : 0.11);
             ctx.beginPath();
             ctx.moveTo(n.x, n.y);
             ctx.lineTo(m.x, m.y);
-            ctx.strokeStyle = `rgba(16, 185, 129, ${alpha})`;
-            ctx.lineWidth = 0.8;
+            ctx.strokeStyle = `rgba(65, 105, 245, ${alpha})`;
+            ctx.lineWidth = 0.75;
             ctx.stroke();
           }
         }
@@ -93,13 +107,13 @@ export function ConstellationCanvas({ isLight = false }) {
           const mdx = n.x - mouse.x;
           const mdy = n.y - mouse.y;
           const mDist = Math.hypot(mdx, mdy);
-          if (mDist < 140) {
-            const alpha = (1 - mDist / 140) * 0.12;
+          if (mDist < 150) {
+            const alpha = (1 - mDist / 150) * (isLight ? 0.14 : 0.18);
             ctx.beginPath();
             ctx.moveTo(n.x, n.y);
             ctx.lineTo(mouse.x, mouse.y);
-            ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
-            ctx.lineWidth = 0.8;
+            ctx.strokeStyle = `rgba(255, 115, 92, ${alpha})`;
+            ctx.lineWidth = 0.85;
             ctx.stroke();
           }
         }

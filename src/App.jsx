@@ -5,6 +5,7 @@ import { useTerminal } from './hooks/useTerminal';
 import { useMotionSystem } from './hooks/useMotionSystem';
 import { pageMeta, notFoundMeta } from './config/pageMeta';
 import { siteConfig } from './config/siteConfig';
+import { projectsData } from './data/projectsData';
 
 import { VideoBackground } from './components/layout/VideoBackground';
 import { ConstellationCanvas } from './components/layout/ConstellationCanvas';
@@ -55,7 +56,18 @@ export function App() {
   }, []);
 
   useEffect(() => {
-    const metadata = pageMeta[pathname] || notFoundMeta;
+    let metadata = pageMeta[pathname];
+    if (!metadata && pathname.startsWith('/projects/')) {
+      const id = pathname.replace('/projects/', '').replace(/\/$/, '');
+      const project = projectsData.find((p) => p.id === id);
+      if (project) {
+        metadata = {
+          title: `${project.name} — Suklal Gorai`,
+          description: project.description.slice(0, 160)
+        };
+      }
+    }
+    if (!metadata) metadata = notFoundMeta;
     document.title = metadata.title;
     const description = document.querySelector('meta[name="description"]');
     if (description) description.setAttribute('content', metadata.description);
@@ -129,7 +141,7 @@ export function App() {
       {/* Ambient video is a Home experience; detail pages stay lighter. */}
       {pathname === '/' && <VideoBackground />}
 
-      {/* Particle Constellation & Spotlight */}
+      {/* Subtle Editorial Geometric Canvas & Spotlight */}
       <ConstellationCanvas isLight={isLight} />
 
       {/* Navigation Bar */}
@@ -143,7 +155,7 @@ export function App() {
       />
 
       {/* Main Page Sections */}
-      <main id="main-content">
+      <main id="main-content" tabIndex={-1}>
         <PortfolioPage
           pathname={pathname}
           onOpenStory={() => storyViewer.openStory(0)}
@@ -151,6 +163,7 @@ export function App() {
           onSelectProject={setSelectedProject}
           onStartInquiry={handleStartInquiry}
           onToast={showToast}
+          onNavigate={navigate}
           selectedTopic={contactTopic}
           prefilledMessage={contactMessage}
         />
@@ -169,8 +182,8 @@ export function App() {
           title="Chat with Suklal on WhatsApp"
         >
           <svg
-            width="24"
-            height="24"
+            width="22"
+            height="22"
             viewBox="0 0 24 24"
             fill="none"
             stroke="currentColor"

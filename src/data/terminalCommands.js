@@ -1,15 +1,18 @@
 import { siteConfig } from '../config/siteConfig';
 
 export const terminalCommands = {
-  help: () => ({ content: 'Available commands: projects, skills, story, studio, socials, theme, clear' }),
+  help: () => ({ content: 'Available commands: projects, skills, journey, story, studio, socials, theme, clear' }),
   projects: () => ({
-    content: '[PERSONAL APPS] College Attendance Tracker (v2.1.1), ReelCount (Kotlin), Scientific Calculator (Flutter)\n[STUDIO SHOWCASE + CONCEPTS] CodeCraft Digital, Sahyog Jharkhand NGO, Aranyak Resort, Wedding Studio, Food Ordering, Parlour & Salon.'
+    content: '[PROJECT WORKBENCH] Public showcase is currently being curated. Active repositories include College Attendance Tracker (v2.1.1 PWA), ReelCount (Android), and Scientific Calculator (Flutter). Visit /projects for upcoming updates.'
   }),
   skills: () => ({
     content: '[LANGUAGES] Dart, Kotlin, JavaScript, Python, C, HTML/CSS\n[ECOSYSTEM] Flutter, Android SDK, React, Next.js, Firebase, Supabase, Git, Docker, Vercel.'
   }),
+  journey: () => ({
+    content: '[JOURNEY CMS] Live achievement timeline supporting Competitions, Awards, College activities, Certifications, Project launches & Technical milestones. Visit /journey or manage entries at /admin.'
+  }),
   story: () => ({
-    content: '[BACKGROUND] Following competitive NEET training (2024–2025), transitioned to B.Tech CSE @ Netaji Subhas University, Jamshedpur — developing mobile apps and modern web concepts.'
+    content: '[BACKGROUND] Disciplined problem-solving background transitioned into B.Tech CSE @ Netaji Subhas University, Jamshedpur — developing mobile apps, creative technology, and practical software solutions.'
   }),
   studio: () => ({
     content: '[CURIOUS MINDS STUDIO] Proposed creative-tech identity for thoughtful digital experiences, experiments, and useful interfaces.'
@@ -22,4 +25,4 @@ export const terminalCommands = {
   })
 };
 
-export const terminalQuickChips = ['help', 'projects', 'skills', 'story', 'studio', 'socials', 'theme', 'clear'];
+export const terminalQuickChips = ['help', 'projects', 'skills', 'journey', 'story', 'studio', 'socials', 'theme', 'clear'];

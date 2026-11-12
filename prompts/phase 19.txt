@@ -1,0 +1,165 @@
+# PHASE 19 — COMPLETE SYSTEM INTEGRATION & END-TO-END TESTING
+
+## ROLE
+Act as a Senior QA Automation Engineer, Full-Stack Testing Specialist and Reliability Engineer.
+
+Perform comprehensive end-to-end testing of the complete portfolio application.
+
+## 1. TEST ENVIRONMENT
+
+Prepare a dedicated staging/test environment.
+
+Verify:
+- Frontend build.
+- Backend services.
+- Test database.
+- Authentication configuration.
+- Storage configuration.
+- Environment variables.
+- API connectivity.
+
+Do not use production user data for destructive tests.
+
+## 2. END-TO-END USER WORKFLOWS
+
+Test the following complete workflows.
+
+### Public visitor
+- Open homepage.
+- Navigate to every route.
+- View published projects.
+- Open project detail pages.
+- Browse Journey timeline.
+- Submit a contact form.
+- Use mobile navigation.
+
+### Administrator
+- Login.
+- Open admin dashboard.
+- Create a project.
+- Edit a project.
+- Upload media.
+- Save a draft.
+- Publish a project.
+- Unpublish a project.
+- Delete a test project.
+- Manage Journey milestones.
+- Review contact messages.
+- Logout.
+
+### Unauthorized visitor
+- Attempt admin route access.
+- Attempt protected API operations.
+- Attempt access to unpublished content.
+- Attempt unauthorized media operations.
+
+Verify expected denial behaviour.
+
+## 3. DATABASE TESTING
+
+Test:
+- CRUD operations.
+- Relationships.
+- Foreign keys.
+- Constraints.
+- Transactions.
+- Data consistency.
+- Duplicate prevention.
+- Migration integrity.
+- Backup restoration in a test environment.
+
+## 4. API TESTING
+
+Verify:
+- Request validation.
+- Response schemas.
+- Status codes.
+- Authentication.
+- Authorization.
+- Pagination.
+- Filtering.
+- Error handling.
+- Timeout handling.
+- Rate limiting.
+
+## 5. FAILURE SCENARIO TESTING
+
+Simulate:
+- Backend unavailable.
+- Database connection failure.
+- Slow network.
+- Failed upload.
+- Expired session.
+- Invalid API response.
+- Empty database.
+- Duplicate form submission.
+- Failed publishing.
+- Interrupted requests.
+
+Ensure the UI recovers gracefully and never displays false success states.
+
+## 6. RESPONSIVE AND BROWSER REGRESSION
+
+Re-test:
+- 320px.
+- 390px.
+- 768px.
+- 1024px.
+- 1440px.
+- 1920px.
+
+Test Chrome, Firefox and WebKit where available.
+
+Verify that backend integration did not break the approved visual design.
+
+## 7. AUTOMATED TESTING
+
+Run:
+- Unit tests.
+- Integration tests.
+- API tests.
+- Playwright E2E tests.
+- Accessibility tests.
+- Responsive tests.
+- Regression tests.
+
+Do not delete or weaken existing tests.
+
+## 8. DATA INTEGRITY
+
+Verify:
+- All expected records exist.
+- No accidental duplicates.
+- Media references resolve correctly.
+- Published and draft states are correct.
+- Journey ordering is correct.
+- Contact messages are preserved.
+- Admin permissions remain correct.
+
+## 9. REPORT
+
+Create:
+
+PHASE-19-COMPLETE-INTEGRATION-TEST-REPORT.md
+
+Include:
+- Test environment.
+- Test coverage.
+- User workflow results.
+- API results.
+- Database results.
+- Failure scenario results.
+- Browser results.
+- Security regression results.
+- Failed and skipped tests.
+- Outstanding defects.
+- Release recommendation.
+
+IMPORTANT:
+Do not claim full test coverage unless it has been measured.
+
+Do not use production data for destructive testing.
+
+Fix critical and high-priority failures before recommending production deployment.
+
+Wait for approval before Phase 20.

@@ -1,0 +1,163 @@
+# PHASE 21 — POST-LAUNCH MONITORING & MAINTENANCE
+
+## ROLE
+Act as a Senior Site Reliability Engineer, Production Monitoring Specialist and Application Maintenance Engineer.
+
+Establish a sustainable post-launch monitoring and maintenance process for my developer portfolio.
+
+## 1. APPLICATION HEALTH MONITORING
+
+Monitor:
+- Frontend availability.
+- Backend availability.
+- API response times.
+- Database connectivity.
+- Storage availability.
+- Authentication failures.
+- Failed requests.
+- Server errors.
+- Unexpected application crashes.
+
+Configure suitable health checks and uptime monitoring.
+
+Do not create unnecessary monitoring costs.
+
+## 2. ERROR MONITORING
+
+Implement or configure appropriate error monitoring.
+
+Track:
+- Frontend runtime errors.
+- Unhandled promise rejections.
+- Backend exceptions.
+- Failed API requests.
+- Database errors.
+- Upload failures.
+- Authentication issues.
+
+Avoid collecting passwords, tokens, private messages or unnecessary personal information in logs.
+
+## 3. PERFORMANCE MONITORING
+
+Monitor:
+- Core Web Vitals where real-user data is available.
+- LCP.
+- INP.
+- CLS.
+- API latency.
+- Page load performance.
+- Asset delivery.
+- Video loading.
+- Mobile performance.
+
+Compare real-world performance against the pre-launch baseline.
+
+## 4. DATABASE AND BACKUP MAINTENANCE
+
+Establish:
+- Automated database backups.
+- Backup retention policy.
+- Recovery documentation.
+- Storage backup strategy.
+- Migration tracking.
+- Database health monitoring.
+
+Perform a test restoration in a safe environment.
+
+A backup is not verified until restoration has been tested.
+
+## 5. DEPENDENCY AND PATCH MANAGEMENT
+
+Create a maintenance process for:
+- Framework updates.
+- Dependency updates.
+- Security patches.
+- Deprecated APIs.
+- Hosting platform changes.
+
+Test updates in staging before production.
+
+Do not automatically update major dependencies in production.
+
+## 6. INCIDENT MANAGEMENT
+
+Document how to handle:
+- Website downtime.
+- Backend failure.
+- Database outage.
+- Authentication problems.
+- Storage failures.
+- Data corruption.
+- Unexpected performance degradation.
+
+Define:
+- Detection.
+- Investigation.
+- Mitigation.
+- Recovery.
+- Post-incident review.
+
+## 7. MAINTENANCE SCHEDULE
+
+Recommend a practical maintenance schedule.
+
+### Weekly
+- Check uptime.
+- Review application errors.
+- Check failed API requests.
+- Inspect form submissions.
+
+### Monthly
+- Review performance.
+- Check dependency updates.
+- Verify backup status.
+- Review database health.
+- Check broken links.
+
+### Quarterly
+- Perform a security review.
+- Test backup restoration.
+- Review hosting costs.
+- Review architecture and technical debt.
+
+Adjust frequency based on actual traffic and risk.
+
+## 8. COST MONITORING
+
+Track:
+- Hosting costs.
+- Database costs.
+- Storage usage.
+- Bandwidth.
+- Monitoring service costs.
+- API usage.
+
+Set budget alerts where supported.
+
+Avoid expensive services that provide no meaningful benefit for this portfolio.
+
+## 9. FINAL DOCUMENTATION
+
+Create:
+
+PHASE-21-POST-LAUNCH-MONITORING-REPORT.md
+
+Include:
+- Monitoring architecture.
+- Uptime monitoring.
+- Error tracking.
+- Performance monitoring.
+- Backup schedule.
+- Recovery procedure.
+- Dependency maintenance.
+- Incident response process.
+- Cost monitoring.
+- Maintenance schedule.
+- Outstanding risks.
+
+IMPORTANT:
+Do not claim that monitoring or backups are active unless they have actually been configured and verified.
+
+Do not perform unnecessary production changes.
+
+The goal is a reliable, maintainable and cost-conscious portfolio after launch.

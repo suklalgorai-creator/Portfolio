@@ -1,0 +1,146 @@
+# PHASE 13 — BACKEND INTEGRATION READINESS & PLANNING
+
+## ROLE
+Act as a Senior Software Architect, Backend Consultant and Frontend Integration Specialist.
+
+Your task is to inspect my existing React + Vite developer portfolio and prepare a complete backend integration blueprint.
+
+This phase is strictly for READ-ONLY AUDIT, REQUIREMENTS DISCOVERY AND ARCHITECTURE PLANNING.
+
+Do not write backend code or modify existing application functionality.
+
+## 1. INSPECT THE EXISTING PROJECT
+
+Review:
+- React + Vite architecture.
+- All existing routes and components.
+- Project management system.
+- Journey CMS.
+- Admin dashboard.
+- Contact form.
+- Existing localStorage and sessionStorage usage.
+- BroadcastChannel communication.
+- Existing data structures and assets.
+- Current frontend service and state management patterns.
+
+Identify which features currently use local data and which already communicate with external services.
+
+Do not assume that localStorage or BroadcastChannel provides cloud synchronization.
+
+## 2. IDENTIFY BACKEND REQUIREMENTS
+
+Prepare requirements for:
+
+- Admin authentication.
+- Admin authorization and roles.
+- Project CRUD operations.
+- Project publishing and draft management.
+- Project categories, tags and filtering.
+- Project image and media storage.
+- Project detail pages.
+- Journey timeline CRUD.
+- Journey publishing and ordering.
+- Contact form submissions.
+- Contact message management.
+- Admin dashboard statistics, if required.
+- Site settings and public profile content.
+- File uploads.
+- Future content management capabilities.
+
+Separate essential features from optional future features.
+
+## 3. DOCUMENT DATA MODELS
+
+Propose data structures for:
+
+- Admin users.
+- Projects.
+- Project categories.
+- Project tags.
+- Project media.
+- Journey milestones.
+- Contact messages.
+- Site settings.
+- Audit records, if needed.
+
+For each model, identify fields, types, relationships, constraints and indexes.
+
+Do not create database tables yet.
+
+## 4. COMPARE BACKEND TECHNOLOGIES
+
+Evaluate:
+
+- Supabase + PostgreSQL.
+- Firebase.
+- Custom Node.js backend with PostgreSQL.
+
+Compare:
+
+- Development complexity.
+- Hosting and operating costs.
+- Authentication.
+- Database flexibility.
+- File storage.
+- Security capabilities.
+- Scalability.
+- Maintenance.
+- Vendor lock-in.
+- Integration effort with the existing React application.
+
+Give a recommendation with clear reasons and trade-offs.
+
+Do not select a technology merely because it is popular.
+
+## 5. API AND DATA FLOW PLANNING
+
+Document proposed API operations or service contracts for:
+
+- Public project listing.
+- Project detail retrieval.
+- Admin project management.
+- Journey retrieval and management.
+- Contact submission.
+- Media upload.
+- Admin dashboard data.
+
+Define which operations are public and which require authentication.
+
+## 6. MIGRATION STRATEGY
+
+Explain how existing local data and functionality will transition to the backend.
+
+Identify:
+- Data that must be preserved.
+- Existing content that needs migration.
+- Local-only data.
+- Existing admin workflows.
+- Backward compatibility requirements.
+- Potential data-loss risks.
+
+Do not delete or migrate anything yet.
+
+## 7. DELIVERABLES
+
+Create:
+
+PHASE-13-BACKEND-INTEGRATION-READINESS.md
+
+Include:
+1. Existing frontend architecture.
+2. Backend feature requirements.
+3. Data model proposal.
+4. Technology comparison.
+5. Recommended backend architecture.
+6. API contract proposal.
+7. Authentication requirements.
+8. Storage requirements.
+9. Migration strategy.
+10. Estimated implementation complexity.
+11. Risks and dependencies.
+12. Phase 14 implementation checklist.
+
+IMPORTANT:
+This is a planning phase only. Do not install packages, create databases, modify configuration or change application code.
+
+Finish with a clear recommendation and wait for approval before Phase 14.

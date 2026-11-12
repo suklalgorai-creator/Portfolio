@@ -19,7 +19,7 @@ export function useMotionSystem(scopeKey = '') {
     const revealNodes = Array.from(document.querySelectorAll('.reveal'));
     revealNodes.forEach((node, index) => {
       node.style.setProperty('--reveal-index', String(index % 6));
-      node.style.setProperty('--reveal-delay', `${(index % 6) * 70}ms`);
+      node.style.setProperty('--reveal-delay', `${(index % 6) * 20}ms`);
     });
 
     if (reduced) {
@@ -36,11 +36,11 @@ export function useMotionSystem(scopeKey = '') {
           observer.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px 80px 0px', threshold: 0.02 });
+    }, { rootMargin: '0px 0px 650px 0px', threshold: 0.01 });
 
     const markIfVisible = (node) => {
       const rect = node.getBoundingClientRect();
-      if (rect.top < window.innerHeight + 100 && rect.bottom > -50) {
+      if (rect.top < window.innerHeight + 650 && rect.bottom > -50) {
         node.classList.add('active');
         return true;
       }

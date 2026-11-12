@@ -6,10 +6,12 @@ export function Footer() {
       <div className="container">
         <div className="footer-content">
           <p className="footer-text">
-            Designed &amp; Built by <strong style={{ color: 'var(--paper)' }}>Suklal Gorai</strong> • Web &amp; Mobile Developer &copy; 2026
+            Designed &amp; Built by <strong className="footer-author">Suklal Gorai</strong> • Web &amp; Mobile Developer &copy; 2026
           </p>
           <div className="footer-links">
             <a href="/">Home &uarr;</a>
+            <a href="/journey">Journey</a>
+            <a href="/admin">Journey CMS</a>
             <a href={siteConfig.github} target="_blank" rel="noopener noreferrer">
               GitHub
             </a>

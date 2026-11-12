@@ -3,455 +3,326 @@ import { useTypewriter } from '../../hooks/useTypewriter';
 import { useAttendanceSim } from '../../hooks/useAttendanceSim';
 import { siteConfig } from '../../config/siteConfig';
 
+const HERO_STATS = [
+  { icon: '</>', value: 'Active', label: 'CSE Scholar' },
+  { icon: '⚡', value: '10+', label: 'Technologies' },
+  { icon: '🏆', value: '5+', label: 'Competitions' },
+  { icon: '∞', value: '3+', label: 'Years of Learning' }
+];
+
 export function HeroSection({ onOpenStory, onInitiateProject }) {
-  const [persona, setPersona] = useState('dev');
-  const [activeTab, setActiveTab] = useState('paneHoloAvatar');
+  const [showWorkbench, setShowWorkbench] = useState(false);
+  const [activeTab, setActiveTab] = useState('paneAttendanceSim');
 
   const typewriterText = useTypewriter([
-    'Flutter & Kotlin App Builder',
-    'Web & Mobile Developer',
-    'Cross-Platform App Builder'
+    'High-Performance Web Apps',
+    'Flutter & Kotlin Experiences',
+    'Creative & Tactile Interfaces',
+    'Scalable Modern Architecture'
   ]);
 
   const { subjects, overallPercentage, markPresent, markAbsent } = useAttendanceSim();
 
-  const isStudio = persona === 'studio';
-
   return (
     <section className="hero" id="hero">
-      <div className="container">
+      {/* Ambient Liquid Light Fields */}
+      <div className="hero-ambient-layer" aria-hidden="true">
+        <div className="ambient-orb ambient-orb-blue" />
+        <div className="ambient-orb ambient-orb-violet" />
+        <div className="ambient-orb ambient-orb-pink" />
+        <div className="ambient-orb ambient-orb-cyan" />
+      </div>
+
+      {/* Decorative Apple Vision Pro Floating Iridescent Glass Bubbles */}
+      <div className="ambient-holographic-bubble bubble-top-left" aria-hidden="true" />
+      <div className="ambient-holographic-bubble bubble-top-right" aria-hidden="true" />
+      <div className="ambient-holographic-bubble bubble-mid-left" aria-hidden="true" />
+      <div className="ambient-holographic-bubble bubble-bottom-right" aria-hidden="true" />
+
+      <div className="container hero-container">
         <div className="hero-grid">
-          {/* Left Column: Story, Identity, Narrative & CTAs */}
+          {/* Left Column: Editorial Narrative & Action Center */}
           <div className="hero-left">
-            {/* 1. Identity Row: Story Capsule + Persona Segmented Switcher */}
-            <div className="hero-identity-bar hero-seq-1">
-              {/* Story trigger capsule */}
-              <div
-                className="hero-story-banner"
+            {/* Top Pill Bar */}
+            <div className="hero-pill-bar">
+              <div className="hero-status-pill glass-pill">
+                <span className="status-wave" aria-hidden="true">👋</span>
+                <span>Hello, I'm Suklal Gorai</span>
+              </div>
+
+              {/* Story trigger ring */}
+              <button
+                type="button"
+                className="hero-story-pill glass-pill"
                 id="heroStoryTrigger"
-                role="button"
-                tabIndex={0}
-                title="Click to view Suklal's Story"
-                aria-label="Suklal Gorai, open to conversations, click to view story"
+                title="View Suklal's Story"
+                aria-label="Available for Work - View Suklal's story"
                 onClick={onOpenStory}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter' || event.key === ' ') {
-                    event.preventDefault();
-                    onOpenStory();
-                  }
-                }}
               >
-                <div className="hero-story-ring">
-                  <img src="/assets/images/avatar.jpg" alt="Suklal Gorai" />
-                </div>
-                <div className="hero-story-text">
-                  <span className="hero-story-user">
-                    @suklal_gorai
-                  </span>
-                  <span className="hero-story-status">
-                  <span className="story-dot"></span> Open to Conversations{' '}
-                    <span className="story-arrow">↗</span>
-                  </span>
-                </div>
-              </div>
-
-              {/* Persona Segmented Control */}
-              <div
-                className="persona-switcher"
-                role="group"
-                aria-label="Switch Portfolio Persona"
-              >
-                <button
-                  type="button"
-                  className={`persona-btn ${!isStudio ? 'active' : ''}`}
-                  data-persona="dev"
-                  onClick={() => setPersona('dev')}
-                >
-                  <span className="persona-indicator"></span>Engineer
-                </button>
-                <button
-                  type="button"
-                  className={`persona-btn ${isStudio ? 'active' : ''}`}
-                  data-persona="studio"
-                  onClick={() => setPersona('studio')}
-                >
-                  <span className="persona-indicator"></span>Studio
-                </button>
-              </div>
+                <span className="live-status-dot" aria-hidden="true" />
+                <span className="hero-story-label">Available for Work</span>
+                <span className="story-arrow" aria-hidden="true">↗</span>
+              </button>
             </div>
 
-            {/* 2. Technical Domain Eyebrow */}
-            <div className="hero-eyebrow hero-seq-2">
-              <span className="hero-eyebrow-accent">//</span>
-              <span>{isStudio ? 'CURIOUS MINDS STUDIO • JAMSHEDPUR, IN' : 'WEB & MOBILE DEVELOPER • JAMSHEDPUR, IN'}</span>
-            </div>
-
-            {/* 3. Primary Focal Point: Hero Name Headline */}
-            <h1 className="hero-name hero-seq-2 split-heading" data-parallax="0.025">
-              Suklal <span className="gradient-span">Gorai</span>
+            {/* Editorial Headline */}
+            <h1 className="hero-name split-heading" data-parallax="0.025">
+              Designing the <br />
+              Digital <br />
+              <span className="holographic-text">Impossible.</span>
             </h1>
 
-            {/* 4. Specialization Typing Subtitle */}
-            <div className="hero-title hero-seq-3">
-              <span className="hero-title-prefix">SPECIALIZATION &bull;</span>
+            {/* Animated Specialization Line */}
+            <div className="hero-specialization">
+              <span className="spec-label">CREATING</span>
               <span className="typing-text">{typewriterText}</span>
-              <span className="cursor" aria-hidden="true"></span>
+              <span className="cursor" aria-hidden="true">|</span>
             </div>
 
-            {/* 5. Natural Storytelling Narrative */}
-            <p className="hero-tagline hero-seq-3" id="heroTaglineText">
-              {isStudio ? (
-                <>
-                  <strong>Curious Minds Studio</strong> is a proposed creative-tech identity for exploring{' '}
-                  <strong>useful web platforms, mobile ideas, and regional digital concepts</strong> with
-                  clarity, care, and a practical point of view.
-                </>
-              ) : (
-                <>
-                  I engineer <strong>production mobile apps and web platforms</strong> that solve real problems &mdash; from
-                  offline-first college attendance utilities in <strong>Flutter &amp; Kotlin</strong> to thoughtful web concepts explored through <strong>Curious Minds Studio</strong>.
-                </>
-              )}
+            {/* Narrative Subtitle */}
+            <p className="hero-tagline" id="heroTaglineText">
+              A developer crafting beautiful, high-performance digital experiences at the
+              intersection of design, technology, and real-world impact.
             </p>
 
-            {/* 6. High-Contrast, Clear Primary & Secondary CTAs */}
-            <div className="hero-cta hero-seq-4">
+            {/* Dual Apple Liquid Glass CTAs */}
+            <div className="hero-cta-group">
               <a
-                href={isStudio ? '/studio' : '/projects'}
-                className="btn btn-primary btn-hero-primary"
-                data-magnetic="0.9"
+                href="/projects"
+                className="btn-hero-primary"
                 id="heroPrimaryCta"
               >
-                <span>{isStudio ? 'View Studio Work' : 'View Featured Projects'}</span>
-                <svg
-                  className="btn-arrow"
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
+                <span>Explore My Work</span>
+                <span className="btn-icon" aria-hidden="true">↗</span>
               </a>
-              <a
-                href="/contact"
-                className="btn btn-secondary btn-hero-secondary"
-                data-magnetic="0.65"
+
+              <button
+                type="button"
+                className="btn-hero-secondary glass-pill"
                 id="heroSecondaryCta"
-                onClick={(event) => {
-                  event.preventDefault();
-                  onInitiateProject();
-                }}
+                onClick={onOpenStory}
               >
-                <span>Contact Me</span>
-                <svg
-                  className="btn-arrow-subtle"
-                  width="14"
-                  height="14"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.4"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <line x1="7" y1="17" x2="17" y2="7"></line>
-                  <polyline points="7 7 17 7 17 17"></polyline>
-                </svg>
-              </a>
+                <span className="play-triangle" aria-hidden="true">▶</span>
+                <span>Discover My Journey</span>
+              </button>
             </div>
 
-            {/* 7. Verification, Social & Tech Telemetry Strip */}
-            <div className="hero-meta-strip hero-seq-5">
-              <div className="hero-social">
-                <a
-                  href={siteConfig.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="GitHub Profile"
-                  title="GitHub"
-                >
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                  </svg>
-                </a>
-                <a
-                  href={siteConfig.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn Profile"
-                  title="LinkedIn"
-                >
-                  <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
-                  </svg>
-                </a>
-                <a
-                  href={siteConfig.instagram}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Instagram Profile"
-                  title="Instagram"
-                >
-                  <svg
-                    width="17"
-                    height="17"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-                    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-                  </svg>
-                </a>
-                <a href={'mailto:' + siteConfig.email} aria-label="Direct Email" title="Email">
-                  <svg
-                    width="17"
-                    height="17"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-                    <polyline points="22,6 12,13 2,6" />
-                  </svg>
-                </a>
-              </div>
-              <div className="hero-tech-divider" aria-hidden="true"></div>
-              <div className="hero-tech-pills">
-                <span className="hero-tech-pill">
-                  <span className="tech-dot tech-dot-flutter"></span>Flutter &amp; Dart
-                </span>
-                <span className="hero-tech-pill">
-                  <span className="tech-dot tech-dot-kotlin"></span>Kotlin Android
-                </span>
-                <span className="hero-tech-pill">
-                  <span className="tech-dot tech-dot-react"></span>React &amp; Next.js
-                </span>
-              </div>
+            {/* Hero Stats Strip (Desktop Alignment) */}
+            <div className="hero-stats-card glass-crystal" aria-label="Key highlights">
+              {HERO_STATS.map((stat) => (
+                <div key={stat.label} className="hero-stat-item">
+                  <div className="stat-top">
+                    <span className="stat-icon" aria-hidden="true">{stat.icon}</span>
+                    <span className="stat-val">{stat.value}</span>
+                  </div>
+                  <span className="stat-lbl">{stat.label}</span>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Right Column: Linear-Caliber Engineering Workbench */}
-          <div className="hero-workbench hero-seq-workbench" data-parallax="0.04">
-            <div className="workbench-topbar">
-              <div className="window-dots" aria-hidden="true">
-                <span className="dot-red"></span>
-                <span className="dot-yellow"></span>
-                <span className="dot-green"></span>
-              </div>
-              <div className="workbench-title">suklal-workspace // prod-env</div>
-              <div className="workbench-tabs" role="tablist">
-                <button
-                  type="button"
-                  className={`workbench-tab ${activeTab === 'paneHoloAvatar' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('paneHoloAvatar')}
-                  role="tab"
-                  aria-selected={activeTab === 'paneHoloAvatar'}
-                >
-                  <span className="tab-icon">⌘</span> Studio Hub
-                </button>
-                <button
-                  type="button"
-                  className={`workbench-tab ${activeTab === 'paneAttendanceSim' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('paneAttendanceSim')}
-                  role="tab"
-                  aria-selected={activeTab === 'paneAttendanceSim'}
-                >
-                  <span className="tab-icon" aria-hidden="true">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <rect x="5" y="2" width="14" height="20" rx="2" ry="2" />
-                      <line x1="12" y1="18" x2="12.01" y2="18" />
-                    </svg>
-                  </span>
-                  <span>App Simulator</span>
-                </button>
-                <button
-                  type="button"
-                  className={`workbench-tab ${activeTab === 'paneDevConfig' ? 'active' : ''}`}
-                  onClick={() => setActiveTab('paneDevConfig')}
-                  role="tab"
-                  aria-selected={activeTab === 'paneDevConfig'}
-                >
-                  <span className="tab-icon" aria-hidden="true">
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
-                      <polyline points="16 18 22 12 16 6" />
-                      <polyline points="8 6 2 12 8 18" />
-                    </svg>
-                  </span>
-                  <span>config.ts</span>
-                </button>
-              </div>
+          {/* Right Column: 3D Liquid Glass Character Stage */}
+          <div className="hero-right-stage">
+            {/* The Ambient Holographic Glass Backdrop Sphere */}
+            <div className="hero-holographic-sphere" aria-hidden="true">
+              <div className="sphere-caustic-layer" />
+              <div className="sphere-specular-ring" />
             </div>
 
-            <div className="workbench-body">
-              {/* Pane 0: Developer Studio Visual with Docked HUD Telemetry Shelf */}
-              <div
-                className={`workbench-pane ${activeTab === 'paneHoloAvatar' ? 'active' : ''}`}
-                id="paneHoloAvatar"
-                role="tabpanel"
-              >
-                <div className="holo-showcase">
-                  <div className="holo-img-wrap">
-                    <img
-                      src="/assets/images/developer-workspace.jpg"
-                      alt="Suklal Gorai at Developer Engineering Workspace"
-                    />
-                    <div className="holo-vignette-scrim"></div>
+            {/* Flowing 3D Iridescent Glass Ribbon (Curves Behind Subject) */}
+            <div className="glass-ribbon glass-ribbon-back" aria-hidden="true" />
 
-                    {/* Top Live Status Pill */}
-                    <div className="holo-live-tag">
-                      <span className="live-pulse"></span>
-                      <span>BASED IN JAMSHEDPUR, IN</span>
-                    </div>
-
-                    {/* Docked Glass Telemetry Shelf at bottom */}
-                    <div className="holo-telemetry-shelf">
-                      <div className="holo-metric">
-                        <span className="holo-metric-val">4</span>
-                        <span className="holo-metric-lbl">Featured Apps</span>
-                      </div>
-                      <div className="holo-metric-sep"></div>
-                      <div className="holo-metric">
-                        <span className="holo-metric-val">Curious Minds</span>
-                        <span className="holo-metric-lbl">Studio Identity</span>
-                      </div>
-                      <div className="holo-metric-sep"></div>
-                      <div className="holo-metric">
-                        <span className="holo-metric-val">B.Tech</span>
-                        <span className="holo-metric-lbl">CSE &bull; 2026</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="holo-caption-bar">
-                    <div className="holo-caption-status">
-                      <span className="status-indicator"></span>
-                      <span>Web &amp; Mobile Development</span>
-                    </div>
-                    <span className="holo-tab-hint">Switch tabs above &uarr;</span>
-                  </div>
-                </div>
+            {/* The Main Crystal Liquid Glass Bubble */}
+            <div className="liquid-glass-portal glass-crystal">
+              {/* Internal Caustic & Shimmer Layer */}
+              <div className="portal-specular-shimmer" aria-hidden="true" />
+              
+              {/* Independent Transparent Developer Character Visual */}
+              <div className="character-frame">
+                <img
+                  src="/assets/images/hero-transparent.png"
+                  alt="Suklal Gorai - Creative Developer & Technologist"
+                  className="character-portrait"
+                  decoding="async"
+                  onError={(e) => {
+                    e.currentTarget.src = '/assets/images/hero-character.png';
+                  }}
+                />
+                <div className="character-lighting-blend" aria-hidden="true" />
               </div>
 
-              {/* Pane 1: Interactive Mini Attendance Tracker */}
-              <div
-                className={`workbench-pane ${activeTab === 'paneAttendanceSim' ? 'active' : ''}`}
-                id="paneAttendanceSim"
-                role="tabpanel"
+              {/* Flowing 3D Iridescent Glass Ribbon (Sweeps In Front Across Chest) */}
+              <div className="glass-ribbon glass-ribbon-front" aria-hidden="true" />
+
+              {/* 3D Floating Glass Cubes / Badges */}
+              {/* 1. React Cube */}
+              <div className="floating-cube cube-react glass-crystal" title="React / Next.js" data-magnetic="0.18">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <ellipse cx="12" cy="12" rx="10" ry="4.2" stroke="#54D8F5" strokeWidth="1.6" transform="rotate(0 12 12)" />
+                  <ellipse cx="12" cy="12" rx="10" ry="4.2" stroke="#54D8F5" strokeWidth="1.6" transform="rotate(60 12 12)" />
+                  <ellipse cx="12" cy="12" rx="10" ry="4.2" stroke="#54D8F5" strokeWidth="1.6" transform="rotate(120 12 12)" />
+                  <circle cx="12" cy="12" r="1.8" fill="#54D8F5" />
+                </svg>
+              </div>
+
+              {/* 2. TypeScript Cube */}
+              <div className="floating-cube cube-ts glass-crystal" title="TypeScript" data-magnetic="0.15">
+                <span className="cube-ts-text">TS</span>
+              </div>
+
+              {/* 3. Node.js Cube */}
+              <div className="floating-cube cube-node glass-crystal" title="Node.js" data-magnetic="0.16">
+                <span className="cube-node-text">JS</span>
+              </div>
+
+              {/* 4. GitHub Glass Orb */}
+              <a
+                href={siteConfig.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="floating-cube cube-github glass-crystal"
+                title="GitHub"
+                aria-label="GitHub Profile"
+                data-magnetic="0.14"
               >
-                <div className="sim-header">
-                  <div className="sim-title-group">
-                    <h4>
-                      College Attendance Tracker{' '}
-                      <span className="sim-version-badge">v2.1.1</span>
-                    </h4>
-                    <p>Interactive PWA Simulator &bull; Tap buttons below</p>
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                </svg>
+              </a>
+
+              {/* 5. Figma Glass Cube */}
+              <div className="floating-cube cube-figma glass-crystal" title="Figma UI/UX" data-magnetic="0.16">
+                <svg width="22" height="22" viewBox="0 0 38 57" fill="none" aria-hidden="true">
+                  <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38H19V28.5Z" fill="#1ABCFE" />
+                  <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83" />
+                  <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262" />
+                  <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E" />
+                  <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF" />
+                </svg>
+              </div>
+
+              {/* 6. Code Pill Card */}
+              <div className="floating-cube cube-code glass-crystal" title="Creative Engineering" data-magnetic="0.18">
+                <span className="cube-code-text">&lt;/&gt;</span>
+              </div>
+
+              {/* Floating Status Pill (Currently Building) */}
+              <button
+                type="button"
+                className="currently-building-pill glass-frosted"
+                onClick={() => setShowWorkbench(prev => !prev)}
+                title="Toggle Interactive Engineering Hub"
+              >
+                <span className="building-pulse" aria-hidden="true" />
+                <div className="building-text">
+                  <span className="building-title">Currently Building</span>
+                  <span className="building-desc">Next-gen web experiences with modern tech</span>
+                </div>
+                <span className="building-chevron" aria-hidden="true">
+                  {showWorkbench ? '▼' : '❯'}
+                </span>
+              </button>
+            </div>
+
+            {/* Interactive Engineering Workbench Drawer */}
+            {showWorkbench && (
+              <div className="hero-workbench-drawer glass-crystal">
+                <div className="workbench-topbar">
+                  <div className="window-dots" aria-hidden="true">
+                    <span className="dot-red" />
+                    <span className="dot-yellow" />
+                    <span className="dot-green" />
                   </div>
-                  <div className="sim-overall-badge" id="simOverallBadge">
-                    {overallPercentage}% Overall
+                  <div className="workbench-title">suklal-workspace // simulator</div>
+                  <div className="workbench-tabs" role="tablist">
+                    <button
+                      type="button"
+                      className={`workbench-tab ${activeTab === 'paneAttendanceSim' ? 'active' : ''}`}
+                      onClick={() => setActiveTab('paneAttendanceSim')}
+                      role="tab"
+                      aria-selected={activeTab === 'paneAttendanceSim'}
+                    >
+                      App Simulator
+                    </button>
+                    <button
+                      type="button"
+                      className={`workbench-tab ${activeTab === 'paneDevConfig' ? 'active' : ''}`}
+                      onClick={() => setActiveTab('paneDevConfig')}
+                      role="tab"
+                      aria-selected={activeTab === 'paneDevConfig'}
+                    >
+                      config.ts
+                    </button>
                   </div>
                 </div>
 
-                <div className="sim-subject-list" id="simSubjectList">
-                  {subjects.map((sub) => (
-                    <div key={sub.id} className="sim-subject">
-                      <div className="sim-subject-top">
-                        <span className="sim-subject-name">{sub.name}</span>
-                        <span className="sim-subject-stats">
-                          {sub.attended}/{sub.total} ({sub.percentage}%)
-                        </span>
-                      </div>
-                      <div className="sim-bar-track">
-                        <div
-                          className="sim-bar-fill"
-                          style={{ width: `${sub.percentage}%` }}
-                        />
-                      </div>
-                      <div className="sim-controls">
-                        <span className="sim-status-hint">{sub.hint}</span>
-                        <div className="sim-btn-group">
-                          <button
-                            type="button"
-                            className="sim-btn present"
-                            onClick={() => markPresent(sub.id)}
-                          >
-                            + Present
-                          </button>
-                          <button
-                            type="button"
-                            className="sim-btn absent"
-                            onClick={() => markAbsent(sub.id)}
-                          >
-                            - Absent
-                          </button>
+                <div className="workbench-body">
+                  {activeTab === 'paneAttendanceSim' ? (
+                    <div className="sim-container" id="paneAttendanceSim">
+                      <div className="sim-header">
+                        <div className="sim-title-group">
+                          <span className="sim-head-title">College Attendance Tracker</span>
+                          <span className="sim-version-badge">v2.1.1 PWA</span>
                         </div>
+                        <div className="sim-overall-badge">{overallPercentage}% Overall</div>
+                      </div>
+
+                      <div className="sim-subject-list" id="simSubjectList">
+                        {subjects.map((sub) => (
+                          <div key={sub.id} className="sim-subject">
+                            <div className="sim-subject-top">
+                              <span className="sim-subject-name">{sub.name}</span>
+                              <span className="sim-subject-stats">
+                                {sub.attended}/{sub.total} ({sub.percentage}%)
+                              </span>
+                            </div>
+                            <div className="sim-bar-track">
+                              <div
+                                className="sim-bar-fill"
+                                style={{ width: `${sub.percentage}%` }}
+                              />
+                            </div>
+                            <div className="sim-controls">
+                              <span className="sim-status-hint">{sub.hint}</span>
+                              <div className="sim-btn-group">
+                                <button
+                                  type="button"
+                                  className="sim-btn present"
+                                  onClick={() => markPresent(sub.id)}
+                                >
+                                  + Present
+                                </button>
+                                <button
+                                  type="button"
+                                  className="sim-btn absent"
+                                  onClick={() => markAbsent(sub.id)}
+                                >
+                                  - Absent
+                                </button>
+                              </div>
+                            </div>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                  ))}
-                </div>
-
-                <div className="sim-footer">
-                  <span className="sim-footer-tag">&check; Synced with Offline-First PWA</span>
-                  <a
-                    href="https://github.com/suklalgorai-creator/college-attendance-tracker"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="sim-repo-link"
-                  >
-                    <span>View Repository &rarr;</span>
-                  </a>
+                  ) : (
+                    <div className="code-container" id="paneDevConfig">
+                      <pre className="code-block">
+                        <code>
+                          <span className="code-comment">// Suklal Gorai &mdash; Engineering Profile</span>{'\n'}
+                          <span className="code-kw">export const</span> developer = {'{'}{'\n'}
+                          {'  '}name: <span className="code-str">"Suklal Gorai"</span>,{'\n'}
+                          {'  '}role: <span className="code-str">"Full-Stack Developer &amp; UI Architect"</span>,{'\n'}
+                          {'  '}stack: [<span className="code-str">"React"</span>, <span className="code-str">"Next.js"</span>, <span className="code-str">"Flutter"</span>, <span className="code-str">"TypeScript"</span>],{'\n'}
+                          {'  '}status: <span className="code-str">"Building the impossible"</span>{'\n'}
+                          {'}'};
+                        </code>
+                      </pre>
+                    </div>
+                  )}
                 </div>
               </div>
-
-              {/* Pane 2: Developer Profile Code Card */}
-              <div
-                className={`workbench-pane ${activeTab === 'paneDevConfig' ? 'active' : ''}`}
-                id="paneDevConfig"
-                role="tabpanel"
-              >
-                <div className="code-terminal-header">
-                  <span className="code-file-name">
-                    <span className="code-ts-icon">TS</span> suklal.config.ts
-                  </span>
-                  <span className="code-badge">TypeScript 5.4</span>
-                </div>
-                <pre className="code-block">
-                  <code>
-                    <span className="code-comment">// Suklal Gorai &mdash; Engineering Profile</span>{'\n'}
-                    <span className="code-kw">export const</span> <span className="code-prop">developer</span> = {'{'}{'\n'}
-                    {'  '}<span className="code-prop">name</span>: <span className="code-str">"Suklal Gorai"</span>,{'\n'}
-                    {'  '}<span className="code-prop">role</span>: <span className="code-str">"Web &amp; Mobile Developer"</span>,{'\n'}
-                    {'  '}<span className="code-prop">studio</span>: <span className="code-str">"Curious Minds Studio (proposed)"</span>,{'\n'}
-                    {'  '}<span className="code-prop">education</span>: <span className="code-str">"B.Tech CSE @ NSU Jamshedpur"</span>,{'\n'}
-                    {'  '}<span className="code-prop">coreStack</span>: [{'\n'}
-                    {'    '}<span className="code-str">"Flutter &amp; Dart"</span>, <span className="code-str">"Android"</span>,{'\n'}
-                    {'    '}<span className="code-str">"React / Next.js"</span>, <span className="code-str">"Tailwind CSS"</span>{'\n'}
-                    {'  '}],{'\n'}
-                    {'  '}<span className="code-prop">focus</span>: {'{'}{'\n'}
-                    {'    '}<span className="code-prop">primaryProject</span>: <span className="code-str">"College Attendance Tracker PWA"</span>,{'\n'}
-                    {'    '}<span className="code-prop">featuredApps</span>: <span className="code-num">4</span>,{'\n'}
-                    {'    '}<span className="code-prop">openSource</span>: <span className="code-str">"github.com/suklalgorai-creator"</span>{'\n'}
-                    {'  '}{'}'},{'\n'}
-                    {'  '}<span className="code-prop">status</span>: <span className="code-str">"Open for developer roles &amp; projects"</span>{'\n'}
-                    {'}'};
-                  </code>
-                </pre>
-              </div>
-            </div>
+            )}
           </div>
         </div>
       </div>

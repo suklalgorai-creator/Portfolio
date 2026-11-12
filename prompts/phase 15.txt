@@ -1,0 +1,113 @@
+# PHASE 15 — AUTHENTICATION & AUTHORIZATION IMPLEMENTATION
+
+## ROLE
+Act as a Senior Identity and Access Management Engineer.
+
+Implement secure admin authentication using the approved backend architecture from Phase 13 and Phase 14.
+
+## 1. AUTHENTICATION DESIGN
+
+Implement:
+- Admin login.
+- Logout.
+- Session management.
+- Session persistence according to the selected architecture.
+- Session expiration.
+- Secure session refresh where supported.
+- Password reset or recovery if supported by the selected provider.
+- Authentication state handling.
+
+Do not build public user registration unless explicitly required.
+
+## 2. AUTHORIZATION
+
+Implement server-side authorization for admin operations.
+
+Define:
+- Public visitor.
+- Authenticated administrator.
+- Additional roles only if genuinely required.
+
+Enforce permissions for:
+- Project creation.
+- Project editing.
+- Project deletion.
+- Project publishing.
+- Journey milestone management.
+- Contact message management.
+- Site settings.
+- Media uploads.
+
+Hiding admin buttons in the frontend is not authorization.
+
+Every protected backend operation must independently verify permissions.
+
+## 3. FRONTEND AUTHENTICATION EXPERIENCE
+
+Integrate the authentication flow into the existing Admin interface.
+
+Implement:
+- Login page.
+- Loading state.
+- Invalid credentials feedback.
+- Session expired state.
+- Logout interaction.
+- Protected admin navigation.
+- Unauthorized access handling.
+- Proper redirect behaviour.
+
+Preserve the existing Admin visual design.
+
+Do not expose private user information in error messages.
+
+## 4. SESSION AND ACCOUNT HANDLING
+
+Use the approved provider's recommended authentication mechanism.
+
+- Avoid storing passwords in browser storage.
+- Avoid insecure custom token handling.
+- Never place privileged credentials in frontend code.
+- Prevent unauthorized access to admin routes and operations.
+- Handle expired and revoked sessions correctly.
+
+Do not invent your own authentication protocol when a mature provider is already selected.
+
+## 5. TESTING
+
+Test:
+- Valid login.
+- Invalid login.
+- Logout.
+- Session restoration.
+- Expired session.
+- Unauthenticated API requests.
+- Unauthorized operations.
+- Direct admin URL access.
+- Browser refresh.
+- Browser back and forward.
+- Multiple sessions where supported.
+
+## 6. DOCUMENTATION
+
+Create:
+
+PHASE-15-AUTHENTICATION-AUTHORIZATION-REPORT.md
+
+Include:
+- Authentication architecture.
+- Roles and permissions.
+- Session behaviour.
+- Protected routes.
+- Protected backend operations.
+- Frontend changes.
+- Test results.
+- Known limitations.
+
+IMPORTANT:
+Do not weaken authorization to make the UI work.
+
+Do not expose credentials, tokens or passwords in logs or reports.
+
+Do not begin full CRUD development yet.
+
+Wait for approval before Phase 16.

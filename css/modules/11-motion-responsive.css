@@ -1,0 +1,319 @@
+/* ============================================================
+   11 · MOTION SYSTEM, REDUCED-MOTION & RESPONSIVE BREAKPOINTS
+   ============================================================ */
+
+/* Scroll-triggered reveals with IntersectionObserver */
+html.js-enabled:not(.motion-reduced) .reveal {
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition:
+    opacity 0.32s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms),
+    transform 0.32s cubic-bezier(0.22, 1, 0.36, 1) var(--reveal-delay, 0ms);
+}
+
+html.js-enabled:not(.motion-reduced) .reveal.active {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+/* Progressive enhancement: CSS View-Timeline entry animations where supported */
+@media (prefers-reduced-motion: no-preference) {
+  @supports ((animation-timeline: view()) and (animation-range: entry)) {
+    @keyframes editorial-card-enter {
+      from {
+        opacity: 0.85;
+        transform: translate3d(0, 18px, 0) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    .refined-project-card,
+    .experience-card,
+    .skills-bento-card {
+      animation: editorial-card-enter auto linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
+  }
+}
+
+/* Split Heading Accessibility & Reveal */
+.split-heading {
+  position: relative;
+}
+
+.split-heading-accessible {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.split-heading-visual {
+  display: block;
+}
+
+.split-heading-mask {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding-bottom: 0.06em;
+  margin-right: 0.22em;
+}
+
+.split-heading-word {
+  display: inline-block;
+  opacity: 0;
+  transform: translate3d(0, 105%, 0);
+  transition:
+    opacity 0.55s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--split-index, 0) * 40ms),
+    transform 0.65s cubic-bezier(0.22, 1, 0.36, 1) calc(var(--split-index, 0) * 40ms);
+}
+
+.reveal.active .split-heading-word,
+.hero .split-heading-word,
+html:not(.js-enabled) .split-heading-word,
+html.motion-reduced .split-heading-word {
+  opacity: 1;
+  transform: none;
+}
+
+[data-magnetic] {
+  translate: var(--magnetic-x, 0px) var(--magnetic-y, 0px);
+}
+
+[data-magnetic]:focus-visible {
+  translate: none;
+}
+
+/* ============================================================
+   RESPONSIVE REFINEMENTS (DESKTOP -> TABLET -> 320px MOBILE)
+   ============================================================ */
+@media (max-width: 1120px) {
+  .nav-menu {
+    gap: 0.9rem;
+  }
+  .cmd-kbd,
+  .github-label {
+    display: none;
+  }
+  .projects-grid,
+  .experience-grid,
+  .achievements-category-grid,
+  .achievements-spotlight-row {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 960px) {
+  .hamburger {
+    display: flex;
+  }
+
+  .nav-menu {
+    position: fixed;
+    inset: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1.35rem;
+    background: var(--bg-primary);
+    z-index: 999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    overscroll-behavior: contain;
+  }
+
+  .nav-menu.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .nav-menu .nav-link {
+    font-size: 1.35rem;
+  }
+
+  .hero-grid,
+  .origin-showcase-grid,
+  .studio-showcase-panel,
+  .contact-grid,
+  .admin-workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-floating-badge {
+    display: none;
+  }
+
+  .origin-scrubber {
+    grid-template-columns: 1fr;
+  }
+
+  .home-preview-about,
+  .home-preview-stack,
+  .home-preview-contact {
+    grid-column: span 12;
+  }
+
+  .admin-stats-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 767px) {
+  .cinematic-story {
+    min-height: auto;
+    overflow: visible;
+  }
+
+  .cinematic-story-inner {
+    min-height: auto;
+    display: block;
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+
+  .cinematic-story-scroll-hint {
+    margin-bottom: 1.75rem;
+  }
+
+  .cinematic-story-stages {
+    min-height: 0;
+  }
+
+  .cinematic-story-stage {
+    position: relative;
+    inset: auto;
+    width: 100%;
+    margin-top: 1rem;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .hero-stack-visual {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .projects-grid,
+  .skills-bento-grid,
+  .experience-grid,
+  .achievements-category-grid,
+  .achievements-spotlight-row,
+  .origin-takeaways-grid,
+  .admin-form-row,
+  .admin-filter-row {
+    grid-template-columns: 1fr;
+  }
+
+  .holo-telemetry-shelf {
+    grid-template-columns: 1fr;
+    gap: 0.35rem;
+  }
+
+  .holo-metric-sep {
+    display: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .cmd-label {
+    display: none;
+  }
+
+  .hero-name {
+    font-size: clamp(2.8rem, 14vw, 4.2rem);
+  }
+
+  .hero-meta-strip {
+    padding: 0.75rem;
+  }
+
+  .hero-tech-divider {
+    display: none;
+  }
+
+  .editorial-timeline {
+    padding-left: 1.9rem;
+  }
+
+  .timeline-marker {
+    left: -1.9rem;
+  }
+
+  .timeline-rail {
+    left: 10px;
+  }
+
+  .admin-stats-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .floating-whatsapp-btn .whatsapp-label {
+    display: none;
+  }
+
+  .floating-whatsapp-btn {
+    padding: 0.7rem;
+  }
+}
+
+/* ============================================================
+   PREFERS-REDUCED-MOTION
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  html.js-enabled .reveal,
+  html.js-enabled:not(.motion-reduced) .reveal,
+  html.js-enabled:not(.motion-reduced) .reveal.active {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .split-heading-word,
+  .refined-project-card,
+  .experience-card,
+  .skills-bento-card {
+    animation: none !important;
+    opacity: 1;
+    transform: none;
+    transition: none !important;
+  }
+
+  .geo-shape,
+  .hero-name,
+  .hero-workbench,
+  .hero-floating-badge,
+  [data-magnetic] {
+    translate: none !important;
+  }
+
+  .cinematic-story-stage {
+    position: relative;
+    inset: auto;
+    transform: none;
+    opacity: 1;
+    visibility: visible;
+    margin-top: 1rem;
+  }
+
+  .cinematic-story-stages {
+    min-height: 0;
+  }
+
+  .cursor,
+  .marker-pulse {
+    animation: none !important;
+  }
+}

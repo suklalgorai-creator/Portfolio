@@ -42,30 +42,24 @@ export function EnergyStreamNetwork({
       aria-hidden="true"
     >
       <defs>
-        {/* Glow Filters */}
         <filter id="stream-glow-cyan" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1" />
-          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur2" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur1" />
           <feMerge>
-            <feMergeNode in="blur2" />
             <feMergeNode in="blur1" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
 
         <filter id="stream-glow-purple" x="-30%" y="-30%" width="160%" height="160%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="4" result="blur1" />
-          <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur2" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur1" />
           <feMerge>
-            <feMergeNode in="blur2" />
             <feMergeNode in="blur1" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
 
-        {/* Comet Head Filter */}
         <filter id="comet-glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur" />
           <feMerge>
             <feMergeNode in="blur" />
             <feMergeNode in="SourceGraphic" />
@@ -73,34 +67,112 @@ export function EnergyStreamNetwork({
         </filter>
 
         <filter id="comet-glow-purple" x="-50%" y="-50%" width="200%" height="200%">
-          <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
+          <feGaussianBlur in="SourceGraphic" stdDeviation="2.5" result="blur" />
           <feMerge>
             <feMergeNode in="blur" />
             <feMergeNode in="SourceGraphic" />
           </feMerge>
         </filter>
 
-        {/* Stream Gradients */}
         <linearGradient id="stream-cyan-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#00e5ff" stopOpacity="0.8" />
-          <stop offset="65%" stopColor="#38bdf8" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
+          <stop offset="0%" stopColor="#4169F5" stopOpacity="0.85" />
+          <stop offset="65%" stopColor="#254EDB" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="#B8A5F5" stopOpacity="0.95" />
         </linearGradient>
 
         <linearGradient id="stream-purple-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#c084fc" stopOpacity="0.8" />
-          <stop offset="65%" stopColor="#a855f7" stopOpacity="0.9" />
-          <stop offset="100%" stopColor="#ffffff" stopOpacity="1" />
+          <stop offset="0%" stopColor="#FF735C" stopOpacity="0.85" />
+          <stop offset="65%" stopColor="#B8A5F5" stopOpacity="0.9" />
+          <stop offset="100%" stopColor="#4169F5" stopOpacity="0.95" />
         </linearGradient>
       </defs>
 
-      {/* LEFT Mobile Streams (Cyan / Teal) */}
+      {/* LEFT Mobile Streams (Electric Blue) */}
       <g className="streams-group-left">
         {LEFT_ANCHORS.map((anchor, idx) => {
           const tech = TECH_POWER_LEFT.find((t) => t.id === anchor.id);
           const isHighlighted = hoveredTech === anchor.id || activeTech === anchor.id;
           const pathD = generateBezier(anchor, LEFT_HAND, true);
-          const braidD = generateBezier(anchor, LEFT_HAND, true, 18);
+          const braidD = generateBezier(anchor, LEFT_HAND, true, 16);
+          const animDur = `${1.15 + (idx % 3) * 0.25}s`;
+
+          return (
+            <g
+              key={anchor.id}
+              className={`energy-stream-item stream-${anchor.id} ${isHighlighted ? 'is-boosted' : ''}`}
+            >
+              <path
+                d={pathD}
+                fill="none"
+                stroke={tech?.glowColor || '#4169F5'}
+                strokeWidth={isHighlighted ? '8' : '4'}
+                strokeOpacity={isHighlighted ? '0.45' : '0.18'}
+                filter="url(#stream-glow-cyan)"
+                className="stream-path-ambient"
+              />
+
+              <path
+                d={pathD}
+                fill="none"
+                stroke="url(#stream-cyan-grad)"
+                strokeWidth={isHighlighted ? '3.2' : '2'}
+                strokeOpacity="0.85"
+                className="stream-path-core"
+              />
+
+              <path
+                d={braidD}
+                fill="none"
+                stroke="#4169F5"
+                strokeWidth="1.2"
+                strokeOpacity="0.35"
+                strokeDasharray="14 28"
+                className="stream-path-braid stream-inward-left"
+                style={{ animationDuration: '1.5s' }}
+              />
+
+              <path
+                d={pathD}
+                fill="none"
+                stroke="#F8D95B"
+                strokeWidth={isHighlighted ? '3.5' : '2.4'}
+                strokeDasharray="36 110"
+                strokeLinecap="round"
+                className="stream-path-pulse stream-inward-left"
+                style={{ animationDelay: `${idx * 0.2}s`, animationDuration: '1.05s' }}
+              />
+
+              <circle r="4" fill="#4169F5" filter="url(#comet-glow-cyan)">
+                <animateMotion
+                  path={pathD}
+                  dur={animDur}
+                  repeatCount="indefinite"
+                  keyTimes="0;1"
+                  keyPoints="0;1"
+                />
+              </circle>
+              <circle r="2.8" fill="#F8D95B" opacity="0.95">
+                <animateMotion
+                  path={pathD}
+                  dur={animDur}
+                  begin="0.55s"
+                  repeatCount="indefinite"
+                  keyTimes="0;1"
+                  keyPoints="0;1"
+                />
+              </circle>
+            </g>
+          );
+        })}
+      </g>
+
+      {/* RIGHT Web Streams (Coral & Lavender) */}
+      <g className="streams-group-right">
+        {RIGHT_ANCHORS.map((anchor, idx) => {
+          const tech = TECH_POWER_RIGHT.find((t) => t.id === anchor.id);
+          const isHighlighted = hoveredTech === anchor.id || activeTech === anchor.id;
+          const pathD = generateBezier(anchor, RIGHT_HAND, false);
+          const braidD = generateBezier(anchor, RIGHT_HAND, false, -16);
           const animDur = `${1.1 + (idx % 3) * 0.25}s`;
 
           return (
@@ -108,161 +180,48 @@ export function EnergyStreamNetwork({
               key={anchor.id}
               className={`energy-stream-item stream-${anchor.id} ${isHighlighted ? 'is-boosted' : ''}`}
             >
-              {/* Outer atmospheric aura beam */}
               <path
                 d={pathD}
                 fill="none"
-                stroke={tech?.glowColor || '#00e5ff'}
-                strokeWidth={isHighlighted ? '10' : '5'}
-                strokeOpacity={isHighlighted ? '0.75' : '0.35'}
-                filter="url(#stream-glow-cyan)"
-                className="stream-path-ambient"
-              />
-
-              {/* Core laser beam */}
-              <path
-                d={pathD}
-                fill="none"
-                stroke="url(#stream-cyan-grad)"
-                strokeWidth={isHighlighted ? '3.5' : '2.2'}
-                strokeOpacity="0.85"
-                className="stream-path-core"
-              />
-
-              {/* Secondary braided harmonic stream */}
-              <path
-                d={braidD}
-                fill="none"
-                stroke={tech?.glowColor || '#00e5ff'}
-                strokeWidth="1.2"
-                strokeOpacity="0.45"
-                strokeDasharray="16 32"
-                className="stream-path-braid stream-inward-left"
-                style={{ animationDuration: '1.4s' }}
-              />
-
-              {/* High-velocity plasma stream pulses flowing inward into hand */}
-              <path
-                d={pathD}
-                fill="none"
-                stroke="#ffffff"
-                strokeWidth={isHighlighted ? '4' : '2.8'}
-                strokeDasharray="40 100"
-                strokeLinecap="round"
-                className="stream-path-pulse stream-inward-left"
-                style={{ animationDelay: `${idx * 0.2}s`, animationDuration: '0.95s' }}
-              />
-
-              {/* Rapid electrical sparks */}
-              <path
-                d={pathD}
-                fill="none"
-                stroke={tech?.glowColor || '#00e5ff'}
-                strokeWidth="2.5"
-                strokeDasharray="8 60"
-                strokeLinecap="round"
-                className="stream-path-particles stream-inward-left"
-                style={{ animationDelay: `${idx * 0.2 + 0.3}s`, animationDuration: '0.75s' }}
-              />
-
-              {/* Physical Flying Energy Photons / Comets into Hand */}
-              <circle r="4.5" fill="#ffffff" filter="url(#comet-glow-cyan)">
-                <animateMotion
-                  path={pathD}
-                  dur={animDur}
-                  repeatCount="indefinite"
-                  keyTimes="0;1"
-                  keyPoints="0;1"
-                />
-              </circle>
-              <circle r="3" fill="#67e8f9" opacity="0.9">
-                <animateMotion
-                  path={pathD}
-                  dur={animDur}
-                  begin="0.55s"
-                  repeatCount="indefinite"
-                  keyTimes="0;1"
-                  keyPoints="0;1"
-                />
-              </circle>
-            </g>
-          );
-        })}
-      </g>
-
-      {/* RIGHT Web Streams (Purple / Magenta) */}
-      <g className="streams-group-right">
-        {RIGHT_ANCHORS.map((anchor, idx) => {
-          const tech = TECH_POWER_RIGHT.find((t) => t.id === anchor.id);
-          const isHighlighted = hoveredTech === anchor.id || activeTech === anchor.id;
-          const pathD = generateBezier(anchor, RIGHT_HAND, false);
-          const braidD = generateBezier(anchor, RIGHT_HAND, false, -18);
-          const animDur = `${1.05 + (idx % 3) * 0.25}s`;
-
-          return (
-            <g
-              key={anchor.id}
-              className={`energy-stream-item stream-${anchor.id} ${isHighlighted ? 'is-boosted' : ''}`}
-            >
-              {/* Outer atmospheric aura beam */}
-              <path
-                d={pathD}
-                fill="none"
-                stroke={tech?.glowColor || '#c084fc'}
-                strokeWidth={isHighlighted ? '10' : '5'}
-                strokeOpacity={isHighlighted ? '0.75' : '0.35'}
+                stroke={tech?.glowColor || '#FF735C'}
+                strokeWidth={isHighlighted ? '8' : '4'}
+                strokeOpacity={isHighlighted ? '0.45' : '0.18'}
                 filter="url(#stream-glow-purple)"
                 className="stream-path-ambient"
               />
 
-              {/* Core laser beam */}
               <path
                 d={pathD}
                 fill="none"
                 stroke="url(#stream-purple-grad)"
-                strokeWidth={isHighlighted ? '3.5' : '2.2'}
+                strokeWidth={isHighlighted ? '3.2' : '2'}
                 strokeOpacity="0.85"
                 className="stream-path-core"
               />
 
-              {/* Secondary braided harmonic stream */}
               <path
                 d={braidD}
                 fill="none"
-                stroke={tech?.glowColor || '#c084fc'}
+                stroke="#B8A5F5"
                 strokeWidth="1.2"
-                strokeOpacity="0.45"
-                strokeDasharray="16 32"
+                strokeOpacity="0.4"
+                strokeDasharray="14 28"
                 className="stream-path-braid stream-inward-right"
-                style={{ animationDuration: '1.4s' }}
+                style={{ animationDuration: '1.5s' }}
               />
 
-              {/* High-velocity plasma stream pulses flowing inward into hand */}
               <path
                 d={pathD}
                 fill="none"
-                stroke="#ffffff"
-                strokeWidth={isHighlighted ? '4' : '2.8'}
-                strokeDasharray="40 100"
+                stroke="#FF735C"
+                strokeWidth={isHighlighted ? '3.5' : '2.4'}
+                strokeDasharray="36 110"
                 strokeLinecap="round"
                 className="stream-path-pulse stream-inward-right"
-                style={{ animationDelay: `${idx * 0.18}s`, animationDuration: '0.95s' }}
+                style={{ animationDelay: `${idx * 0.18}s`, animationDuration: '1.05s' }}
               />
 
-              {/* Rapid electrical sparks */}
-              <path
-                d={pathD}
-                fill="none"
-                stroke={tech?.glowColor || '#c084fc'}
-                strokeWidth="2.5"
-                strokeDasharray="8 60"
-                strokeLinecap="round"
-                className="stream-path-particles stream-inward-right"
-                style={{ animationDelay: `${idx * 0.18 + 0.3}s`, animationDuration: '0.75s' }}
-              />
-
-              {/* Physical Flying Energy Photons / Comets into Hand */}
-              <circle r="4.5" fill="#ffffff" filter="url(#comet-glow-purple)">
+              <circle r="4" fill="#FF735C" filter="url(#comet-glow-purple)">
                 <animateMotion
                   path={pathD}
                   dur={animDur}
@@ -271,7 +230,7 @@ export function EnergyStreamNetwork({
                   keyPoints="0;1"
                 />
               </circle>
-              <circle r="3" fill="#e879f9" opacity="0.9">
+              <circle r="2.8" fill="#B8A5F5" opacity="0.95">
                 <animateMotion
                   path={pathD}
                   dur={animDur}
@@ -286,15 +245,15 @@ export function EnergyStreamNetwork({
         })}
       </g>
 
-      {/* Hand Convergence Vortices in SVG */}
+      {/* Hand Convergence Vortices */}
       <g className="hand-convergence-vortex-left">
-        <circle cx={LEFT_HAND.x} cy={LEFT_HAND.y} r="18" fill="none" stroke="#00e5ff" strokeWidth="1.5" strokeDasharray="6 6" className="vortex-spin-left" />
-        <circle cx={LEFT_HAND.x} cy={LEFT_HAND.y} r="8" fill="#ffffff" filter="url(#comet-glow-cyan)" />
+        <circle cx={LEFT_HAND.x} cy={LEFT_HAND.y} r="18" fill="none" stroke="#4169F5" strokeWidth="1.8" strokeDasharray="6 6" className="vortex-spin-left" />
+        <circle cx={LEFT_HAND.x} cy={LEFT_HAND.y} r="7" fill="#F8D95B" stroke="#4169F5" strokeWidth="2" />
       </g>
 
       <g className="hand-convergence-vortex-right">
-        <circle cx={RIGHT_HAND.x} cy={RIGHT_HAND.y} r="18" fill="none" stroke="#c084fc" strokeWidth="1.5" strokeDasharray="6 6" className="vortex-spin-right" />
-        <circle cx={RIGHT_HAND.x} cy={RIGHT_HAND.y} r="8" fill="#ffffff" filter="url(#comet-glow-purple)" />
+        <circle cx={RIGHT_HAND.x} cy={RIGHT_HAND.y} r="18" fill="none" stroke="#FF735C" strokeWidth="1.8" strokeDasharray="6 6" className="vortex-spin-right" />
+        <circle cx={RIGHT_HAND.x} cy={RIGHT_HAND.y} r="7" fill="#B8A5F5" stroke="#FF735C" strokeWidth="2" />
       </g>
     </svg>
   );

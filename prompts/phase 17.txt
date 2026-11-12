@@ -1,0 +1,158 @@
+# PHASE 17 — FRONTEND AND BACKEND INTEGRATION
+
+## ROLE
+Act as a Senior Full-Stack Engineer specializing in React + Vite and the approved backend technology.
+
+Integrate the existing portfolio frontend with the backend APIs implemented in Phase 16.
+
+## 1. PRE-INTEGRATION AUDIT
+
+Inspect:
+- Current frontend data sources.
+- localStorage usage.
+- sessionStorage usage.
+- BroadcastChannel communication.
+- Existing Admin workflows.
+- Existing API service abstractions.
+- Phase 16 endpoint documentation.
+
+Map every frontend feature to its corresponding backend service.
+
+Do not remove local data before verifying successful migration.
+
+## 2. API CLIENT ARCHITECTURE
+
+Create a reusable API layer.
+
+Implement:
+- Centralized API configuration.
+- Request and response handling.
+- Authentication-aware requests.
+- Consistent error handling.
+- Request cancellation where useful.
+- Environment-based API URLs.
+- Typed or clearly documented data contracts.
+
+Avoid scattering direct API calls throughout UI components.
+
+## 3. PROJECT INTEGRATION
+
+Connect:
+- Public project listing.
+- Project detail pages.
+- Search.
+- Filtering.
+- Categories and tags.
+- Featured projects.
+- Admin CRUD.
+- Draft and publishing workflows.
+
+Ensure unpublished projects never appear publicly.
+
+Preserve the intentional empty state when there are no published projects.
+
+## 4. JOURNEY CMS INTEGRATION
+
+Connect:
+- Public timeline.
+- Admin milestone management.
+- Create and edit.
+- Delete.
+- Publishing.
+- Ordering.
+
+Verify that changes made by an authorized admin are reflected in the public timeline.
+
+Use proper cache invalidation or refresh strategies.
+
+Do not claim real-time synchronization unless actually implemented and verified.
+
+## 5. CONTACT INTEGRATION
+
+Connect the existing contact form to the backend.
+
+Implement:
+- Client-side validation.
+- Server-side validation feedback.
+- Submission loading state.
+- Success state.
+- Error state.
+- Duplicate submission prevention where appropriate.
+
+Never show success before the server confirms the submission.
+
+## 6. ADMIN INTEGRATION
+
+Connect all existing admin controls to real backend operations.
+
+Ensure:
+- Authentication is checked.
+- Unauthorized users cannot perform admin actions.
+- Data refreshes after successful updates.
+- Failed operations show meaningful feedback.
+- Destructive actions have confirmation.
+- Loading states prevent accidental duplicate actions.
+
+## 7. DATA MIGRATION
+
+Create a safe migration plan for existing local content.
+
+- Export or preserve existing data.
+- Validate data before import.
+- Check asset references.
+- Prevent duplicate records.
+- Verify record counts.
+- Keep a recovery copy.
+- Do not silently discard local data.
+
+Do not automatically import browser-specific data from every user's device without an explicit migration plan.
+
+## 8. UX AND RELIABILITY
+
+Preserve the approved UI and animations.
+
+Implement:
+- Loading skeletons where useful.
+- Empty states.
+- Error states.
+- Retry behaviour.
+- Optimistic updates only where safe.
+- Appropriate stale data handling.
+- Accessible feedback.
+
+## 9. TESTING
+
+Test:
+- Public content retrieval.
+- Admin CRUD workflows.
+- Publishing and unpublishing.
+- Contact submissions.
+- Media references.
+- Authentication expiry.
+- Failed network requests.
+- Slow network conditions.
+- Empty database state.
+- Refresh and navigation.
+- Browser back and forward.
+
+## 10. DOCUMENTATION
+
+Create:
+
+PHASE-17-FRONTEND-BACKEND-INTEGRATION-REPORT.md
+
+Include:
+- Integrated routes and features.
+- API service structure.
+- Data migration results.
+- localStorage/BroadcastChannel changes.
+- Error and loading handling.
+- Test results.
+- Known integration gaps.
+
+IMPORTANT:
+Do not redesign the website in this phase.
+
+Do not delete existing content or data without verified migration.
+
+Wait for approval before Phase 18.

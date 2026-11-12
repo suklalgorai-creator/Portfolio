@@ -1,0 +1,431 @@
+# PHASE 11 — COMPLETE FRONTEND PERFORMANCE OPTIMIZATION
+
+## ROLE
+
+Act as a Senior Frontend Performance Engineer, React Optimization Specialist, Web Vitals Expert and Media Optimization Engineer.
+
+Your task is to optimize my existing React + Vite portfolio for fast loading, smooth interactions, efficient resource usage and excellent real-world performance.
+
+This is a FRONTEND PERFORMANCE OPTIMIZATION PHASE ONLY.
+
+Do not start backend development, database integration or security implementation.
+
+---
+
+# 1. FIRST — ESTABLISH A PERFORMANCE BASELINE
+
+Before modifying anything, audit the current application.
+
+Measure and document:
+
+- Initial page load time.
+- Lighthouse Performance score.
+- Largest Contentful Paint (LCP).
+- Interaction to Next Paint (INP).
+- Cumulative Layout Shift (CLS).
+- First Contentful Paint (FCP).
+- Total Blocking Time (TBT), where applicable.
+- JavaScript bundle size.
+- CSS bundle size.
+- Image and video resource sizes.
+- Number of network requests.
+- Long-running JavaScript tasks.
+- Console errors and warnings.
+
+Run Lighthouse on:
+
+- Home.
+- About.
+- Skills.
+- Projects.
+- Journey.
+- Experience.
+- Contact.
+
+Test desktop and mobile profiles separately.
+
+Use consistent test conditions and record the baseline before optimization.
+
+Do not invent performance numbers.
+
+# 2. REACT PERFORMANCE OPTIMIZATION
+
+Inspect the entire React application.
+
+Identify:
+
+- Unnecessary component re-renders.
+- Expensive rendering logic.
+- Unnecessary state updates.
+- Prop drilling that causes avoidable updates.
+- Expensive calculations performed repeatedly.
+- Large components that should be split.
+- Inefficient list rendering.
+- Missing stable keys.
+- Unnecessary effects.
+- Incorrect effect dependencies.
+
+Optimize using appropriate techniques:
+
+- React.memo where beneficial.
+- useMemo for genuinely expensive calculations.
+- useCallback where stable references prevent meaningful re-renders.
+- Component splitting.
+- Lazy loading.
+- Efficient state management.
+- Proper event listener cleanup.
+
+Do not blindly wrap every component in memoization.
+
+Prioritize measured bottlenecks.
+
+# 3. BUNDLE SIZE AND CODE SPLITTING
+
+Analyze the production bundle.
+
+Identify:
+
+- Large JavaScript chunks.
+- Duplicate dependencies.
+- Unused packages.
+- Heavy libraries.
+- Unnecessary imports.
+- Unused assets.
+- Modules loaded before they are needed.
+
+Implement:
+
+- Route-based code splitting.
+- React.lazy and Suspense where appropriate.
+- Dynamic imports for heavy components.
+- Lazy loading of Three.js scenes.
+- Deferred loading of non-critical interactive modules.
+- Efficient tree-shaking.
+- Optimized dependency imports.
+
+Keep the initial JavaScript payload as small as reasonably possible.
+
+Do not remove functionality simply to reduce bundle size.
+
+Create a before-and-after bundle report.
+
+# 4. IMAGE OPTIMIZATION
+
+Audit all images in the public assets and source directories.
+
+Pay particular attention to:
+
+- Hero portrait.
+- Holographic sphere.
+- Project thumbnails.
+- Background images.
+- Journey illustrations.
+- Decorative visual assets.
+- Transparent PNG files.
+
+Implement where appropriate:
+
+- WebP or AVIF conversion.
+- Responsive image sources.
+- Proper image dimensions.
+- Compression.
+- Lazy loading for below-the-fold images.
+- fetchpriority="high" for the actual critical hero image where appropriate.
+- Explicit width and height or aspect-ratio to prevent layout shifts.
+- Appropriate object-fit and object-position.
+- Correct image sizing for mobile and desktop.
+
+Important:
+- Preserve transparent backgrounds.
+- Do not introduce visible compression artifacts.
+- Do not unnecessarily convert small or already optimized assets.
+- Do not lazy-load the actual LCP image.
+
+# 5. VIDEO OPTIMIZATION
+
+The portfolio uses cinematic video content.
+
+Audit all video files.
+
+Inspect:
+
+- File sizes.
+- Resolution.
+- Codec.
+- Bitrate.
+- Duration.
+- Loading strategy.
+- Playback behaviour.
+- Mobile compatibility.
+
+Implement appropriate optimizations:
+
+- Use efficient codecs when browser support allows.
+- Provide compatible fallback formats where necessary.
+- Use poster images.
+- Avoid downloading large videos immediately when they are not visible.
+- Use preload="none" or preload="metadata" appropriately.
+- Lazy-load below-the-fold video.
+- Avoid autoplay on mobile when it creates excessive resource usage.
+- Pause or suspend unnecessary background videos.
+- Respect reduced-motion preferences.
+- Preserve existing cinematic storytelling and video-seeking functionality.
+
+Do not replace video content with static images unless a fallback is needed.
+
+# 6. GSAP AND ANIMATION PERFORMANCE
+
+Audit all animations introduced in Phase 9.
+
+Optimize:
+
+- Excessive ScrollTriggers.
+- Continuous animation loops.
+- Expensive CSS filters.
+- Large blur effects.
+- Layout-triggering animations.
+- Excessive particle effects.
+- Heavy parallax calculations.
+- Pointer event handlers.
+- Duplicate animation timelines.
+- React and GSAP lifecycle conflicts.
+
+Implement:
+
+- Proper GSAP context management.
+- ScrollTrigger cleanup.
+- Efficient event listeners.
+- RequestAnimationFrame only where genuinely needed.
+- Passive scroll listeners where appropriate.
+- Transform and opacity-based animation.
+- Visibility-aware suspension of nonessential animations.
+- Lower animation complexity on mobile.
+
+Avoid excessive will-change usage.
+
+Do not sacrifice the motion design established in Phase 9.
+
+# 7. THREE.JS AND 3D OPTIMIZATION
+
+If Three.js or React Three Fiber is used, inspect:
+
+- Scene complexity.
+- Geometry count.
+- Material count.
+- Texture sizes.
+- Draw calls.
+- Shader complexity.
+- Renderer settings.
+- GPU resource cleanup.
+- Unnecessary frame rendering.
+
+Implement where beneficial:
+
+- Reduced polygon counts.
+- Optimized textures.
+- Shared geometries and materials.
+- Efficient rendering loops.
+- Adaptive pixel ratio.
+- Visibility-based rendering suspension.
+- Lazy-loaded 3D scenes.
+- Simplified mobile alternatives.
+
+Avoid running continuous rendering loops when the scene is static.
+
+Do not introduce Three.js if it is not needed.
+
+# 8. CSS AND RENDERING OPTIMIZATION
+
+Inspect CSS for:
+
+- Duplicate styles.
+- Unused selectors.
+- Excessive backdrop-filter usage.
+- Expensive box shadows.
+- Large blur surfaces.
+- Deep selector complexity.
+- Repeated layout recalculation.
+- Unnecessary animations.
+- Oversized DOM structures.
+
+Optimize the glass design carefully.
+
+Use lighter alternatives where visually equivalent.
+
+Preserve the established Liquid Glass identity.
+
+Avoid causing visual regressions.
+
+# 9. FONT OPTIMIZATION
+
+Audit all loaded fonts.
+
+Optimize:
+
+- Font file formats.
+- Font weights.
+- Font loading strategy.
+- Unused font variants.
+- Font-display behaviour.
+- Preloading of genuinely critical fonts.
+
+Preserve the typography identity:
+
+- Space Grotesk.
+- Manrope.
+- Inter.
+- JetBrains Mono.
+
+Avoid downloading unnecessary weights and styles.
+
+Prevent font-related layout shifts as much as practical.
+
+# 10. NETWORK AND RESOURCE LOADING
+
+Audit all requests made during initial page load.
+
+Implement:
+
+- Resource prioritization.
+- Appropriate preconnect hints.
+- Selective preload.
+- Deferred non-critical scripts.
+- Lazy loading.
+- Efficient caching configuration where hosting supports it.
+- Compression-friendly assets.
+- Removal of unnecessary external requests.
+
+Do not preload every asset.
+
+Prioritize only resources that genuinely improve the initial experience.
+
+# 11. PERFORMANCE BY ROUTE
+
+Optimize every route individually.
+
+### Home
+- Prioritize hero content.
+- Load non-critical animations later.
+- Avoid loading all page content dependencies immediately.
+
+### About
+- Lazy-load below-the-fold media.
+- Reduce unnecessary animation work.
+
+### Skills
+- Defer heavy 3D scenes.
+- Optimize icon and texture assets.
+
+### Projects
+- Load only necessary project content.
+- Optimize thumbnails.
+- Avoid loading all preview media immediately.
+
+### Journey
+- Optimize timeline rendering and media.
+- Avoid unnecessary CMS re-renders.
+
+### Experience
+- Keep route payload lightweight.
+
+### Contact
+- Avoid loading unrelated heavy dependencies.
+
+### Admin
+- Keep admin-only functionality out of the public initial bundle where practical.
+- Preserve all existing admin functionality.
+
+# 12. CORE WEB VITALS TARGETS
+
+Aim for these good thresholds at the 75th percentile when sufficient real-user data is available:
+
+- LCP: 2.5 seconds or less.
+- INP: 200 milliseconds or less.
+- CLS: 0.1 or less.
+
+Use laboratory tests to identify problems, but do not claim that Lighthouse alone proves real-user Core Web Vitals compliance.
+
+If real-user data is unavailable, explicitly state that.
+
+# 13. PERFORMANCE AND VISUAL QUALITY
+
+After every major optimization:
+
+- Compare before-and-after screenshots.
+- Check video quality.
+- Check image quality.
+- Check animation smoothness.
+- Check typography.
+- Check glass effects.
+- Check responsive layouts.
+- Verify that the design remains visually consistent.
+
+Do not optimize purely for Lighthouse scores.
+
+A fast but visually broken website is not acceptable.
+
+# 14. STRICT IMPLEMENTATION RULES
+
+- Preserve React + Vite architecture.
+- Preserve all existing routes.
+- Preserve all working features.
+- Preserve project records and assets.
+- Preserve Journey CMS and Admin.
+- Preserve cinematic videos.
+- Preserve existing visual design.
+- Preserve responsive behaviour.
+- Do not invent content.
+- Do not introduce unnecessary dependencies.
+- Do not start backend development.
+- Do not implement security changes.
+- Do not remove features just to improve scores.
+
+# 15. FINAL PERFORMANCE VALIDATION
+
+After optimization:
+
+1. Run the production build.
+2. Run all existing unit tests.
+3. Run Playwright tests.
+4. Run Lighthouse desktop audits.
+5. Run Lighthouse mobile audits.
+6. Compare before-and-after metrics.
+7. Analyze production bundle sizes.
+8. Check network requests.
+9. Verify image and video loading.
+10. Test animation smoothness.
+11. Check layout shifts.
+12. Check every route.
+13. Verify mobile performance.
+14. Check browser console errors.
+
+Create:
+
+PHASE-11-FRONTEND-PERFORMANCE-REPORT.md
+
+Include:
+
+- Baseline performance metrics.
+- Final performance metrics.
+- Lighthouse results by route.
+- Core Web Vitals observations.
+- Bundle size before and after.
+- Image optimizations.
+- Video optimizations.
+- React optimizations.
+- GSAP and 3D optimizations.
+- CSS and font optimizations.
+- Network loading improvements.
+- Test results.
+- Remaining bottlenecks.
+- Screenshots where relevant.
+
+IMPORTANT:
+
+Do not claim performance improvements without measurements.
+
+Do not declare the phase complete merely because the build passes.
+
+The objective is a noticeably faster, smoother and more efficient portfolio without losing its premium visual experience.
+
+Start with the performance baseline audit, then optimize the highest-impact bottlenecks first.

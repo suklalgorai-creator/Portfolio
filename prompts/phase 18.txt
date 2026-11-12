@@ -1,0 +1,179 @@
+# PHASE 18 — COMPLETE SECURITY AUDIT & HARDENING
+
+## ROLE
+Act as a Senior Application Security Engineer, Backend Security Specialist and Database Security Auditor.
+
+Perform a comprehensive security audit of my complete React + Vite portfolio and its backend.
+
+This phase includes authorized security testing and remediation only.
+
+## 1. SECURITY SCOPE
+
+Audit:
+- Frontend.
+- Backend APIs.
+- Authentication.
+- Authorization.
+- Database.
+- File storage.
+- Admin dashboard.
+- Environment variables.
+- Hosting configuration.
+- Third-party dependencies.
+- External integrations.
+
+## 2. AUTHENTICATION AND SESSION SECURITY
+
+Verify:
+- Secure session handling.
+- Session expiration.
+- Logout and revocation.
+- Password reset security.
+- Brute-force protections.
+- Credential exposure.
+- Privilege escalation.
+- Session fixation risks.
+- Cookie configuration, where applicable.
+- CSRF protections where applicable.
+
+## 3. AUTHORIZATION AUDIT
+
+Test every protected operation.
+
+Verify:
+- Public users cannot modify projects.
+- Public users cannot modify Journey CMS.
+- Unauthenticated users cannot access admin operations.
+- Users cannot access another user's protected records.
+- Unpublished content is not exposed.
+- Privileged operations enforce server-side permissions.
+- Database policies enforce access restrictions.
+
+For Supabase, specifically inspect Row Level Security policies and service-role key exposure.
+
+For Firebase, inspect Security Rules and privileged service account exposure.
+
+For custom backends, inspect middleware and database authorization boundaries.
+
+## 4. API SECURITY
+
+Inspect:
+- Input validation.
+- SQL injection risks.
+- NoSQL injection where applicable.
+- Cross-site scripting.
+- CSRF.
+- CORS configuration.
+- Rate limiting.
+- Request size limits.
+- Error message leakage.
+- IDOR and broken object-level authorization.
+- Mass assignment.
+- Insecure direct object references.
+- Sensitive data exposure.
+
+## 5. FILE UPLOAD SECURITY
+
+Verify:
+- Allowed file types.
+- File size limits.
+- MIME and content validation.
+- Unique filenames.
+- Unauthorized upload prevention.
+- Unauthorized deletion prevention.
+- Storage access policies.
+- Public/private bucket configuration.
+- Malicious file handling.
+
+## 6. FRONTEND SECURITY
+
+Inspect:
+- Hardcoded secrets.
+- API keys and tokens.
+- Unsafe DOM operations.
+- dangerouslySetInnerHTML.
+- Untrusted URLs.
+- Client-side authorization assumptions.
+- Sensitive browser storage.
+- Source map exposure.
+- External script loading.
+- Dependency vulnerabilities.
+
+Remember: public client configuration is not equivalent to a secret, but privileged keys must never be exposed.
+
+## 7. INFRASTRUCTURE AND CONFIGURATION
+
+Audit:
+- Environment variables.
+- Production/debug configuration.
+- HTTPS.
+- Security headers.
+- Content Security Policy.
+- CORS.
+- Database access.
+- Backup protection.
+- Logging and monitoring.
+- Secrets management.
+
+## 8. SECURITY TESTING
+
+Use authorized, non-destructive testing in a dedicated test environment.
+
+Test:
+- Unauthorized access.
+- Invalid credentials.
+- Privilege escalation.
+- Malformed requests.
+- Rate limiting.
+- Input validation.
+- File upload restrictions.
+- Database policy enforcement.
+- Session expiry.
+- Access to unpublished records.
+
+Never attack third-party systems or perform destructive production tests.
+
+## 9. REMEDIATION
+
+Classify findings:
+
+- Critical.
+- High.
+- Medium.
+- Low.
+- Informational.
+
+Fix confirmed critical and high-risk issues first.
+
+For every fix:
+- Explain the vulnerability.
+- Explain the impact.
+- Document the remediation.
+- Add a regression test where possible.
+- Re-test the affected functionality.
+
+Do not disable security controls to make the application work.
+
+## 10. FINAL REPORT
+
+Create:
+
+PHASE-18-SECURITY-AUDIT-AND-HARDENING-REPORT.md
+
+Include:
+- Scope.
+- Findings.
+- Severity.
+- Evidence.
+- Remediation.
+- Retest results.
+- Remaining risks.
+- Dependency audit.
+- Production security recommendations.
+
+IMPORTANT:
+Do not claim the application is completely secure.
+
+Report only tested areas and explicitly document limitations.
+
+Wait for approval before Phase 19.

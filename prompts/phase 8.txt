@@ -1,0 +1,264 @@
+# PHASE 8 — COMPLETE UI/UX & VISUAL REFINEMENT
+
+## ROLE
+Act as a world-class Creative Director, Senior UI/UX Designer, Design Systems Architect and Premium Web Experience Designer.
+
+Your task is to transform my existing developer portfolio into a visually exceptional, cohesive, premium-quality digital experience.
+
+This is a DESIGN AND FRONTEND REFINEMENT PHASE.
+
+Do not jump into backend development or security work.
+
+---
+
+## 1. FIRST: AUDIT THE CURRENT WEBSITE
+
+Before making changes:
+
+- Inspect every existing page and section.
+- Understand the current component structure and design system.
+- Review existing screenshots and identify visually weak sections.
+- Identify inconsistent spacing, typography, colours, layouts and card designs.
+- Find repetitive AI-generated-looking layouts.
+- Identify sections that feel empty, generic, unfinished or visually disconnected.
+- Check desktop, tablet and mobile appearances.
+
+Create a short list of visual problems and then fix them.
+
+Do not blindly redesign components that are already working well.
+
+## 2. ESTABLISH A CONSISTENT DESIGN LANGUAGE
+
+Continue the existing design direction:
+
+**Apple-inspired Liquid Glass × Vibrant Creative × Modern Editorial.**
+
+Use the established palette:
+
+- Cloud White: #F7F8FF
+- Lavender Mist: #EEF0FF
+- Electric Blue: #2878FF
+- Royal Violet: #7955ED
+- Neon Pink: #E65AD9
+- Aqua Cyan: #54D8F5
+- Soft Coral: #FF8C9C
+- Liquid Orange: #FFB36B
+- Deep Ink: #171725
+- Muted Slate: #646477
+
+Typography:
+- Space Grotesk — Hero and expressive display typography.
+- Manrope — Section headings.
+- Inter — Body content.
+- JetBrains Mono — Technical metadata and labels.
+
+Refine the existing typography scale, font weights, line heights, letter spacing and text hierarchy.
+
+Avoid excessive gradients, unnecessary borders and random colour combinations.
+
+## 3. REDESIGN EACH PAGE INDIVIDUALLY
+
+Every page must have its own visual identity while remaining part of the same design system.
+
+### HOME
+- Strong visual hierarchy.
+- Refine hero composition and headline readability.
+- Balance portrait, holographic elements and surrounding visuals.
+- Improve section transitions.
+- Make the homepage concise and impactful.
+- Ensure every section feels intentionally composed.
+
+### ABOUT
+- Premium editorial storytelling.
+- Better content hierarchy.
+- Attractive image and text compositions.
+- Meaningful visual elements instead of repetitive cards.
+- Strong balance between whitespace and content.
+
+### SKILLS
+- Interactive technology universe.
+- Improve the orbital icon composition.
+- Better technology grouping and visual hierarchy.
+- Distinctive visual treatment for different skill categories.
+- Avoid ordinary grid-based skill cards.
+
+### PROJECTS
+- Premium product showcase layout.
+- Refined project thumbnails and previews.
+- Clear project hierarchy and typography.
+- Improve filters, search, empty states and project navigation.
+- Preserve the existing project management system and data.
+- Do not invent projects or project details.
+
+### JOURNEY
+- Immersive editorial timeline.
+- Improve milestone layouts and visual storytelling.
+- Strong timeline hierarchy and progress indicators.
+- Avoid repetitive three-card layouts.
+- Preserve existing timeline content and CMS functionality.
+
+### EXPERIENCE
+- Professional editorial layout.
+- Clear timeline and information hierarchy.
+- Use only genuine existing information.
+- Do not invent jobs, companies, clients or achievements.
+
+### CONTACT
+- Premium crystal-glass composition.
+- Better form layout and input styling.
+- Refined social links and interaction states.
+- Clear visual call to action.
+
+## 4. FIX DESIGN DETAILS THROUGHOUT THE WEBSITE
+
+Pay special attention to:
+
+- Consistent spacing system.
+- Section padding and vertical rhythm.
+- Border radius consistency.
+- Glass transparency and backdrop blur.
+- Shadows and depth.
+- Button sizes and visual hierarchy.
+- Input fields and form styling.
+- Navigation and active states.
+- Cards and image proportions.
+- Background decoration.
+- Dividers and section separators.
+- Empty, loading, success and error states.
+- Hover, focus, active and disabled states.
+
+Do not turn every element into a glass card.
+
+Use three distinct materials intelligently:
+
+1. Frosted Glass — Navigation and information panels.
+2. Crystal Glass — Featured showcases and major visual elements.
+3. Liquid Glass — Special holographic objects and highlights.
+
+## 5. ELIMINATE GENERIC AI-GENERATED DESIGN
+
+Avoid:
+
+- Repeated three-card sections.
+- Identical layouts across every page.
+- Excessive floating blobs.
+- Random gradient backgrounds.
+- Unnecessary glassmorphism everywhere.
+- Oversized empty spaces without purpose.
+- Generic icons used as decoration.
+- Excessive rounded rectangles.
+- Unbalanced text and image proportions.
+- Decorative elements that add no visual value.
+
+Every section should have a deliberate composition.
+
+Use editorial layouts, asymmetric grids, overlapping elements, layered imagery, visual storytelling and controlled negative space.
+
+## 6. RESPONSIVE UI/UX REFINEMENT
+
+Refine the design for:
+
+- 320px
+- 360px
+- 390px
+- 430px
+- 768px
+- 1024px
+- 1280px
+- 1440px
+- 1920px
+
+Mobile must have its own intentional composition.
+
+Do not simply shrink the desktop layout.
+
+Check:
+- Text wrapping.
+- Image positioning.
+- Navigation.
+- Section spacing.
+- Card proportions.
+- Touch targets.
+- Horizontal overflow.
+- Readability.
+- Interactive element accessibility.
+
+## 7. VISUAL QUALITY STANDARD
+
+Aim for the design quality of premium digital experiences inspired by:
+
+- Apple product pages.
+- Award-winning Awwwards portfolios.
+- High-end creative developer portfolios.
+- Modern editorial websites.
+- Premium SaaS product websites.
+
+Use these as quality references, not templates to copy.
+
+The result should feel custom-designed, not like a generic portfolio template.
+
+## 8. STRICT IMPLEMENTATION RULES
+
+- Preserve React and Vite architecture.
+- Preserve existing routes and navigation.
+- Preserve all working functionality.
+- Preserve project records, assets, filters and admin functionality.
+- Preserve Journey CMS functionality.
+- Do not expose private personal information.
+- Do not invent personal achievements or experience.
+- Do not remove working features just to simplify the design.
+- Do not start backend integration.
+- Do not implement security changes in this phase.
+- Avoid unnecessary dependencies.
+- Do not replace the entire application without a clear technical reason.
+
+## 9. IMPLEMENTATION WORKFLOW
+
+Work page by page.
+
+For each page:
+
+1. Inspect the existing implementation.
+2. Identify visual weaknesses.
+3. Plan the new composition.
+4. Implement the refined UI.
+5. Check desktop and mobile screenshots.
+6. Fix visual inconsistencies.
+7. Verify that existing interactions still work.
+
+Prioritize visual quality over rushing through all pages.
+
+## 10. FINAL VALIDATION AND REPORT
+
+After implementation:
+
+- Run the production build.
+- Run existing unit tests.
+- Run existing Playwright tests.
+- Check browser console errors.
+- Check all routes.
+- Verify responsive layouts.
+- Verify forms, navigation, filters and interactive components.
+- Compare before-and-after screenshots.
+
+Create a report named:
+
+PHASE-8-UI-UX-VISUAL-REFINEMENT-REPORT.md
+
+Include:
+- Pages redesigned.
+- Components improved.
+- Visual issues fixed.
+- Design system changes.
+- Desktop and mobile improvements.
+- Tests and build results.
+- Remaining visual issues.
+- Screenshots of important pages.
+
+IMPORTANT:
+
+Do not declare the phase complete just because the build passes.
+
+The actual objective is a noticeably better visual experience across the entire website.
+
+Start with the audit, then implement the improvements. Work autonomously and make professional design decisions.

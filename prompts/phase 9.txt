@@ -1,0 +1,341 @@
+# PHASE 9 — ADVANCED MOTION, ANIMATION & INTERACTIVE EXPERIENCE
+
+## ROLE
+
+Act as a world-class Creative Developer, Motion Design Director, GSAP Specialist, Three.js Developer and Interactive Experience Engineer.
+
+Your mission is to transform my existing portfolio into a premium, cinematic and highly interactive web experience.
+
+The website should feel alive, immersive, fluid and professionally art-directed.
+
+This is a FRONTEND MOTION AND INTERACTION PHASE ONLY.
+
+Do not start backend development, database work or security implementation.
+
+---
+
+# 1. FIRST — AUDIT EXISTING ANIMATIONS
+
+Before implementation:
+
+- Inspect all existing GSAP animations.
+- Inspect ScrollTrigger implementations.
+- Inspect existing CSS animations and transitions.
+- Identify duplicate, conflicting or unnecessary animations.
+- Identify animations that cause layout shifts or jank.
+- Check animation cleanup and React component lifecycle.
+- Check existing 3D elements and interaction logic.
+
+Do not replace working animations unnecessarily.
+
+Create a motion implementation plan before modifying the code.
+
+# 2. ESTABLISH A GLOBAL MOTION SYSTEM
+
+Create a consistent animation language across the website.
+
+Define reusable motion tokens:
+
+- Fast interaction: 150–250ms.
+- Standard transition: 300–500ms.
+- Expressive transition: 600–900ms.
+- Cinematic transition: 1000–1600ms.
+- Subtle floating loops: 4–8 seconds.
+
+These are starting guidelines, not mandatory timings for every animation.
+
+Use:
+- Smooth easing curves.
+- Controlled stagger animations.
+- Natural spring-like movement where appropriate.
+- Subtle opacity and transform combinations.
+- Scroll-based progression.
+- Layered depth and parallax.
+
+Create reusable animation utilities and avoid writing isolated animation logic for every component.
+
+# 3. HERO SECTION — CINEMATIC EXPERIENCE
+
+Make the hero section the strongest motion experience.
+
+Implement:
+
+### Portrait animation
+- Smooth entrance animation.
+- Subtle floating movement.
+- Controlled parallax based on pointer movement.
+- Independent layer animation.
+- Natural depth and perspective.
+
+### Holographic sphere
+- Slow rotation.
+- Subtle light movement.
+- Interactive response to pointer movement.
+- Controlled glow and reflection changes.
+
+### Liquid glass ribbons
+- Smooth flowing motion.
+- Subtle deformation where technically practical.
+- Layered depth.
+- Independent movement.
+- Avoid excessive visual noise.
+
+### Orbital technology icons
+- Multiple orbital layers.
+- Different speeds and directions.
+- Independent elliptical paths.
+- Smooth rotation and floating movement.
+- Hover elevation and technology labels.
+- Subtle interaction feedback.
+
+The orbit must look spatial and dimensional, not like a flat rotating carousel.
+
+### Hero text
+- Cinematic text reveal.
+- Controlled line-by-line entrance.
+- Subtle character or word animation where appropriate.
+- Keep text readable throughout.
+
+# 4. CINEMATIC SCROLL STORYTELLING
+
+Use GSAP ScrollTrigger to create meaningful scroll-based experiences.
+
+Implement:
+
+- Section entrance reveals.
+- Parallax image movement.
+- Scroll-linked visual progression.
+- Layered content transitions.
+- Sticky storytelling where appropriate.
+- Progress indicators for long sections.
+- Smooth transitions between visual chapters.
+
+For CinematicStorySection:
+
+- Synchronize the video with scroll only if the existing video supports reliable seeking.
+- Handle loading and seeking states.
+- Provide a fallback if the video cannot load.
+- Avoid forcing users to scroll through unnecessarily long sections.
+- Ensure mobile performance.
+
+Do not make every section sticky or scroll-scrubbed.
+
+Use cinematic effects selectively.
+
+# 5. ABOUT SECTION — EDITORIAL MOTION
+
+- Reveal editorial content progressively.
+- Animate image framing.
+- Use subtle image parallax.
+- Introduce visual elements with staggered movement.
+- Add meaningful transitions between content blocks.
+
+Keep reading comfortable.
+
+# 6. SKILLS SECTION — INTERACTIVE 3D TECHNOLOGY UNIVERSE
+
+Enhance the existing technology universe.
+
+- Refine orbital rings.
+- Animate technology satellites independently.
+- Add hover interactions.
+- Add subtle depth and perspective.
+- Create controlled lighting effects.
+- Add responsive pointer interaction.
+- Use subtle rotation and depth changes.
+
+Technology icons should remain recognizable and readable.
+
+Do not overload the scene with excessive particles or 3D objects.
+
+# 7. PROJECTS SECTION — INTERACTIVE SHOWCASE
+
+- Smooth project reveal animations.
+- Refined hover transitions.
+- Image scale and depth effects.
+- Interactive project preview states.
+- Smooth filter transitions.
+- Animated empty states.
+
+Respect the existing requirement that public project listings can remain empty until projects are intentionally published.
+
+Do not create fake projects to fill visual space.
+
+# 8. JOURNEY SECTION — SCROLL-DRIVEN TIMELINE
+
+- Animate timeline progress as users scroll.
+- Reveal milestones sequentially.
+- Animate milestone nodes.
+- Introduce content with controlled stagger.
+- Use subtle depth and visual transitions.
+
+Preserve existing Journey CMS functionality and content.
+
+Do not invent milestones or achievements.
+
+# 9. CONTACT SECTION — MICRO-INTERACTIONS
+
+Implement:
+
+- Smooth input focus transitions.
+- Button hover and press feedback.
+- Subtle liquid-glass interactions.
+- Social icon micro-animations.
+- Form state transitions.
+- Success and error animations.
+
+Do not break actual form submission functionality.
+
+# 10. PAGE TRANSITIONS
+
+Create a consistent transition system for navigation between routes.
+
+Explore:
+- Fade and transform transitions.
+- Shared visual elements where practical.
+- Smooth route entry and exit.
+- Subtle background transitions.
+
+Requirements:
+- Browser back and forward must work.
+- Direct URL loading must work.
+- Refreshing a nested route must work.
+- Avoid blank screens during transitions.
+- Respect reduced-motion preferences.
+
+Do not introduce a heavy routing animation framework unless necessary.
+
+# 11. ADVANCED 3D EFFECTS
+
+Use Three.js, React Three Fiber or CSS 3D only where they provide real visual value.
+
+Potential enhancements:
+- Holographic sphere.
+- Floating 3D objects.
+- Orbital technology elements.
+- Depth-based pointer interactions.
+- Interactive lighting.
+- Subtle perspective transformations.
+
+Before introducing any new dependency, inspect existing dependencies.
+
+Do not add 3D scenes simply to make the website look technically impressive.
+
+Prefer lightweight CSS 3D when it can achieve the same result.
+
+# 12. PREMIUM MICRO-INTERACTIONS
+
+Improve:
+
+- Navigation hover states.
+- Active navigation indicators.
+- Button magnetic effects, if appropriate.
+- Cursor-following visual effects, desktop only.
+- Image hover transitions.
+- Card interactions.
+- Scroll indicators.
+- Interactive labels.
+- Loading transitions.
+
+All interactions must remain usable with touch, keyboard and mouse.
+
+Do not replace the normal cursor globally.
+
+# 13. PERFORMANCE REQUIREMENTS
+
+Motion must never compromise usability.
+
+- Use transform and opacity wherever possible.
+- Avoid unnecessary layout-triggering animations.
+- Avoid excessive simultaneous ScrollTriggers.
+- Use will-change selectively.
+- Clean up GSAP timelines and ScrollTriggers on component unmount.
+- Prevent memory leaks.
+- Avoid unnecessary React re-renders.
+- Lazy-load heavy 3D scenes.
+- Use lightweight mobile alternatives where needed.
+- Avoid unnecessary video decoding.
+- Ensure animations do not block interaction.
+
+Respect prefers-reduced-motion.
+
+When reduced motion is enabled:
+- Disable unnecessary parallax.
+- Disable decorative continuous animations.
+- Replace large transitions with simple fades.
+- Preserve all functionality.
+
+# 14. RESPONSIVE MOTION
+
+Desktop:
+- Full cinematic motion.
+- Pointer-based effects.
+- Richer depth and parallax.
+
+Tablet:
+- Reduced complexity.
+- Touch-friendly interactions.
+- Controlled animation density.
+
+Mobile:
+- Lightweight transitions.
+- No mouse-dependent features.
+- Reduced particle and 3D complexity.
+- No scroll-jacking.
+- No unnecessary sticky effects.
+- Smooth scrolling and readable content.
+
+# 15. STRICT IMPLEMENTATION RULES
+
+- Preserve React and Vite.
+- Preserve all existing routes.
+- Preserve all working functionality.
+- Preserve existing project and Journey data.
+- Preserve admin functionality.
+- Preserve existing assets.
+- Do not invent content.
+- Do not start backend integration.
+- Do not implement security changes.
+- Do not introduce unnecessary dependencies.
+- Do not sacrifice mobile performance for desktop effects.
+
+# 16. FINAL TESTING
+
+After implementation:
+
+1. Run the production build.
+2. Run all existing unit tests.
+3. Run existing Playwright tests.
+4. Verify every route.
+5. Test browser back and forward.
+6. Test direct route loading.
+7. Inspect console errors.
+8. Check GSAP cleanup.
+9. Test reduced-motion mode.
+10. Test mobile and desktop interactions.
+11. Check for animation jank and layout shifts.
+12. Capture before-and-after screenshots and motion recordings where possible.
+
+Create:
+
+PHASE-9-MOTION-INTERACTION-REPORT.md
+
+Include:
+- Animations implemented.
+- Components modified.
+- GSAP and ScrollTrigger changes.
+- 3D enhancements.
+- Route transition improvements.
+- Mobile motion adaptations.
+- Reduced-motion implementation.
+- Performance observations.
+- Test results.
+- Remaining issues.
+
+IMPORTANT:
+
+Do not consider the phase complete just because animations exist.
+
+The objective is a coherent, premium motion experience where every animation has a purpose.
+
+Start with the audit, then implement and verify each section.

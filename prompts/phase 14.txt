@@ -1,0 +1,123 @@
+# PHASE 14 — BACKEND ARCHITECTURE & DATABASE FOUNDATION
+
+## ROLE
+Act as a Senior Backend Architect and Database Engineer.
+
+Implement the approved backend architecture based on the Phase 13 report.
+
+Use the approved technology and do not independently switch stacks.
+
+## 1. PRE-IMPLEMENTATION CHECK
+
+- Read Phase 13 report.
+- Verify approved architecture.
+- Inspect the current project structure.
+- Identify existing data and integration points.
+- Create a backup or recovery point before structural changes.
+- Document implementation steps.
+
+Do not overwrite existing frontend configuration unnecessarily.
+
+## 2. BACKEND FOUNDATION
+
+Set up the approved backend environment.
+
+Implement:
+- Backend project structure.
+- Environment configuration.
+- Database connection.
+- Development and production configuration separation.
+- Reusable service layer.
+- Error handling foundation.
+- Logging foundation.
+- API response conventions.
+- Database migration strategy.
+
+Keep frontend and backend responsibilities clearly separated.
+
+## 3. DATABASE DESIGN
+
+Implement the approved schema for:
+
+- Admin users.
+- Projects.
+- Project categories and tags.
+- Project media.
+- Journey milestones.
+- Contact messages.
+- Site settings.
+- Required supporting tables.
+
+Define:
+- Primary keys.
+- Foreign keys.
+- Relationships.
+- Unique constraints.
+- Required fields.
+- Indexes.
+- Timestamps.
+- Status and publishing fields.
+
+Use appropriate deletion and update behaviour.
+
+Do not store uploaded binary media directly in database fields unless the approved architecture specifically requires it.
+
+## 4. DATABASE RELIABILITY
+
+- Use version-controlled migrations.
+- Provide development seed data only where useful.
+- Keep production data separate.
+- Avoid destructive migrations.
+- Document rollback or recovery procedures.
+- Preserve existing content.
+
+Never seed fake professional achievements or fake projects.
+
+## 5. SERVICE AND API FOUNDATION
+
+Create reusable modules for:
+- Projects.
+- Journey.
+- Contact.
+- Admin.
+- Media.
+- Site settings.
+
+Establish consistent validation and error response conventions.
+
+Do not expose database internals to the public frontend.
+
+## 6. ENVIRONMENT CONFIGURATION
+
+Prepare documented environment variable templates.
+
+- Include variable names and descriptions.
+- Do not include real secrets.
+- Keep credentials out of source control.
+- Separate public client configuration from server-only secrets.
+- Add appropriate environment validation.
+
+## 7. DOCUMENTATION
+
+Create:
+- PHASE-14-BACKEND-ARCHITECTURE.md
+- DATABASE-SCHEMA.md
+- DATABASE-MIGRATIONS.md
+- BACKEND-ENVIRONMENT-SETUP.md
+- API-FOUNDATION.md
+
+## 8. VALIDATION
+
+- Verify database connectivity.
+- Run migrations on a development database.
+- Verify relationships and constraints.
+- Test error handling.
+- Test environment validation.
+- Run existing frontend tests and build.
+
+IMPORTANT:
+Do not implement full authentication, complete CRUD features or frontend integration in this phase.
+
+Do not use production credentials or destructive production migrations.
+
+Finish with an implementation report and wait for approval before Phase 15.

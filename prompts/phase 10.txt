@@ -1,0 +1,374 @@
+# PHASE 10 — COMPLETE RESPONSIVE DESIGN & CROSS-DEVICE OPTIMIZATION
+
+## ROLE
+
+Act as a Senior Responsive UI/UX Engineer, Frontend Architect and Cross-Device Quality Assurance Specialist.
+
+Your task is to make my existing React + Vite developer portfolio fully responsive, visually consistent and functionally reliable across all screen sizes and device types.
+
+This is a RESPONSIVE FRONTEND REFINEMENT PHASE.
+
+Do not start backend development, database integration or security implementation.
+
+---
+
+# 1. FIRST — COMPLETE RESPONSIVE AUDIT
+
+Before changing anything:
+
+Inspect every page, section, component and interactive element.
+
+Identify:
+
+- Horizontal overflow.
+- Broken layouts.
+- Incorrect element positioning.
+- Text clipping and wrapping issues.
+- Images with incorrect proportions.
+- Oversized headings.
+- Inconsistent spacing.
+- Navigation problems.
+- Broken grids and flex layouts.
+- Unusable buttons and controls.
+- Touch interaction problems.
+- Animations that behave incorrectly on mobile.
+- Excessive content height.
+- Elements overlapping each other.
+- Unnecessary empty spaces.
+
+Audit all existing routes, including Admin where applicable.
+
+Create a responsive audit report before implementing fixes.
+
+# 2. TEST ALL TARGET VIEWPORTS
+
+Use Playwright or the existing testing setup.
+
+Test these viewport widths:
+
+| Device category | Width |
+|---|---:|
+| Small mobile | 320px |
+| Standard mobile | 360px |
+| Large mobile | 390px |
+| Large phone | 430px |
+| Small tablet | 768px |
+| Tablet / small laptop | 1024px |
+| Laptop | 1280px |
+| Desktop | 1440px |
+| Large desktop | 1920px |
+
+Also test different viewport heights and orientations where relevant.
+
+Do not assume that one mobile breakpoint is sufficient.
+
+Use content-driven breakpoints where necessary.
+
+# 3. MOBILE-FIRST LAYOUT REFINEMENT
+
+Redesign mobile layouts intentionally.
+
+Do not just reduce desktop font sizes or shrink columns.
+
+### Mobile requirements
+
+- Clear visual hierarchy.
+- Comfortable content spacing.
+- Readable typography.
+- Proper image positioning.
+- Balanced section heights.
+- No horizontal scrolling.
+- Proper button sizing.
+- Easy-to-use navigation.
+- Comfortable form inputs.
+- Correct content ordering.
+- Smooth touch interactions.
+- No unnecessary decorative clutter.
+
+Avoid oversized blank spaces and excessively long sections.
+
+# 4. NAVIGATION AND HEADER
+
+Improve navigation across devices.
+
+### Desktop
+- Preserve premium floating navigation.
+- Refine spacing and alignment.
+- Ensure all navigation links remain accessible.
+- Include the Experience route if it exists.
+
+### Mobile
+- Implement a polished hamburger menu.
+- Create a clean mobile navigation panel or drawer.
+- Add smooth open and close transitions.
+- Close navigation after selecting a route.
+- Prevent background scrolling when appropriate.
+- Ensure keyboard accessibility.
+- Support Escape to close.
+- Manage focus correctly.
+- Avoid menu clipping and viewport overflow.
+
+Make navigation usable on touch devices.
+
+# 5. HERO SECTION
+
+The hero must maintain its visual impact across all devices.
+
+### Desktop
+- Preserve the full cinematic composition.
+- Balance portrait, headline, holographic sphere and orbital icons.
+- Maintain proper depth and spacing.
+
+### Tablet
+- Reposition visual layers intelligently.
+- Reduce decorative density where necessary.
+- Prevent overlapping content.
+
+### Mobile
+- Create a dedicated hero composition.
+- Prioritize headline readability.
+- Position portrait and holographic elements intentionally.
+- Reduce orbital elements if space is limited.
+- Prevent visual elements from obstructing important text.
+- Keep primary CTA visible and accessible.
+
+Do not force the desktop composition into a narrow viewport.
+
+# 6. RESPONSIVE TYPOGRAPHY
+
+Create a fluid typography system using clamp() where appropriate.
+
+Refine:
+
+- Hero heading.
+- Section headings.
+- Subheadings.
+- Paragraphs.
+- Navigation labels.
+- Metadata.
+- Buttons.
+- Project titles.
+- Timeline content.
+
+Check actual text wrapping at every target width.
+
+Avoid:
+- Single-word orphan lines where possible.
+- Excessive line lengths.
+- Tiny body text.
+- Headings extending outside their containers.
+- Unnecessary line breaks.
+
+Preserve the existing font identity.
+
+# 7. RESPONSIVE IMAGES AND MEDIA
+
+Audit all images, videos, portraits and visual assets.
+
+Implement:
+
+- Correct aspect ratios.
+- Responsive image sizing.
+- Object-fit and object-position adjustments.
+- Appropriate image loading strategies.
+- Lazy loading for below-the-fold images.
+- Video fallbacks.
+- Responsive media containers.
+
+Ensure transparent portrait assets do not get cropped incorrectly.
+
+Avoid loading unnecessarily large media files on mobile.
+
+# 8. RESPONSIVE 3D AND ANIMATIONS
+
+Review every Phase 9 animation.
+
+### Desktop
+- Preserve richer cinematic effects.
+- Support pointer-based interactions.
+
+### Tablet
+- Reduce unnecessary animation complexity.
+- Maintain smooth interactions.
+
+### Mobile
+- Remove mouse-dependent interactions.
+- Reduce particle counts and decorative layers.
+- Disable excessive parallax.
+- Avoid expensive continuous 3D scenes when unnecessary.
+- Use CSS alternatives or static fallbacks where appropriate.
+- Prevent scroll-related animation jank.
+
+Respect prefers-reduced-motion on all devices.
+
+Never remove meaningful functionality simply to reduce animation complexity.
+
+# 9. RESPONSIVE PAGE-BY-PAGE REFINEMENT
+
+Audit and refine each route independently.
+
+### Home
+- Responsive hero composition.
+- Balanced section spacing.
+- Proper content hierarchy.
+- Smooth transitions between sections.
+
+### About
+- Correct image and text ordering.
+- Comfortable editorial reading experience.
+- Responsive content layouts.
+
+### Skills
+- Adapt orbital visualizations.
+- Keep technology icons readable.
+- Avoid overcrowding.
+- Provide a usable mobile alternative.
+
+### Projects
+- Responsive project showcase.
+- Adapt filters and search controls.
+- Prevent card overflow.
+- Preserve empty states and navigation.
+
+### Journey
+- Responsive timeline.
+- Clear milestone hierarchy.
+- Avoid cramped content.
+- Keep progress indicators visible.
+
+### Experience
+- Responsive professional timeline.
+- Proper text hierarchy.
+- No overlapping metadata.
+
+### Contact
+- Responsive form fields.
+- Comfortable input sizing.
+- Proper CTA positioning.
+- Accessible social links.
+
+### Admin
+- Verify all admin controls and forms.
+- Tables should remain usable on narrow screens.
+- Use appropriate scrolling or alternate layouts.
+- Preserve existing functionality.
+
+# 10. TOUCH AND ACCESSIBILITY
+
+Ensure:
+
+- Touch targets are preferably at least 44 × 44 CSS pixels.
+- Buttons have visible focus states.
+- Links are distinguishable.
+- Forms have accessible labels.
+- Keyboard navigation works.
+- Focus is not hidden behind fixed elements.
+- Hover-only functionality has touch alternatives.
+- Text contrast remains readable.
+- Reduced-motion settings are respected.
+
+Do not rely exclusively on hover interactions.
+
+# 11. RESPONSIVE CSS ARCHITECTURE
+
+Improve responsive CSS without creating unnecessary complexity.
+
+- Reuse design tokens.
+- Use consistent spacing variables.
+- Avoid excessive media-query duplication.
+- Prefer fluid layouts.
+- Use CSS Grid and Flexbox appropriately.
+- Avoid hardcoded dimensions when fluid sizing is better.
+- Remove obsolete responsive overrides after verifying they are unused.
+- Avoid global CSS changes that unintentionally break other pages.
+
+Do not rewrite the entire stylesheet without a clear reason.
+
+# 12. CROSS-BROWSER VALIDATION
+
+Test the website in:
+
+- Chrome.
+- Firefox.
+- Safari/WebKit where available.
+- Chromium-based mobile emulation.
+
+Check:
+
+- Font rendering.
+- Sticky elements.
+- Backdrop-filter support.
+- Video behaviour.
+- ScrollTrigger functionality.
+- CSS 3D transforms.
+- Navigation.
+- Form interactions.
+- Route transitions.
+
+Provide appropriate fallbacks when a browser does not support an effect.
+
+# 13. STRICT RULES
+
+- Preserve React + Vite.
+- Preserve existing routes.
+- Preserve all working functionality.
+- Preserve project records and assets.
+- Preserve Journey CMS and Admin.
+- Preserve existing design identity.
+- Preserve Phase 9 animations where practical.
+- Do not invent content.
+- Do not introduce unnecessary dependencies.
+- Do not start backend work.
+- Do not implement security changes.
+- Do not compromise desktop design while fixing mobile.
+
+# 14. FINAL VALIDATION
+
+After implementation:
+
+1. Run production build.
+2. Run existing unit tests.
+3. Run existing Playwright tests.
+4. Run responsive tests across all target widths.
+5. Check horizontal overflow.
+6. Inspect screenshots of every route.
+7. Test navigation and touch interactions.
+8. Test forms and interactive controls.
+9. Check browser console errors.
+10. Verify reduced-motion mode.
+11. Verify tablet and mobile animations.
+12. Test direct route loading and browser navigation.
+
+Capture screenshots at minimum:
+
+- 390px mobile.
+- 768px tablet.
+- 1440px desktop.
+
+Also capture additional screenshots for any problematic breakpoint.
+
+Create:
+
+PHASE-10-RESPONSIVE-DESIGN-REPORT.md
+
+Include:
+
+- Initial responsive issues.
+- Pages and components modified.
+- Breakpoints and layout changes.
+- Mobile-specific design improvements.
+- Navigation improvements.
+- Animation adaptations.
+- Cross-browser observations.
+- Overflow test results.
+- Test and build results.
+- Before-and-after screenshots.
+- Remaining issues.
+
+IMPORTANT:
+
+Do not declare the phase complete merely because the page technically fits on a mobile screen.
+
+The objective is a genuinely premium, usable and visually intentional experience across every device.
+
+Start with the audit, then fix and validate each page systematically.

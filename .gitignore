@@ -29,3 +29,7 @@ playwright-report/
 blob-report/
 coverage/
 lighthouse-report*.json
+
+# prompts
+.prompts/
+

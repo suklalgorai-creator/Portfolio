@@ -3,9 +3,9 @@ import { useState, useEffect, useCallback } from 'react';
 export function useTheme() {
   const [theme, setTheme] = useState(() => {
     try {
-      return localStorage.getItem('sg_theme') === 'light' ? 'light' : 'dark';
+      return localStorage.getItem('sg_theme') === 'dark' ? 'dark' : 'light';
     } catch {
-      return 'dark';
+      return 'light';
     }
   });
 
@@ -13,7 +13,7 @@ export function useTheme() {
     document.documentElement.setAttribute('data-theme', theme);
     const themeColorMeta = document.querySelector('meta[name="theme-color"]');
     if (themeColorMeta) {
-      themeColorMeta.setAttribute('content', theme === 'light' ? '#f3eee6' : '#080a10');
+      themeColorMeta.setAttribute('content', theme === 'light' ? '#F7F8FF' : '#14151C');
     }
     try {
       localStorage.setItem('sg_theme', theme);

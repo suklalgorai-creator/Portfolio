@@ -4,15 +4,23 @@ export const pageMeta = {
     description: 'Portfolio of Suklal Gorai, a web and mobile developer building useful software and thoughtful digital experiences from Jamshedpur, India.'
   },
   '/about': {
-    title: 'About Suklal Gorai — Developer Journey',
-    description: 'The learning journey, development philosophy, and background of Suklal Gorai.'
+    title: 'About Suklal Gorai — Developer Journey & Experience',
+    description: 'The learning journey, engineering experience, development philosophy, and background of Suklal Gorai.'
+  },
+  '/journey': {
+    title: 'Professional Journey & Achievements — Suklal Gorai',
+    description: 'Interactive achievement timeline covering competitions, awards, college activities, certifications, project launches, and technical milestones.'
+  },
+  '/experience': {
+    title: 'Experience & Focus Tracks — Suklal Gorai',
+    description: 'From independent mobile utilities to regional studio prototypes and computer science coursework, every track sharpens product judgment.'
   },
   '/projects': {
     title: 'Projects — Suklal Gorai',
     description: 'Explore real applications, web platforms, experiments, technologies, and project details by Suklal Gorai.'
   },
   '/tech-stack': {
-    title: 'Tech Stack — Suklal Gorai',
+    title: 'Tech Stack & Skills — Suklal Gorai',
     description: 'A practical overview of the languages, frameworks, platforms, and tools Suklal Gorai works with.'
   },
   '/studio': {
@@ -22,6 +30,10 @@ export const pageMeta = {
   '/contact': {
     title: 'Contact — Suklal Gorai',
     description: 'Start a conversation with Suklal Gorai about a useful web, mobile, or digital product idea.'
+  },
+  '/admin': {
+    title: 'Journey CMS Admin — Suklal Gorai',
+    description: 'Manage and publish professional journey milestones, awards, certifications, and project launches.'
   }
 };
 

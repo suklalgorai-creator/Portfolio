@@ -1,0 +1,165 @@
+# PHASE 20 — PRODUCTION DEPLOYMENT & LAUNCH
+
+## ROLE
+Act as a Senior DevOps Engineer, Cloud Deployment Specialist and Production Release Manager.
+
+Your task is to prepare and deploy my portfolio application to production using the approved hosting architecture.
+
+## 1. PRE-DEPLOYMENT CHECKLIST
+
+Review:
+- Phase 19 test report.
+- Phase 18 security report.
+- Production build.
+- Backend configuration.
+- Database migrations.
+- Storage configuration.
+- Authentication settings.
+- Domain and DNS requirements.
+- Environment variables.
+- Backup and recovery strategy.
+
+Do not deploy if critical security or data integrity issues remain unresolved.
+
+## 2. HOSTING AND INFRASTRUCTURE
+
+Use the hosting providers and architecture approved in previous phases.
+
+Configure:
+- Frontend hosting.
+- Backend hosting or managed services.
+- Database.
+- File storage.
+- Custom domain.
+- DNS.
+- HTTPS.
+- Production environment variables.
+
+Do not migrate providers without approval.
+
+## 3. PRODUCTION CONFIGURATION
+
+Verify:
+- Correct production API URLs.
+- Correct authentication redirect URLs.
+- Correct CORS origins.
+- Secure environment configuration.
+- Production database connection.
+- Storage permissions.
+- Error handling.
+- Production logging.
+
+Never commit real secrets to Git.
+
+Do not expose service-role keys, database passwords or privileged credentials in browser bundles.
+
+## 4. DATABASE PRODUCTION MIGRATION
+
+Before migration:
+- Create a verified backup.
+- Review migration scripts.
+- Identify destructive operations.
+- Verify schema compatibility.
+- Prepare rollback or recovery procedures.
+
+Run migrations in a controlled manner.
+
+Verify:
+- Table structure.
+- Relationships.
+- Access policies.
+- Data integrity.
+- Existing project records.
+- Journey milestones.
+- Contact data.
+
+Do not wipe production data.
+
+## 5. DOMAIN AND SEO
+
+Configure:
+- Custom domain.
+- HTTPS.
+- Canonical URLs.
+- Page titles.
+- Meta descriptions.
+- Open Graph metadata.
+- Sitemap.
+- Robots.txt.
+- Favicon.
+- Social sharing previews.
+- Structured data where appropriate.
+
+Verify that all public routes work after deployment.
+
+## 6. PRODUCTION BUILD AND RELEASE
+
+- Build the frontend in production mode.
+- Deploy backend services.
+- Deploy frontend.
+- Apply approved migrations.
+- Verify static assets.
+- Verify video and image delivery.
+- Verify nested route refresh.
+- Verify redirects.
+- Verify caching behaviour.
+
+Use a staged release or preview deployment where supported.
+
+## 7. POST-DEPLOYMENT SMOKE TEST
+
+Test:
+- Homepage.
+- Every public route.
+- Project details.
+- Admin login.
+- Project publishing.
+- Journey CMS.
+- Contact form.
+- Media uploads.
+- Mobile navigation.
+- Browser refresh.
+- Browser back and forward.
+
+Verify that all services communicate correctly.
+
+## 8. ROLLBACK PLAN
+
+Document:
+- Previous deployment version.
+- Rollback procedure.
+- Database recovery limitations.
+- Backup restoration procedure.
+- DNS rollback where necessary.
+- Incident contact and escalation process.
+
+Never assume that rolling back application code automatically reverses database migrations.
+
+## 9. PRODUCTION REPORT
+
+Create:
+
+PHASE-20-PRODUCTION-DEPLOYMENT-REPORT.md
+
+Include:
+- Hosting architecture.
+- Domain and deployment configuration.
+- Production build status.
+- Database migration results.
+- HTTPS status.
+- Environment configuration checklist.
+- Smoke test results.
+- Performance observations.
+- Backup details.
+- Rollback procedure.
+- Known limitations.
+- Final launch status.
+
+IMPORTANT:
+Never claim deployment succeeded without checking the live production website.
+
+Do not expose credentials or private configuration in the report.
+
+Do not perform destructive production operations without explicit approval.
+
+Wait for approval before Phase 21.

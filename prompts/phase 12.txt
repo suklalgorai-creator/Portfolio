@@ -1,0 +1,427 @@
+# PHASE 12 — FINAL FRONTEND QA, VISUAL AUDIT & DESIGN FREEZE
+
+## ROLE
+
+Act as a Principal Frontend QA Engineer, Senior UI/UX Design Reviewer, Accessibility Specialist and Release Quality Engineer.
+
+Your responsibility is to perform a complete final quality audit of my React + Vite developer portfolio after Phases 8, 9, 10 and 11.
+
+The objective is to ensure that the complete frontend is visually polished, functionally reliable, responsive, accessible and performance-optimized before backend development begins.
+
+This is the FINAL FRONTEND VALIDATION PHASE.
+
+Do not start backend development, database integration or security implementation.
+
+---
+
+# 1. FIRST — REVIEW ALL PREVIOUS PHASE REPORTS
+
+Inspect the available project documentation and implementation.
+
+Review:
+
+- Phase 8 UI/UX Visual Refinement Report.
+- Phase 9 Motion and Interaction Report.
+- Phase 10 Responsive Design Report.
+- Phase 11 Frontend Performance Report.
+- Existing test results.
+- Current Git working tree and recent frontend changes.
+
+If a report is missing, do not invent its completion status. Inspect the actual implementation and record the missing evidence.
+
+Create a consolidated list of outstanding issues.
+
+# 2. COMPLETE ROUTE-BY-ROUTE VISUAL AUDIT
+
+Inspect every public route and relevant admin route.
+
+Routes to verify:
+
+- Home
+- About
+- Skills / Tech Stack
+- Projects
+- Individual project detail routes, if implemented
+- Journey
+- Experience
+- Contact
+- Admin
+
+For every route:
+
+- Inspect the initial viewport.
+- Inspect the complete page by scrolling.
+- Check section hierarchy.
+- Check typography and spacing.
+- Check image proportions.
+- Check alignment and composition.
+- Check backgrounds and glass effects.
+- Check visual consistency.
+- Check empty, loading, error and success states.
+- Check navigation and footer.
+
+Identify visual inconsistencies between pages.
+
+Do not invent missing pages or claim a route works without testing it.
+
+# 3. FINAL DESIGN SYSTEM CONSISTENCY
+
+Verify that the complete website follows one coherent visual language.
+
+Check:
+
+- Colour palette.
+- Typography.
+- Font weights.
+- Spacing scale.
+- Border radius.
+- Shadows.
+- Glass materials.
+- Buttons.
+- Input fields.
+- Cards.
+- Navigation.
+- Section transitions.
+- Background treatments.
+- Icons and visual assets.
+
+Ensure that the established Liquid Glass × Vibrant Creative × Modern Editorial direction remains consistent.
+
+Do not make every page identical.
+
+Each page must maintain its own composition while belonging to the same design system.
+
+# 4. VISUAL REGRESSION TESTING
+
+Compare the current website against the approved designs and earlier screenshots wherever available.
+
+Check:
+
+- Hero layout regressions.
+- Missing images.
+- Incorrect image crops.
+- Broken transparent assets.
+- Text wrapping changes.
+- Misaligned components.
+- Unexpected blank spaces.
+- Overlapping elements.
+- Broken section transitions.
+- Inconsistent backgrounds.
+- Unexpected mobile layout changes.
+- Visual differences caused by performance optimization.
+
+Capture full-page screenshots for every route.
+
+Capture viewport screenshots at:
+
+- 390px mobile.
+- 768px tablet.
+- 1024px laptop/tablet.
+- 1440px desktop.
+
+Also capture 320px and 1920px screenshots for critical routes and layouts.
+
+# 5. FUNCTIONAL TESTING
+
+Test every existing user-facing interaction.
+
+### Navigation
+- All links.
+- Active states.
+- Mobile menu.
+- Browser back and forward.
+- Direct route loading.
+- Refreshing nested routes.
+- Page transitions.
+
+### Hero
+- CTAs.
+- Interactive elements.
+- Animation behaviour.
+- Video playback and fallback.
+
+### Skills
+- Technology interactions.
+- Hover and touch states.
+- Responsive visualizations.
+
+### Projects
+- Filters.
+- Search.
+- Empty state.
+- Project detail navigation.
+- Project modal interactions, if retained.
+
+### Journey
+- Timeline interactions.
+- CMS data rendering.
+- Existing admin publishing workflow.
+
+### Contact
+- Form validation.
+- Input interactions.
+- Submission states.
+- Error and success feedback.
+
+### Admin
+- Existing authentication/session flow.
+- Controls.
+- Forms.
+- Editing and publishing behaviour.
+
+Do not submit real external forms or trigger destructive actions without authorization.
+
+# 6. MOTION AND ANIMATION QA
+
+Inspect all Phase 9 motion effects.
+
+Verify:
+
+- ScrollTrigger behaviour.
+- Animation timing.
+- Section reveals.
+- Parallax.
+- Orbital icons.
+- Hover interactions.
+- Route transitions.
+- Video scroll synchronization.
+- GSAP cleanup.
+- No duplicate animations.
+- No stuck or invisible elements.
+- No unexpected layout shifts.
+
+Test:
+
+- Normal motion mode.
+- prefers-reduced-motion mode.
+- Mouse interaction.
+- Touch interaction.
+- Browser back and forward.
+
+Animations must never block content or navigation.
+
+# 7. RESPONSIVE AND CROSS-BROWSER QA
+
+Test all important routes at:
+
+- 320px.
+- 360px.
+- 390px.
+- 430px.
+- 768px.
+- 1024px.
+- 1280px.
+- 1440px.
+- 1920px.
+
+Verify:
+
+- Zero unintended horizontal overflow.
+- Correct content ordering.
+- Readable typography.
+- Correct image placement.
+- Usable touch targets.
+- Responsive navigation.
+- Functional forms.
+- Proper 3D fallbacks.
+- Smooth animations.
+
+Test Chrome, Firefox and WebKit/Safari where available.
+
+Clearly document any browser that could not be tested.
+
+# 8. ACCESSIBILITY FINAL AUDIT
+
+Target WCAG 2.2 AA where applicable.
+
+Check:
+
+- Semantic HTML.
+- Heading hierarchy.
+- Keyboard navigation.
+- Visible focus states.
+- Accessible labels.
+- Image alt text.
+- Colour contrast.
+- Form error descriptions.
+- ARIA usage.
+- Dialog focus management.
+- Navigation accessibility.
+- Reduced-motion support.
+- Touch target sizes.
+
+Run automated accessibility testing using the existing tooling if available.
+
+Do not treat an automated zero-violation report as proof of complete accessibility. Manually test important workflows too.
+
+# 9. PERFORMANCE REGRESSION CHECK
+
+Re-run the important performance measurements from Phase 11.
+
+Check:
+
+- Lighthouse mobile and desktop.
+- LCP.
+- INP where measurable.
+- CLS.
+- Initial JavaScript payload.
+- Production bundle size.
+- Image and video loading.
+- Long tasks.
+- Animation smoothness.
+- Layout shifts.
+
+Compare results against the Phase 11 baseline and final report.
+
+Do not invent field Core Web Vitals data when real-user monitoring is unavailable.
+
+# 10. CODE AND FRONTEND RELIABILITY CHECK
+
+Without starting a security audit, inspect frontend reliability.
+
+Check:
+
+- Runtime errors.
+- Console errors.
+- Broken imports.
+- Missing assets.
+- Broken routes.
+- Failed dynamic imports.
+- React key warnings.
+- Unhandled promise rejections.
+- Incorrect event listener cleanup.
+- Animation cleanup.
+- Missing loading fallbacks.
+- Missing error boundaries.
+- Dead or orphaned components.
+
+Do not perform a security hardening exercise in this phase.
+
+Record security-related concerns separately for the later security phase without implementing them now.
+
+# 11. TESTING REQUIREMENTS
+
+Run:
+
+- Production build.
+- Existing unit tests.
+- Existing integration tests.
+- Existing Playwright tests.
+- Route smoke tests.
+- Responsive overflow tests.
+- Accessibility tests.
+- Lighthouse audits.
+
+Do not delete or weaken existing tests to make the test suite pass.
+
+If a test fails:
+
+1. Identify the actual cause.
+2. Fix the issue if it is within scope.
+3. Re-run the affected test.
+4. Re-run the relevant regression suite.
+
+Clearly distinguish passed, failed, skipped and not-tested checks.
+
+# 12. ISSUE PRIORITIZATION
+
+Classify all findings:
+
+### P0 — Critical
+- Broken application.
+- Blank pages.
+- Critical navigation failure.
+- Major functional regression.
+
+### P1 — High
+- Major responsive issues.
+- Broken core interactions.
+- Severe visual regressions.
+- Accessibility blockers.
+
+### P2 — Medium
+- Inconsistent spacing.
+- Minor visual defects.
+- Non-critical animation issues.
+- Moderate performance problems.
+
+### P3 — Low
+- Tiny visual refinements.
+- Minor polish opportunities.
+- Non-essential improvements.
+
+Fix P0 and P1 issues before declaring the frontend ready.
+
+Fix P2 issues where practical.
+
+Document P3 issues for future consideration.
+
+# 13. STRICT CHANGE CONTROL
+
+This phase must not become another complete redesign.
+
+- Preserve the approved visual identity.
+- Preserve all working features.
+- Preserve all existing routes.
+- Preserve project records and assets.
+- Preserve Journey CMS and Admin.
+- Do not invent content.
+- Do not introduce unnecessary dependencies.
+- Do not rewrite stable components without evidence.
+- Do not start backend integration.
+- Do not implement security hardening.
+- Do not remove tests or functionality to improve scores.
+
+Before modifying any file, identify the issue it fixes.
+
+# 14. FINAL FRONTEND RELEASE REPORT
+
+Create:
+
+PHASE-12-FINAL-FRONTEND-QA-REPORT.md
+
+Include:
+
+1. Executive summary.
+2. Previous phase report review.
+3. Route-by-route audit.
+4. Visual consistency findings.
+5. Responsive test results.
+6. Functional test results.
+7. Animation QA results.
+8. Accessibility results.
+9. Performance regression comparison.
+10. Build and automated test results.
+11. Issues fixed.
+12. Outstanding P0/P1/P2/P3 issues.
+13. Screenshots for every important route.
+14. Browser testing coverage.
+15. Known limitations.
+16. Final frontend release recommendation.
+
+Use evidence-backed statements only.
+
+# 15. FRONTEND DESIGN FREEZE
+
+After all critical and high-priority issues are resolved:
+
+- Mark the frontend as READY FOR BACKEND INTEGRATION.
+- Record the final tested commit hash.
+- Record the final build status.
+- Record outstanding non-blocking issues.
+- Document the frontend routes and existing integration points.
+- Avoid further visual changes unless a genuine defect is discovered.
+
+IMPORTANT:
+
+A successful build does not mean the frontend is complete.
+
+A high Lighthouse score does not mean the website is visually good.
+
+A visually attractive screenshot does not mean the interactions work.
+
+All three must be validated independently.
+
+Start with the audit, fix verified issues, run the regression suite and provide the final report.
+
+Do not claim frontend completion without supporting evidence.

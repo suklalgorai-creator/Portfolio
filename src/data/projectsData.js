@@ -2,6 +2,8 @@ export const projectsData = [
   {
     id: "attendance-tracker",
     name: "College Attendance Tracker",
+    published: false,
+    featured: false,
     screenshots: [
       { title: "Attendance Dashboard & Streak", url: "/assets/images/project-attendance-tracker.jpg" },
       { title: "Daily Attendance Register & Actions", url: "/assets/images/attendance-register.jpg" },
@@ -31,6 +33,11 @@ export const projectsData = [
   {
     id: "reelcount",
     name: "ReelCount",
+    published: false,
+    featured: false,
+    screenshots: [
+      { title: "ReelCount Habit Tracker & Usage Trends", url: "/assets/images/project-reelcount.jpg" }
+    ],
     category: "app",
     projectType: "Personal app",
     version: "1.0.0",
@@ -52,6 +59,11 @@ export const projectsData = [
   {
     id: "scientific-calculator",
     name: "Scientific Calculator",
+    published: false,
+    featured: false,
+    screenshots: [
+      { title: "Scientific Calculator UI & Calculation History", url: "/assets/images/project-studyflow.jpg" }
+    ],
     category: "app",
     projectType: "Personal app",
     version: "1.0.0",
@@ -73,6 +85,11 @@ export const projectsData = [
   {
     id: "codecraft-digital",
     name: "CodeCraft Digital",
+    published: false,
+    featured: false,
+    screenshots: [
+      { title: "CodeCraft Digital Studio Platform", url: "/assets/images/developer-workspace.jpg" }
+    ],
     category: "client",
     projectType: "Studio showcase",
     version: null,
@@ -90,6 +107,11 @@ export const projectsData = [
   {
     id: "sahyog-jharkhand",
     name: "Sahyog Jharkhand NGO",
+    published: false,
+    featured: false,
+    screenshots: [
+      { title: "Sahyog Jharkhand NGO Community Platform", url: "/assets/images/project-sahyog-jharkhand.jpg" }
+    ],
     category: "client",
     projectType: "Concept prototype",
     version: null,
@@ -106,6 +128,8 @@ export const projectsData = [
   {
     id: "resort-website",
     name: "Aranyak Resort & Nature Retreat",
+    published: false,
+    featured: false,
     screenshots: [
       { title: "Aranyak Resort — Hero & Booking", url: "/assets/images/project-resort.jpg" },
       { title: "Deluxe Rooms & Luxury Suites Showcase", url: "/assets/images/resort-rooms.jpg" },
@@ -128,6 +152,11 @@ export const projectsData = [
   {
     id: "wedding-photography",
     name: "Wedding & Photography Studio",
+    published: false,
+    featured: false,
+    screenshots: [
+      { title: "Wedding Photography Showcase", url: "/assets/images/project-wedding.jpg" }
+    ],
     category: "client",
     projectType: "Concept prototype",
     version: null,
@@ -144,6 +173,11 @@ export const projectsData = [
   {
     id: "food-ordering",
     name: "Restaurant & Food Ordering",
+    published: false,
+    featured: false,
+    screenshots: [
+      { title: "Food Ordering & Digital Menu Prototype", url: "/assets/images/project-resort.jpg" }
+    ],
     category: "client",
     projectType: "Concept prototype",
     version: null,
@@ -160,6 +194,11 @@ export const projectsData = [
   {
     id: "parlour-saloon",
     name: "Parlour & Salon Studio",
+    published: false,
+    featured: false,
+    screenshots: [
+      { title: "Parlour & Salon Studio Digital Service Menu", url: "/assets/images/project-parlour-saloon.jpg" }
+    ],
     category: "client",
     projectType: "Concept prototype",
     version: null,
@@ -176,6 +215,11 @@ export const projectsData = [
   {
     id: "friend-teasing",
     name: "Friend Teasing Micro-Site",
+    published: false,
+    featured: false,
+    screenshots: [
+      { title: "Friend Teasing Interactive Prank Interface", url: "/assets/images/project-friend-teasing.jpg" }
+    ],
     category: "fun",
     projectType: "Experiment",
     version: null,

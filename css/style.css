@@ -1,32 +1,15 @@
 /*
- * Global stylesheet entrypoint.
- *
- * Modules intentionally follow the historical cascade order. Some later files
- * contain visual refinements for earlier components; keeping that order makes
- * this refactor behavior-preserving while giving each concern an isolated home.
+ * Global stylesheet entrypoint — Editorial Light Mode Design System
  */
-@import "./modules/00-foundation.css";
-@import "./modules/01-hero.css";
-@import "./modules/02-about.css";
-@import "./modules/03-tech-stack.css";
-@import "./modules/04-projects.css";
-@import "./modules/05-agency.css";
-@import "./modules/06-journey.css";
-@import "./modules/07-contact.css";
-@import "./modules/08-project-modal.css";
-@import "./modules/09-terminal-modal.css";
-@import "./modules/10-feedback-footer-motion.css";
-@import "./modules/11-responsive.css";
-@import "./modules/12-stories.css";
-@import "./modules/13-visual-overrides.css";
-@import "./modules/14-cinematic-background.css";
-@import "./modules/15-typography-overrides.css";
-@import "./modules/16-feature-refinements.css";
-@import "./modules/17-cinematic-hero.css";
-@import "./modules/18-origin-story.css";
-@import "./modules/19-editorial-theme.css";
-@import "./modules/20-terminal-gemini.css";
-@import "./modules/21-light-theme.css";
-@import "./modules/22-cinematic-story.css";
-@import "./modules/23-narrow-nav.css";
-@import "./modules/24-page-framing.css";
+@import "./modules/00-tokens.css";
+@import "./modules/01-base-layout.css";
+@import "./modules/02-navbar-footer.css";
+@import "./modules/03-hero.css";
+@import "./modules/04-cinematic-story.css";
+@import "./modules/05-about-experience.css";
+@import "./modules/06-skills.css";
+@import "./modules/07-projects.css";
+@import "./modules/08-journey-cms.css";
+@import "./modules/09-studio-contact.css";
+@import "./modules/10-modals-feedback.css";
+@import "./modules/11-motion-responsive.css";

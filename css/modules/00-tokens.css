@@ -1,0 +1,230 @@
+/* ============================================================
+   00 · APPLE LIQUID GLASS & HOLOGRAPHIC DESIGN TOKENS
+   Palette:
+     Cloud White    : #F7F8FF
+     Lavender Mist  : #EEF0FF
+     Pure White     : #FFFFFF
+     Soft Blue      : #EDF4FF
+     Deep Ink       : #171725
+     Muted Slate    : #646477
+     Secondary Grey : #86869A
+     Electric Blue  : #2878FF (accessible text: #185DD6)
+     Royal Violet   : #7955ED (accessible text: #5C38D4)
+     Neon Pink      : #E65AD9 (accessible text: #A8209C)
+     Aqua Cyan      : #54D8F5 (accessible text: #0B738A)
+     Soft Coral     : #FF8C9C (accessible text: #B2293E)
+     Liquid Orange  : #FFB36B (accessible text: #8F4C00)
+   ============================================================ */
+
+:root,
+[data-theme="light"] {
+  color-scheme: light;
+
+  /* Background Colours */
+  --bg-primary: #F7F8FF;
+  --bg-cloud-white: #F7F8FF;
+  --bg-lavender-mist: #EEF0FF;
+  --bg-pure-white: #FFFFFF;
+  --bg-soft-blue: #EDF4FF;
+
+  /* Core Surfaces & Cards */
+  --surface-soft: #EEF0FF;
+  --surface: #FFFFFF;
+  --surface-elevated: #FFFFFF;
+  --surface-hover: #F2F4FD;
+  --surface-solid: #FFFFFF;
+  --input-bg: rgba(255, 255, 255, 0.85);
+
+  /* Typography Colours */
+  --ink: #171725;
+  --paper: #171725;
+  --ink-deep: #171725;
+  --ink-secondary: #646477;
+  --paper-secondary: #646477;
+  --muted: #646477;
+  --muted-slate: #646477;
+  --muted-dim: #86869A;
+  --secondary-grey: #86869A;
+
+  /* Primary Accent Colours */
+  --electric-blue: #2878FF;
+  --blue-accessible: #185DD6;
+  --blue-tint: #EDF4FF;
+
+  --royal-violet: #7955ED;
+  --violet-accessible: #5C38D4;
+  --violet-tint: #F2EFFF;
+
+  --neon-pink: #E65AD9;
+  --pink-accessible: #A8209C;
+  --pink-tint: #FDF0FB;
+
+  --aqua-cyan: #54D8F5;
+  --cyan-accessible: #0B738A;
+  --cyan-tint: #EAF9FD;
+
+  --soft-coral: #FF8C9C;
+  --coral-orange: #FF735C;
+  --coral-accessible: #B2293E;
+  --coral-tint: #FFF0F2;
+
+  --liquid-orange: #FFB36B;
+  --lemon-yellow: #F8D95B;
+  --yellow-accessible: #734F00;
+  --yellow-tint: #FFF8E8;
+
+  --lavender: #B8A5F5;
+  --lavender-accessible: #5C38D4;
+  --lavender-tint: #F3F0FE;
+
+  --teal-accent: #148F77;
+  --teal-accessible: #0A5748;
+  --teal-tint: #EAF7F4;
+
+  /* Semantic Aliases */
+  --ink-green: var(--blue-accessible);
+  --ink-green-hover: #124DB3;
+  --ink-green-soft: var(--blue-tint);
+  --blue: var(--electric-blue);
+  --purple: var(--royal-violet);
+  --purple-soft: var(--violet-tint);
+  --amber: var(--liquid-orange);
+  --cyan: var(--aqua-cyan);
+  --pen-red: #E63946;
+
+  /* Liquid Glass Gradients */
+  --grad-holographic-pill: linear-gradient(135deg, #2878FF 0%, #7955ED 50%, #E65AD9 100%);
+  --grad-hero-text: linear-gradient(135deg, #2878FF 0%, #7955ED 55%, #E65AD9 100%);
+  --grad-crystal-border: linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(84, 216, 245, 0.45) 30%, rgba(121, 85, 237, 0.35) 70%, rgba(255, 255, 255, 0.9));
+  --grad-liquid-glass: linear-gradient(145deg, rgba(255, 255, 255, 0.85) 0%, rgba(238, 240, 255, 0.4) 100%);
+  --grad-button-primary: linear-gradient(135deg, #2878FF 0%, #1A62E8 100%);
+  --grad-button-glow: 0 8px 24px -4px rgba(40, 120, 255, 0.42);
+  --grad-holographic-ribbon: linear-gradient(135deg, rgba(84, 216, 245, 0.75) 0%, rgba(121, 85, 237, 0.75) 35%, rgba(230, 90, 217, 0.7) 65%, rgba(255, 179, 107, 0.7) 100%);
+  --grad-rainbow-edge: linear-gradient(135deg, rgba(84, 216, 245, 0.85), rgba(230, 90, 217, 0.8), rgba(255, 179, 107, 0.75), rgba(40, 120, 255, 0.85));
+  --grad-caustic-shimmer: radial-gradient(ellipse at 35% 30%, rgba(255, 255, 255, 0.95) 0%, rgba(84, 216, 245, 0.35) 40%, rgba(230, 90, 217, 0.25) 70%, transparent 85%);
+  --shadow-holographic: 0 24px 60px -12px rgba(40, 120, 255, 0.2), 0 12px 30px -8px rgba(121, 85, 237, 0.18), inset 0 2px 4px rgba(255, 255, 255, 0.95), inset 0 -2px 6px rgba(84, 216, 245, 0.22);
+  --radius-xl: 32px;
+
+  /* Apple Liquid Glass Materials */
+  /* A. Frosted Glass */
+  --glass-frosted-bg: rgba(255, 255, 255, 0.68);
+  --glass-frosted-blur: blur(20px) saturate(180%);
+  --glass-frosted-border: 1px solid rgba(255, 255, 255, 0.82);
+  --glass-frosted-shadow: 0 12px 32px -10px rgba(40, 75, 180, 0.08), 0 1px 2px rgba(40, 75, 180, 0.03);
+
+  /* B. Crystal Glass */
+  --glass-crystal-bg: rgba(255, 255, 255, 0.78);
+  --glass-crystal-blur: blur(28px) saturate(190%);
+  --glass-crystal-border: 1.5px solid rgba(255, 255, 255, 0.88);
+  --glass-crystal-shadow: inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95), 0 20px 48px -12px rgba(40, 60, 150, 0.09), 0 1px 3px 0 rgba(40, 60, 150, 0.04);
+
+  /* C. Liquid Glass */
+  --glass-liquid-bg: linear-gradient(135deg, rgba(255, 255, 255, 0.82) 0%, rgba(238, 240, 255, 0.55) 100%);
+  --glass-liquid-shadow: inset 0 1px 2px rgba(255, 255, 255, 0.95), 0 16px 40px -10px rgba(121, 85, 237, 0.16);
+
+  /* Borders & Rules */
+  --border-subtle: rgba(23, 23, 37, 0.08);
+  --border-strong: rgba(23, 23, 37, 0.16);
+  --glass-border: rgba(255, 255, 255, 0.75);
+  --glass-border-strong: rgba(255, 255, 255, 0.9);
+  --rule: rgba(23, 23, 37, 0.06);
+  --rule-bright: rgba(23, 23, 37, 0.12);
+
+  /* Typography */
+  --font-display: 'Space Grotesk', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-heading: 'Manrope', 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-sans: var(--font-body);
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+  /* Elevation */
+  --card-shadow: 0 14px 36px -12px rgba(40, 60, 150, 0.08), 0 1px 3px rgba(40, 60, 150, 0.03);
+  --card-shadow-hover: 0 24px 52px -16px rgba(40, 80, 220, 0.16);
+
+  /* Geometry & Motion */
+  --container: 1220px;
+  --radius-pill: 9999px;
+  --radius-lg: 24px;
+  --radius: 18px;
+  --radius-sm: 12px;
+  --transition: 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+
+  --mouse-x: 50vw;
+  --mouse-y: 50vh;
+}
+
+/* Dark Theme (Accessible via Theme Toggle) */
+[data-theme="dark"] {
+  color-scheme: dark;
+  --bg-primary: #0D0F18;
+  --bg-cloud-white: #0D0F18;
+  --bg-lavender-mist: #141724;
+  --bg-pure-white: #181B2B;
+  --bg-soft-blue: #161A2B;
+
+  --surface-soft: #141724;
+  --surface: #181B2B;
+  --surface-elevated: #1F2338;
+  --surface-hover: #23283E;
+  --surface-solid: #181B2B;
+  --input-bg: rgba(24, 27, 43, 0.85);
+
+  --ink: #F7F8FF;
+  --paper: #F7F8FF;
+  --ink-deep: #F7F8FF;
+  --ink-secondary: #B4B7CC;
+  --paper-secondary: #B4B7CC;
+  --muted: #8E92AA;
+  --muted-slate: #8E92AA;
+  --muted-dim: #71758E;
+  --secondary-grey: #8E92AA;
+
+  --electric-blue: #4D8EFF;
+  --blue-accessible: #7AABFF;
+  --blue-tint: rgba(40, 120, 255, 0.18);
+
+  --royal-violet: #9578F8;
+  --violet-accessible: #B19BFA;
+  --violet-tint: rgba(121, 85, 237, 0.2);
+
+  --neon-pink: #F07BE6;
+  --pink-accessible: #F6A3EE;
+  --pink-tint: rgba(230, 90, 217, 0.18);
+
+  --aqua-cyan: #70E1F9;
+  --cyan-accessible: #8FE8FB;
+  --cyan-tint: rgba(84, 216, 245, 0.18);
+
+  --soft-coral: #FFA2B0;
+  --coral-orange: #FF8E7B;
+  --coral-accessible: #FFB3A6;
+  --coral-tint: rgba(255, 140, 156, 0.18);
+
+  --liquid-orange: #FFC488;
+  --lemon-yellow: #F8D95B;
+  --yellow-accessible: #F9E27E;
+  --yellow-tint: rgba(248, 217, 91, 0.16);
+
+  --glass-frosted-bg: rgba(24, 27, 43, 0.72);
+  --glass-frosted-blur: blur(20px) saturate(180%);
+  --glass-frosted-border: 1px solid rgba(255, 255, 255, 0.12);
+  --glass-frosted-shadow: 0 16px 40px -10px rgba(0, 0, 0, 0.5);
+
+  --glass-crystal-bg: rgba(28, 32, 51, 0.8);
+  --glass-crystal-blur: blur(28px) saturate(190%);
+  --glass-crystal-border: 1.5px solid rgba(255, 255, 255, 0.16);
+  --glass-crystal-shadow: inset 0 1px 1px 0 rgba(255, 255, 255, 0.2), 0 24px 52px -12px rgba(0, 0, 0, 0.6);
+
+  --glass-liquid-bg: linear-gradient(135deg, rgba(35, 40, 64, 0.85) 0%, rgba(24, 27, 43, 0.65) 100%);
+  --glass-liquid-shadow: inset 0 1px 1.5px rgba(255, 255, 255, 0.2), 0 20px 48px -10px rgba(0, 0, 0, 0.6);
+
+  --border-subtle: rgba(247, 248, 255, 0.1);
+  --border-strong: rgba(247, 248, 255, 0.2);
+  --glass-border: rgba(247, 248, 255, 0.12);
+  --glass-border-strong: rgba(247, 248, 255, 0.22);
+  --rule: rgba(247, 248, 255, 0.06);
+  --rule-bright: rgba(247, 248, 255, 0.12);
+
+  --card-shadow: 0 18px 44px -16px rgba(0, 0, 0, 0.6);
+  --card-shadow-hover: 0 28px 60px -14px rgba(40, 120, 255, 0.28);
+}
