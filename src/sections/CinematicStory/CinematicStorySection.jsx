@@ -45,14 +45,23 @@ export function CinematicStorySection() {
 
     const ctx = gsap.context(() => {
       const stages = stageRefs.current.filter(Boolean);
+      
+      // Ensure the initial stage is fully visible on arrival
+      if (stages[0]) {
+        gsap.set(stages[0], { autoAlpha: 1, y: 0 });
+      }
+      if (stages.length > 1) {
+        gsap.set(stages.slice(1), { autoAlpha: 0, y: 24 });
+      }
+
       const timeline = gsap.timeline({
-        defaults: { ease: 'none' },
+        defaults: { ease: 'power1.out' },
         scrollTrigger: {
           trigger: section,
           start: 'top top',
-          end: () => `+=${Math.max(window.innerHeight * 2.8, 1800)}`,
+          end: () => `+=${Math.max(window.innerHeight * 2.2, 1400)}`,
           pin: true,
-          scrub: 0.8,
+          scrub: 0.6,
           anticipatePin: 0.15,
           invalidateOnRefresh: true,
           onUpdate: (self) => scheduleSeek(self.progress),
@@ -60,11 +69,9 @@ export function CinematicStorySection() {
       });
 
       stages.forEach((stage, index) => {
-        if (index === 0) {
-          timeline.fromTo(stage, { autoAlpha: 0, y: 28 }, { autoAlpha: 1, y: 0, duration: 0.14 });
-        } else {
-          timeline.to(stages[index - 1], { autoAlpha: 0, y: -24, duration: 0.12 }, '+=0.08');
-          timeline.fromTo(stage, { autoAlpha: 0, y: 24 }, { autoAlpha: 1, y: 0, duration: 0.14 }, '<');
+        if (index > 0) {
+          timeline.to(stages[index - 1], { autoAlpha: 0, y: -20, duration: 0.2 }, `+=${0.12 * index}`);
+          timeline.to(stage, { autoAlpha: 1, y: 0, duration: 0.25 }, '<+=0.04');
         }
       });
 

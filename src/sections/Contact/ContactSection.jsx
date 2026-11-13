@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { siteConfig } from '../../config/siteConfig';
 
-export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
+export function ContactSection({ selectedTopic, prefilledMessage, onToast, isStandalone = false }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [topic, setTopic] = useState('Curious Minds Studio conversation');
@@ -87,7 +87,7 @@ export function ContactSection({ selectedTopic, prefilledMessage, onToast }) {
   };
 
   return (
-    <section id="contact" className="contact-section">
+    <section id="contact" className={`contact-section ${isStandalone ? 'contact-section-standalone' : ''}`}>
       <div className="container">
         <div className="contact-stage glass-crystal">
           {/* Left Column: Heading, Subtitle & Social Icons */}

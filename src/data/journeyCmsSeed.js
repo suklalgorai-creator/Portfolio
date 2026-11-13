@@ -120,15 +120,15 @@ export const journeyCmsSeed = [
     updatedAt: '2026-02-14T10:00:00.000Z'
   },
   {
-    id: 'milestone-neet-discipline',
-    title: 'NEET Preparation & First-Principles Grit Foundation',
+    id: 'milestone-academic-discipline',
+    title: 'Intense Academic Preparation & First-Principles Problem Solving',
     category: 'Technical milestones',
     displayDate: '2024 — 2025',
     sortDate: '2025-05-01',
-    organization: 'Independent Study',
+    organization: 'Independent Analytical Study',
     badge: 'Core Discipline',
     description:
-      'Two years of 12–14 hour daily competitive exam study cycles built deep concentration, systematic troubleshooting, and calm execution under pressure.',
+      'Rigorous daily analytical study cycles built deep concentration, systematic problem decomposition, and calm execution under demanding problem-solving constraints.',
     link: '',
     status: 'published',
     featured: false,

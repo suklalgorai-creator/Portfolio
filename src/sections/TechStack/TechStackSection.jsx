@@ -75,8 +75,8 @@ export function TechStackSection() {
               resilient digital experiences.
             </p>
             <a href="#skills-bento" className="btn-ecosystem-action glass-pill">
-              <span>Explore All Skills</span>
-              <span className="btn-arrow" aria-hidden="true">↗</span>
+              <span>Explore Domain Details</span>
+              <span className="btn-arrow" aria-hidden="true">↓</span>
             </a>
           </div>
 

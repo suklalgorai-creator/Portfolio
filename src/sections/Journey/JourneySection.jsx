@@ -132,7 +132,10 @@ export function JourneySection({ compact = false, initialCategory = 'All', exter
         ) : (
           <div className="journey-cms-block" style={{ marginTop: '3.5rem' }}>
             <div className="cms-block-header">
-              <h3 className="cms-block-title">Live Synced Milestones</h3>
+              <div className="cms-block-headline-group">
+                <span className="section-eyebrow">// DYNAMIC TIMELINE</span>
+                <h3 className="cms-block-title">Live Synced Milestones &amp; Credentials</h3>
+              </div>
               <div
                 className="journey-filter-bar reveal"
                 role="tablist"

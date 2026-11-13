@@ -307,7 +307,7 @@ export function AboutSection({ onToast } = {}) {
             <div className="origin-quote-box">
               <span className="quote-mark">&ldquo;</span>
               <p className="quote-text">
-                Competitive exams taught me how to grind without applause. Software engineering gave me the power to turn that grind into real products that live in people's pockets.
+                Disciplined academic problem-solving taught me how to focus without applause. Software engineering gave me the power to turn that focus into real products that live in people's hands.
               </p>
               <div className="quote-author">
                 <span className="author-name">Suklal Gorai</span>

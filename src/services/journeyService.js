@@ -1,6 +1,6 @@
 import { JOURNEY_CATEGORIES, journeyCmsSeed } from '../data/journeyCmsSeed';
 
-const STORAGE_KEY = 'sg_journey_cms_entries_v1';
+const STORAGE_KEY = 'sg_journey_cms_entries_v2';
 const CHANNEL_NAME = 'sg_journey_cms_channel';
 const CUSTOM_EVENT_NAME = 'sg:journey-updated';
 
