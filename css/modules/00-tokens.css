@@ -45,6 +45,9 @@
   --muted-slate: #646477;
   --muted-dim: #86869A;
   --secondary-grey: #86869A;
+  --text-primary: #171725;
+  --text-secondary: #646477;
+  --text-muted: #86869A;
 
   /* Primary Accent Colours */
   --electric-blue: #2878FF;
@@ -140,6 +143,7 @@
   /* Elevation */
   --card-shadow: 0 14px 36px -12px rgba(40, 60, 150, 0.08), 0 1px 3px rgba(40, 60, 150, 0.03);
   --card-shadow-hover: 0 24px 52px -16px rgba(40, 80, 220, 0.16);
+  --shadow-glass-float: 0 18px 40px -10px rgba(40, 70, 180, 0.12), 0 4px 14px -2px rgba(40, 70, 180, 0.04);
 
   /* Geometry & Motion */
   --container: 1220px;
@@ -178,6 +182,9 @@
   --muted-slate: #8E92AA;
   --muted-dim: #71758E;
   --secondary-grey: #8E92AA;
+  --text-primary: #F7F8FF;
+  --text-secondary: #B4B7CC;
+  --text-muted: #8E92AA;
 
   --electric-blue: #4D8EFF;
   --blue-accessible: #7AABFF;
